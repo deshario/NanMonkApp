@@ -15,6 +15,9 @@ Thumbs.db
 # composer vendor dir
 /vendor
 
+* linguist-vendored
+*.js linguist-vendored=false
+
 # composer itself is not needed
 composer.phar
 
