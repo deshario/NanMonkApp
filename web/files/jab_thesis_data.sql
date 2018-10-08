@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2018 at 09:09 AM
+-- Generation Time: Oct 08, 2018 at 06:54 PM
 -- Server version: 10.1.22-MariaDB
 -- PHP Version: 7.0.18
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `thesis_jab`
+-- Database: `jab_thesis`
 --
 
 -- --------------------------------------------------------
@@ -30,23 +30,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `address` (
   `address_id` int(11) NOT NULL,
-  `home_no` varchar(10) NOT NULL COMMENT 'บ้านเลขที่',
-  `tambol` varchar(5) NOT NULL COMMENT 'ตำบล',
-  `amphur` varchar(5) NOT NULL COMMENT 'อำเภอ',
-  `province` varchar(5) NOT NULL COMMENT 'จังหวัด',
-  `zipcode` varchar(5) DEFAULT NULL COMMENT 'รหัสไปรษณีย์'
+  `tambol_id` int(11) NOT NULL COMMENT 'ตำบล',
+  `amphur_id` int(11) NOT NULL COMMENT 'อำเภอ',
+  `province_id` int(11) NOT NULL COMMENT 'จังหวัด',
+  `zipcode` int(11) DEFAULT NULL COMMENT 'รหัสไปรษณีย์'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `address`
---
-
-INSERT INTO `address` (`address_id`, `home_no`, `tambol`, `amphur`, `province`, `zipcode`) VALUES
-(1, '49/2', '5675', '633', '43', '46747'),
-(2, '15/15', '5788', '646', '43', '43'),
-(3, '89/2', '5794', '646', '43', '55000'),
-(4, '89/2', '5794', '646', '43', '55000'),
-(5, '89/3', '5788', '646', '43', '55000');
 
 -- --------------------------------------------------------
 
@@ -57,7 +45,7 @@ INSERT INTO `address` (`address_id`, `home_no`, `tambol`, `amphur`, `province`, 
 CREATE TABLE `amphur` (
   `AMPHUR_ID` int(5) NOT NULL,
   `AMPHUR_CODE` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
-  `AMPHUR_NAME` varchar(150) COLLATE utf8_unicode_ci NOT NULL COMMENT 'อำเภอ',
+  `AMPHUR_NAME` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `GEO_ID` int(5) NOT NULL DEFAULT '0',
   `PROVINCE_ID` int(5) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -1069,76 +1057,13 @@ INSERT INTO `amphur` (`AMPHUR_ID`, `AMPHUR_CODE`, `AMPHUR_NAME`, `GEO_ID`, `PROV
 -- --------------------------------------------------------
 
 --
--- Table structure for table `banpacha_data`
---
-
-CREATE TABLE `banpacha_data` (
-  `banpacha_id` int(11) NOT NULL,
-  `banpacha_temple` varchar(100) NOT NULL COMMENT 'วัดที่บรรพชา',
-  `banpacha_date` datetime NOT NULL COMMENT 'วันที่บรรพชา',
-  `banpacha_address` int(11) NOT NULL COMMENT 'ที่อยู่ของวัดที่บรรพชา',
-  `woopatcha_by` varchar(100) DEFAULT NULL COMMENT 'พระอุปัชฌาย์',
-  `woopatcha_temple` varchar(100) DEFAULT NULL COMMENT 'วัดของวัดพระอุปัชฌาย์',
-  `woopatcha_address` int(11) DEFAULT NULL COMMENT 'ที่อยู่ของวัดของพระอุปชฌาย์'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `champhansa`
---
-
-CREATE TABLE `champhansa` (
-  `champhansa_id` int(11) NOT NULL,
-  `champhansa_temple` varchar(45) NOT NULL COMMENT 'วัดที่จำพรรษา',
-  `champhansa_address` int(11) NOT NULL COMMENT 'ที่อยู่ของวัดที่จำพรรษา',
-  `champhansa_move_in` datetime NOT NULL COMMENT 'วันที่ย้ายเข้า',
-  `champhansa_move_out` datetime NOT NULL COMMENT 'วันที่ย้ายออก',
-  `champhansa_duration` int(3) NOT NULL COMMENT 'จำนวนพรรษา'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `current_data`
---
-
-CREATE TABLE `current_data` (
-  `current_id` int(11) NOT NULL,
-  `citizen_no` varchar(13) NOT NULL COMMENT 'เลขบัตรประชาชน',
-  `book_no` varchar(7) DEFAULT NULL COMMENT 'เลขหนังสือสุทธิ',
-  `current_name` varchar(100) NOT NULL COMMENT 'ชื่อปัจจุบัน',
-  `surname` varchar(100) NOT NULL COMMENT 'นามสกุล',
-  `cogname` varchar(100) DEFAULT NULL COMMENT 'ฉายา',
-  `birthday` date NOT NULL COMMENT 'วันเกิด',
-  `phansa_year` int(2) DEFAULT NULL COMMENT 'พรรษา',
-  `wittayathana` varchar(50) DEFAULT NULL COMMENT 'วิทยฐานะ',
-  `temple` varchar(100) NOT NULL COMMENT 'ชื่อวัด',
-  `sect` varchar(50) DEFAULT NULL COMMENT 'สังกัดนิกาย',
-  `career` varchar(45) DEFAULT NULL COMMENT 'อาชีพ',
-  `national` varchar(45) NOT NULL COMMENT 'สัญชาติ',
-  `father_name` varchar(45) NOT NULL COMMENT 'ชื่อพ่อ',
-  `mother_name` varchar(45) NOT NULL COMMENT 'ชื่อแม่',
-  `current_address` int(11) NOT NULL COMMENT 'ที่อยู่ปัจจุบัน'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `current_data`
---
-
-INSERT INTO `current_data` (`current_id`, `citizen_no`, `book_no`, `current_name`, `surname`, `cogname`, `birthday`, `phansa_year`, `wittayathana`, `temple`, `sect`, `career`, `national`, `father_name`, `mother_name`, `current_address`) VALUES
-(1, '1156869584569', '132465', 'watthanapong', 'wongwan', 'พระเอกในตำนาน', '1997-05-18', 2, 'ไม่มี', 'วัดพระธาตุแช่แห้ง', 'มหานิกาย', 'นักศึกษา', 'ไทย', 'นายสมชาย', 'นางแก้ว', 5);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `district`
 --
 
 CREATE TABLE `district` (
   `DISTRICT_ID` int(5) NOT NULL,
   `DISTRICT_CODE` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
-  `DISTRICT_NAME` varchar(150) COLLATE utf8_unicode_ci NOT NULL COMMENT 'ตำบล',
+  `DISTRICT_NAME` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `AMPHUR_ID` int(5) NOT NULL DEFAULT '0',
   `PROVINCE_ID` int(5) NOT NULL DEFAULT '0',
   `GEO_ID` int(5) NOT NULL DEFAULT '0'
@@ -10055,118 +9980,176 @@ INSERT INTO `district` (`DISTRICT_ID`, `DISTRICT_CODE`, `DISTRICT_NAME`, `AMPHUR
 -- --------------------------------------------------------
 
 --
--- Table structure for table `education`
+-- Table structure for table `education_dhamma`
 --
 
-CREATE TABLE `education` (
-  `education_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL COMMENT 'ผู้ใช้งาน',
-  `edu_school` int(11) NOT NULL COMMENT 'โรงเรียน',
-  `edu_university` int(11) NOT NULL COMMENT 'มหาลัย',
-  `edu_dhamma` int(11) NOT NULL COMMENT 'ธรรมะ'
+CREATE TABLE `education_dhamma` (
+  `id_education` int(11) NOT NULL COMMENT 'รหัสระดับการศึกษาทางธรรม',
+  `education_name` varchar(45) DEFAULT NULL COMMENT 'ชื่อระดับการศึกษาทางธรรม'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `education_level`
+-- Table structure for table `education_standard`
 --
 
-CREATE TABLE `education_level` (
-  `level_id` int(11) NOT NULL,
-  `level_name` varchar(100) NOT NULL COMMENT 'ระดับการศึกษา',
-  `level_type` int(1) NOT NULL COMMENT 'ชนิดของระดับ'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `education_level`
---
-
-INSERT INTO `education_level` (`level_id`, `level_name`, `level_type`) VALUES
-(1, 'ประถมศึกษา', 1),
-(2, 'ปริญญาตรี', 2),
-(3, 'นักธรรมชั้นตรี', 3);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `edu_dhamma`
---
-
-CREATE TABLE `edu_dhamma` (
-  `dhamma_id` int(11) NOT NULL,
-  `dhamma_temple` varchar(45) NOT NULL COMMENT 'วัดที่เรียนธรรมะ',
-  `education_level` int(11) NOT NULL COMMENT 'ระดับการศึกษาของธรรมะ',
-  `dhamma_temple_address` int(11) NOT NULL COMMENT 'ที่อยู่วัดที่เรียนธรรมะ',
-  `dhamma_transcript` varchar(100) DEFAULT NULL COMMENT 'ไฟล์แนบ transcript'
+CREATE TABLE `education_standard` (
+  `id_education` int(11) NOT NULL COMMENT 'ระดับการศึกษา',
+  `education_name` varchar(60) DEFAULT NULL COMMENT '''ชื่อระดับการศึกษาทางโลก'''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `edu_school`
+-- Table structure for table `education_temp_trans`
 --
 
-CREATE TABLE `edu_school` (
-  `school_id` int(11) NOT NULL,
-  `school_name` varchar(100) NOT NULL COMMENT 'ชื่อโรงเรียน',
-  `school_level` int(11) NOT NULL COMMENT 'ระดับการศึกษา',
-  `school_address` int(11) NOT NULL COMMENT 'ที่อยู่ของโรงเรียน',
-  `school_transcript` varchar(100) DEFAULT NULL COMMENT 'ไฟล์แนบ transcript'
+CREATE TABLE `education_temp_trans` (
+  `idedu` int(11) NOT NULL COMMENT 'ลำดับการศึกษาทางธรรม',
+  `idperson` varchar(13) NOT NULL COMMENT 'หมายเลขบัตรประชาชน',
+  `education_level` int(11) DEFAULT NULL COMMENT 'ระดับการศึกษาทางธรรม',
+  `temple` varchar(100) DEFAULT NULL COMMENT 'ชื่อวัดที่ศึกษา',
+  `place` varchar(80) DEFAULT NULL COMMENT 'สำนักเรียน',
+  `placeprovince` int(11) DEFAULT NULL COMMENT 'สำนักเรียนคณะจังหวัด',
+  `attachfile` varchar(255) DEFAULT NULL COMMENT 'เส้นทางการจัดเก็บไฟล์แนบ',
+  `address` int(11) DEFAULT NULL COMMENT 'ที่อยู่ของสถานศึกษา'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `edu_university`
+-- Table structure for table `education_trans`
 --
 
-CREATE TABLE `edu_university` (
-  `university_id` int(11) NOT NULL,
-  `university_name` varchar(45) NOT NULL COMMENT 'ชื่อมหาลัย',
-  `university_level` int(11) NOT NULL COMMENT 'ระดับการศึกษา',
-  `university_address` int(11) NOT NULL COMMENT 'ที่อยู่ของมหาลัย',
-  `university_transcript` varchar(100) DEFAULT NULL COMMENT 'ไฟล์แนบ transcript'
+CREATE TABLE `education_trans` (
+  `idedu` int(11) NOT NULL COMMENT 'ลำดับการศึกษาทางโลก',
+  `idperson` varchar(13) NOT NULL COMMENT 'หมายเลขบัตรประชาชน',
+  `education_level` int(11) DEFAULT NULL COMMENT 'ระดับการศึกษาทางโลก',
+  `place` varchar(100) DEFAULT NULL COMMENT 'ชื่อสถานศึกษา',
+  `major` varchar(45) DEFAULT NULL COMMENT 'สาขาที่จบการศึกษา',
+  `year` varchar(4) DEFAULT NULL COMMENT 'ปีการศึกษาที่จบ พ.ศ.',
+  `abbrev` varchar(20) DEFAULT NULL COMMENT 'ชื่อย่อปริญญาบัตร',
+  `transcriptname` varchar(100) DEFAULT NULL COMMENT 'ชื่อปริญญาบัตร',
+  `attachfile` varchar(255) DEFAULT NULL COMMENT 'เส้นทางการจัดเก็บไฟล์แนบ',
+  `address` int(11) DEFAULT NULL COMMENT 'ที่อยู่ของสถานศึกษา'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `main_table`
+-- Table structure for table `hobby`
 --
 
-CREATE TABLE `main_table` (
-  `main_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL COMMENT 'ข้อมูลผู้ใช้งาน',
-  `current_id` int(11) DEFAULT NULL COMMENT 'ข้อมูลปัจจุบัน',
-  `banpacha_id` int(11) DEFAULT NULL COMMENT 'ประวัติการบรรพชา',
-  `woopasombod_id` int(11) DEFAULT NULL COMMENT 'ประวัติการอุปสมบท',
-  `champhansa_id` int(11) DEFAULT NULL COMMENT 'ประวัติการจำพรรษา',
-  `education_id` int(11) DEFAULT NULL COMMENT 'ประวัติการศึกษา',
-  `rank_id` int(11) DEFAULT NULL COMMENT 'ตำแหน่งทางคณะสงฆ์',
-  `samanasak_id` int(11) DEFAULT NULL COMMENT 'ลำดับสมัณศิกดิ์ที่ได้รับ',
-  `training_id` int(11) DEFAULT NULL COMMENT 'ประวัติการอบรม',
-  `talent_id` int(11) DEFAULT NULL COMMENT 'ความสามารถพิเศษ',
-  `portfolio_id` int(11) DEFAULT NULL COMMENT 'ผลงานที่สำคัญ'
+CREATE TABLE `hobby` (
+  `idhobby` int(11) NOT NULL COMMENT 'รหัสประเภทความสามารถพิเศษ',
+  `hobbytype` varchar(100) DEFAULT NULL COMMENT 'ความสามารถพิเศษ'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `main_table`
---
-
-INSERT INTO `main_table` (`main_id`, `user_id`, `current_id`, `banpacha_id`, `woopasombod_id`, `champhansa_id`, `education_id`, `rank_id`, `samanasak_id`, `training_id`, `talent_id`, `portfolio_id`) VALUES
-(1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `portfolio`
+-- Table structure for table `hobby_trans`
 --
 
-CREATE TABLE `portfolio` (
-  `portfolio_id` int(11) NOT NULL,
-  `portfolio_name` varchar(100) DEFAULT NULL COMMENT 'ผลงานที่สำคัญ'
+CREATE TABLE `hobby_trans` (
+  `id` int(11) NOT NULL COMMENT 'ลำดับความสามารถพิเศษ',
+  `idperson` varchar(13) NOT NULL COMMENT 'หมายเลขบัตรประชาชน',
+  `idhobby` int(11) DEFAULT NULL COMMENT 'รหัสประเภทความสามารถพิเศษ',
+  `others` varchar(100) DEFAULT NULL COMMENT 'ความสามารถพิเศษ'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `monkhood_master`
+--
+
+CREATE TABLE `monkhood_master` (
+  `monkhood_id` int(11) NOT NULL,
+  `idperson` varchar(13) NOT NULL COMMENT 'หมายเลขบัตรประชาชน',
+  `childmonkage` int(11) DEFAULT NULL COMMENT 'อายุวันที่บรรพชา',
+  `childmonkdate` date DEFAULT NULL COMMENT 'วันที่บรรพชา',
+  `childmonk_temple` varchar(80) DEFAULT NULL COMMENT 'บรรพชาที่วัด',
+  `childmonk_address` int(11) DEFAULT NULL COMMENT 'ที่อยู่ของวัดที่บรรพชา',
+  `childmonk_t1_name` varchar(60) DEFAULT NULL COMMENT 'ชื่อพระที่บรรพชาให้',
+  `childmonk_t1_temple` varchar(80) DEFAULT NULL COMMENT 'พระที่บรรพชาให้ สังกัดวัด',
+  `childmonk_t1_address` int(11) DEFAULT NULL COMMENT 'ที่อยู่วัดของพระที่บรรพชา',
+  `monk_age` int(11) DEFAULT NULL COMMENT 'อายุวันที่อุปสมบท',
+  `monk_date` date DEFAULT NULL COMMENT 'วันที่อุปสมบท',
+  `monk_time` time DEFAULT NULL COMMENT 'เวลาอุปสมบท',
+  `monk_temple` varchar(80) DEFAULT NULL COMMENT 'วัดที่อุปสมบท',
+  `monk_address` int(11) DEFAULT NULL COMMENT 'ที่อยู่ของวัดที่อุปสมบท',
+  `monk_t1_name` varchar(60) DEFAULT NULL COMMENT 'ชื่อพระอุปัชฌาย์',
+  `monk_t1_temple` varchar(80) DEFAULT NULL COMMENT 'วัดของพระอุปัชฌาย์',
+  `monk_t1_address` int(11) DEFAULT NULL COMMENT 'ที่อยู่วัดของพระอุปัชฌาย์',
+  `monk_t2_name` varchar(60) DEFAULT NULL COMMENT 'ชื่อพระกรรมวาจาจารย์',
+  `monk_t2_temple` varchar(80) DEFAULT NULL COMMENT 'วัดของพระกรรมวาจาจารย์',
+  `monk_t2_address` int(11) DEFAULT NULL COMMENT 'ที่อยู่วัดของพระกรรมวาจาจารย์',
+  `monk_t3_name` varchar(60) DEFAULT NULL COMMENT 'ชื่อของพระอนุสาวนาจารย์',
+  `monk_t3_temple` varchar(80) DEFAULT NULL COMMENT 'วัดของพระอนุสาวนาจารย์',
+  `monk_t3_address` int(11) DEFAULT NULL COMMENT 'ที่อยู่วัดของพระอนุสาวนาจารย์',
+  `staytemple` varchar(60) DEFAULT NULL COMMENT 'สังกัดวัดเมื่อบวช',
+  `staymonkname` varchar(60) DEFAULT NULL COMMENT 'ชื่อเจ้าอาวาสวัดที่สังกัดเมื่อบวช',
+  `staymonk_address` int(11) DEFAULT NULL COMMENT 'ที่อยู่วัดที่สังกัดเมื่อบวช'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `movetemple_trans`
+--
+
+CREATE TABLE `movetemple_trans` (
+  `idmove` int(11) NOT NULL COMMENT 'ลำดับการย้ายวัด',
+  `idperson` varchar(13) NOT NULL COMMENT 'หมายเลขบัตรประชาชน',
+  `fromdate` date DEFAULT NULL COMMENT 'ย้ายเมื่อวันที่',
+  `fromtemple` varchar(80) DEFAULT NULL COMMENT 'ย้ายมาจากวัด',
+  `reason` varchar(100) DEFAULT NULL COMMENT 'สาเหตุที่ย้าย',
+  `address` int(11) DEFAULT NULL COMMENT 'ที่อยู่ของวัดที่ย้ายมา'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nationality`
+--
+
+CREATE TABLE `nationality` (
+  `idnationality` int(11) NOT NULL COMMENT 'รหัสสัญชาติ',
+  `nationalityname` varchar(45) DEFAULT NULL COMMENT 'ชื่อสัญชาติ'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `person_master`
+--
+
+CREATE TABLE `person_master` (
+  `idperson` varchar(13) NOT NULL COMMENT 'หมายเลขบัตรประชาชน',
+  `user_id` int(11) NOT NULL,
+  `person_book_no` varchar(5) DEFAULT NULL COMMENT 'หมายเลขหนังสือสุทธิ',
+  `person_pic` varchar(255) DEFAULT NULL COMMENT 'รูปภาพ',
+  `firstname` varchar(60) DEFAULT NULL COMMENT 'ชื่อ',
+  `surname` varchar(60) DEFAULT NULL COMMENT 'นามสกุล',
+  `aliasname` varchar(45) DEFAULT NULL COMMENT 'ฉายา',
+  `birthdate` date DEFAULT NULL COMMENT 'วันเดือนปีเกิด',
+  `staytemp` int(11) DEFAULT NULL COMMENT 'จำนวนพรรษา',
+  `level` varchar(45) DEFAULT NULL COMMENT 'วิทยฐานะ',
+  `temple` varchar(80) DEFAULT NULL COMMENT 'วัด',
+  `homeno` varchar(60) DEFAULT NULL COMMENT 'บ้านเลขที่, หมู่ที่, หมู่บ้าน',
+  `address` int(11) DEFAULT NULL COMMENT 'ที่อยู่',
+  `section` varchar(60) DEFAULT NULL COMMENT 'สังกัดนิกาย',
+  `idnationality` int(11) DEFAULT NULL COMMENT 'รหัสสัญชาติ',
+  `occupation` varchar(50) DEFAULT NULL COMMENT 'อาชีพ',
+  `quality` varchar(50) DEFAULT NULL COMMENT 'สัณฐาน',
+  `color` varchar(10) DEFAULT NULL COMMENT 'สีเนื้อ',
+  `special` varchar(45) DEFAULT NULL COMMENT 'ตำหนิ',
+  `father` varchar(60) DEFAULT NULL COMMENT 'ชื่อบิดา',
+  `mother` varchar(60) DEFAULT NULL COMMENT 'ชื่อมารดา',
+  `family_homeno` varchar(60) DEFAULT NULL COMMENT 'บ้านเลขที่, หมู่, หมู่บ้าน (ภูมิลำเนา)',
+  `family_address` int(11) DEFAULT NULL COMMENT 'ที่อยู่ภูมิลำเนา'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -10176,17 +10159,57 @@ CREATE TABLE `portfolio` (
 --
 
 CREATE TABLE `position` (
-  `position_id` int(11) NOT NULL,
-  `position_name` varchar(80) DEFAULT NULL COMMENT 'ชื่อตำแหน่ง'
+  `idposition` int(11) NOT NULL COMMENT 'รหัสตำแหน่ง',
+  `positionname` varchar(45) DEFAULT NULL COMMENT 'ชื่อตำแหน่ง'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `position`
+-- Table structure for table `position_trans`
 --
 
-INSERT INTO `position` (`position_id`, `position_name`) VALUES
-(1, 'ผู้ช่วยเจ้าอาวาส'),
-(2, 'ร้องเจ้าอาวาส');
+CREATE TABLE `position_trans` (
+  `idpos` int(11) NOT NULL COMMENT 'ลำดับตำแหน่ง',
+  `idperson` varchar(13) NOT NULL COMMENT 'หมายเลขบัตรประชาชน',
+  `position_id` int(11) DEFAULT NULL COMMENT 'ระดับตำแหน่ง',
+  `positiondate` date DEFAULT NULL COMMENT 'วันที่ได้รับตำแหน่ง',
+  `temple` varchar(80) DEFAULT NULL COMMENT 'ชื่อวัดประจำตำแหน่ง',
+  `remark` varchar(100) DEFAULT NULL COMMENT 'หมายเหตุหรือเพิ่มเติมข้อมูล หรือตำแหน่งอื่นๆ ',
+  `attachfile` varchar(100) DEFAULT NULL COMMENT 'เส้นทางการจัดเก็บไฟล์แนบ',
+  `address_id` int(11) DEFAULT NULL COMMENT 'ที่อยู่ของวัดที่ได้ตำแหน่ง'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `promotion`
+--
+
+CREATE TABLE `promotion` (
+  `idpromotion` int(11) NOT NULL COMMENT 'รหัสสมณศักดิ์',
+  `promotionname` varchar(60) DEFAULT NULL COMMENT 'ชื่อสมณศักดิ์'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `promotion_trans`
+--
+
+CREATE TABLE `promotion_trans` (
+  `idpos` int(11) NOT NULL COMMENT 'ลำดับสมณศักดิ์ที่ได้รับ',
+  `idperson` varchar(13) NOT NULL COMMENT 'หมายเลขบัตรประชาชน',
+  `idpromotion` int(11) DEFAULT NULL COMMENT 'ระดับตำแหน่งสมณศักดิ์',
+  `promotiondate` date DEFAULT NULL COMMENT 'ได้รับเมื่อวันที่',
+  `place1` varchar(80) DEFAULT NULL COMMENT 'ราชทินนาม หรื่อ ที่',
+  `place2` varchar(80) DEFAULT NULL COMMENT 'ฐานานุกรมใน',
+  `temple` varchar(80) DEFAULT NULL COMMENT 'ชื่อวัดประจำตำแหน่ง',
+  `temple_address` int(11) DEFAULT NULL COMMENT 'ที่อยู่ของวัดที่ได้รับตำแหน่ง',
+  `year` year(4) DEFAULT NULL COMMENT 'ปี พ.ศ. เมื่อได้รับตำแหน่งเช่น พระครูปลัดของสมเด็จพระราชาคณะ, พระครู...',
+  `remark` varchar(100) DEFAULT NULL COMMENT 'หมายเหตุหรือเพิ่มเติมข้อมูล หรือตำแหน่งอื่นๆ ',
+  `attachfile` varchar(255) DEFAULT NULL COMMENT 'เส้นทางการจัดเก็บไฟล์แนบ'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -10197,7 +10220,7 @@ INSERT INTO `position` (`position_id`, `position_name`) VALUES
 CREATE TABLE `province` (
   `PROVINCE_ID` int(5) NOT NULL,
   `PROVINCE_CODE` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
-  `PROVINCE_NAME` varchar(150) COLLATE utf8_unicode_ci NOT NULL COMMENT 'จังหวัด',
+  `PROVINCE_NAME` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `GEO_ID` int(5) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -10287,59 +10310,40 @@ INSERT INTO `province` (`PROVINCE_ID`, `PROVINCE_CODE`, `PROVINCE_NAME`, `GEO_ID
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rank`
+-- Table structure for table `specialwork`
 --
 
-CREATE TABLE `rank` (
-  `rank_id` int(11) NOT NULL,
-  `rank_position` int(11) NOT NULL COMMENT 'ระดับตำแหน่ง',
-  `rank_given_temple` varchar(45) NOT NULL COMMENT 'วัด',
-  `rank_given_date` datetime NOT NULL COMMENT 'แต่งตั้งเมื่อ',
-  `rank_temple_address` int(11) NOT NULL COMMENT 'ที่อยู่',
-  `rank_type` int(1) NOT NULL COMMENT 'ชนิดของตำแหน่ง',
-  `rank_file` varchar(100) DEFAULT NULL COMMENT 'ไฟล์แนบ'
+CREATE TABLE `specialwork` (
+  `idwork` int(11) NOT NULL COMMENT 'รหัสประเภทผลงานทีสำคัญ',
+  `worktype` varchar(150) DEFAULT NULL COMMENT 'ประเภทผลงานที่สำคัญ'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `samanasak`
+-- Table structure for table `specialwork_trans`
 --
 
-CREATE TABLE `samanasak` (
-  `samanasak_id` int(11) NOT NULL,
-  `samanasak_level` int(11) NOT NULL COMMENT 'ลำดับสมณศักดิ์',
-  `rachathinanam` varchar(45) NOT NULL COMMENT 'ราชทินนาม',
-  `samanasak_date` datetime NOT NULL COMMENT 'ได้รับเมือวันที่'
+CREATE TABLE `specialwork_trans` (
+  `id` int(11) NOT NULL COMMENT 'ลำดับผลงานทีสำคัญ',
+  `idperson` varchar(13) NOT NULL COMMENT 'หมายเลขบัตรประชาชน',
+  `idwork` int(11) DEFAULT NULL COMMENT 'รหัสประเภทผลงานสำคัญ',
+  `description` varchar(150) DEFAULT NULL COMMENT 'รายละเอียดเพิ่มเติม'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `samanasak_level`
+-- Table structure for table `staytemple_trans`
 --
 
-CREATE TABLE `samanasak_level` (
-  `samanasak_level_id` int(11) NOT NULL,
-  `samanasak_level_name` varchar(100) DEFAULT NULL COMMENT 'ชื่อลำดับสมณศักดิ์'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `samanasak_level`
---
-
-INSERT INTO `samanasak_level` (`samanasak_level_id`, `samanasak_level_name`) VALUES
-(1, 'ลำดับสมณศักดิ์ 1');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `talent`
---
-
-CREATE TABLE `talent` (
-  `talent_id` int(11) NOT NULL,
-  `talent_name` varchar(100) DEFAULT NULL COMMENT 'ความสามารถ'
+CREATE TABLE `staytemple_trans` (
+  `idstay` int(11) NOT NULL COMMENT 'ลำดับการย้ายวัด',
+  `idperson` varchar(13) NOT NULL COMMENT 'หมายเลขบัตรประชาชน',
+  `indate` date DEFAULT NULL COMMENT 'วันที่ย้ายเข้า',
+  `outdate` date DEFAULT NULL COMMENT 'วันที่ย้ายออก',
+  `staytemple` varchar(80) DEFAULT NULL COMMENT 'ชื่อวัดที่จำพรรษา',
+  `staytemple_address` int(11) DEFAULT NULL COMMENT 'ที่อยู่ของวัดที่จำพรรษา'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -10349,10 +10353,24 @@ CREATE TABLE `talent` (
 --
 
 CREATE TABLE `training` (
-  `training_id` int(11) NOT NULL,
-  `training_course` varchar(100) NOT NULL COMMENT 'หัวข้ออบรม',
-  `training_date` datetime NOT NULL COMMENT 'วันที่อบรม',
-  `training_by` varchar(100) NOT NULL COMMENT 'จัดโดย'
+  `idtraining` int(11) NOT NULL,
+  `trainingname` varchar(255) DEFAULT NULL COMMENT 'ชื่อหลักสูตรอบรม'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `training_trans`
+--
+
+CREATE TABLE `training_trans` (
+  `id` int(11) NOT NULL COMMENT 'ลำดับสมณศักดิ์ที่ได้รับ',
+  `idperson` varchar(13) NOT NULL COMMENT 'หมายเลขบัตรประชาชน',
+  `training_id` int(11) DEFAULT NULL COMMENT 'ชื่อหลักสูตรอบรม',
+  `trainingdate` date DEFAULT NULL COMMENT 'วันที่ได้รับการอบรม',
+  `trainingby` varchar(100) DEFAULT NULL COMMENT 'จัดอบรมโดย',
+  `others` varchar(100) DEFAULT NULL COMMENT 'ชื่อหลักสูตรอืนๆ',
+  `attachfile` varchar(255) DEFAULT NULL COMMENT 'เส้นทางการจัดเก็บไฟล์แนบ'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -10367,40 +10385,12 @@ CREATE TABLE `user` (
   `auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone` int(11) NOT NULL COMMENT 'เบอร์โทรลูกค้า',
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'เมล',
   `status` smallint(6) NOT NULL DEFAULT '10' COMMENT 'สถานะ',
   `roles` int(11) NOT NULL COMMENT 'บทบาทผู้ใช้งาน',
   `created_at` int(11) NOT NULL COMMENT 'วันที่สมัคร',
   `updated_at` int(11) NOT NULL COMMENT 'วันที่ปรับปรุงข้อมูลล่าสุด'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `phone`, `email`, `status`, `roles`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'C7AVoZbI66sDzQImBMgIvfsHtYMrCryy', '$2y$13$TDWDnjaisW4ApNs.RARsz.qExbsZBOZW6fUhBkA/UsGOgsyVjARK.', NULL, 0, 'admin@gmail.com', 10, 20, 1538665014, 1538665014),
-(3, 'demo', 'U0NE1Xx5f8u5ONWdCE2cN-WVJjbHc8ZR', '$2y$13$i40ploC04YURmVkm8rUYje.L9eAvtNW3kaHx6HT0JkKRb3cHGvMP.', NULL, 0, 'demo@gmail.com', 10, 10, 1538677625, 1538677625);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `woopasombod`
---
-
-CREATE TABLE `woopasombod` (
-  `woopasombod_id` int(11) NOT NULL,
-  `woopasombod_date` datetime NOT NULL COMMENT 'วันที่อุปสมบท',
-  `woopasombod_temple` varchar(100) NOT NULL COMMENT 'วัดที่อุปสมบท',
-  `woopasombod_address` int(11) NOT NULL COMMENT 'ที่อยู่ของวัดที่อุปสมบท',
-  `woopatcha_by` varchar(100) DEFAULT NULL COMMENT 'พระอุปัชฌาย์',
-  `woopatcha_address` int(11) DEFAULT NULL COMMENT 'ที่อยู่ของวัดของพระอุปชฌาย์',
-  `kammawajarn` varchar(100) DEFAULT NULL COMMENT 'พระกรรมวาจาจารย์',
-  `kammawajarn_address` int(11) DEFAULT NULL COMMENT 'ที่อยู่ของวัดของพระกรรมวาจาจารย์',
-  `anutsawanajarn` varchar(100) DEFAULT NULL COMMENT 'พระอนุสาวนาจารย์',
-  `anutsawanajarn_address` int(11) DEFAULT NULL COMMENT 'ที่อยู่ของวัดของพระอนุสาวนาจารย์'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -17901,104 +17891,120 @@ ALTER TABLE `amphur`
   ADD PRIMARY KEY (`AMPHUR_ID`);
 
 --
--- Indexes for table `banpacha_data`
---
-ALTER TABLE `banpacha_data`
-  ADD PRIMARY KEY (`banpacha_id`),
-  ADD KEY `fk_banpacha_data_address1_idx` (`banpacha_address`),
-  ADD KEY `fk_banpacha_data_address2_idx` (`woopatcha_address`);
-
---
--- Indexes for table `champhansa`
---
-ALTER TABLE `champhansa`
-  ADD PRIMARY KEY (`champhansa_id`),
-  ADD KEY `fk_champhansa_address1_idx` (`champhansa_address`);
-
---
--- Indexes for table `current_data`
---
-ALTER TABLE `current_data`
-  ADD PRIMARY KEY (`current_id`),
-  ADD UNIQUE KEY `citizen_no_UNIQUE` (`citizen_no`),
-  ADD UNIQUE KEY `book_no_UNIQUE` (`book_no`),
-  ADD KEY `fk_current_data_address1_idx` (`current_address`);
-
---
 -- Indexes for table `district`
 --
 ALTER TABLE `district`
   ADD PRIMARY KEY (`DISTRICT_ID`);
 
 --
--- Indexes for table `education`
+-- Indexes for table `education_dhamma`
 --
-ALTER TABLE `education`
-  ADD PRIMARY KEY (`education_id`),
-  ADD KEY `fk_education_edu_school1_idx` (`edu_school`),
-  ADD KEY `fk_education_edu_university1_idx` (`edu_university`),
-  ADD KEY `fk_education_edu_dhamma1_idx` (`edu_dhamma`),
-  ADD KEY `fk_education_user1_idx` (`user_id`);
+ALTER TABLE `education_dhamma`
+  ADD PRIMARY KEY (`id_education`);
 
 --
--- Indexes for table `education_level`
+-- Indexes for table `education_standard`
 --
-ALTER TABLE `education_level`
-  ADD PRIMARY KEY (`level_id`);
+ALTER TABLE `education_standard`
+  ADD PRIMARY KEY (`id_education`);
 
 --
--- Indexes for table `edu_dhamma`
+-- Indexes for table `education_temp_trans`
 --
-ALTER TABLE `edu_dhamma`
-  ADD PRIMARY KEY (`dhamma_id`),
-  ADD KEY `fk_edu_data_dhamma_address1_idx` (`dhamma_temple_address`),
-  ADD KEY `fk_edu_dhamma_education_level1_idx` (`education_level`);
+ALTER TABLE `education_temp_trans`
+  ADD PRIMARY KEY (`idedu`),
+  ADD KEY `idperson_idx` (`idperson`),
+  ADD KEY `ideducation0_idx` (`education_level`),
+  ADD KEY `fk_educationtemp_trans_address1_idx` (`address`);
 
 --
--- Indexes for table `edu_school`
+-- Indexes for table `education_trans`
 --
-ALTER TABLE `edu_school`
-  ADD PRIMARY KEY (`school_id`),
-  ADD KEY `fk_edu_data_school_education_level1_idx` (`school_level`),
-  ADD KEY `fk_edu_data_school_address1_idx` (`school_address`);
+ALTER TABLE `education_trans`
+  ADD PRIMARY KEY (`idedu`),
+  ADD KEY `idperson_idx` (`idperson`),
+  ADD KEY `ideducation_idx` (`education_level`),
+  ADD KEY `fk_education_trans_address1_idx` (`address`);
 
 --
--- Indexes for table `edu_university`
+-- Indexes for table `hobby`
 --
-ALTER TABLE `edu_university`
-  ADD PRIMARY KEY (`university_id`),
-  ADD KEY `fk_edu_data_uni_education_level1_idx` (`university_level`),
-  ADD KEY `fk_edu_data_uni_address1_idx` (`university_address`);
+ALTER TABLE `hobby`
+  ADD PRIMARY KEY (`idhobby`);
 
 --
--- Indexes for table `main_table`
+-- Indexes for table `hobby_trans`
 --
-ALTER TABLE `main_table`
-  ADD PRIMARY KEY (`main_id`),
-  ADD UNIQUE KEY `user_id_UNIQUE` (`user_id`),
-  ADD KEY `fk_main_table_user1_idx` (`user_id`),
-  ADD KEY `fk_main_table_woopasombod1_idx` (`woopasombod_id`),
-  ADD KEY `fk_main_table_champhansa1_idx` (`champhansa_id`),
-  ADD KEY `fk_main_table_current_data1_idx` (`current_id`),
-  ADD KEY `fk_main_table_banpacha_data1_idx` (`banpacha_id`),
-  ADD KEY `fk_main_table_education1_idx` (`education_id`),
-  ADD KEY `fk_main_table_rank1_idx` (`rank_id`),
-  ADD KEY `fk_main_table_samanasak1_idx` (`samanasak_id`),
-  ADD KEY `fk_main_table_training1_idx` (`training_id`),
-  ADD KEY `fk_main_table_talent1_idx` (`talent_id`),
-  ADD KEY `fk_main_table_portfolio1_idx` (`portfolio_id`);
+ALTER TABLE `hobby_trans`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idperson_idx` (`idperson`);
 
 --
--- Indexes for table `portfolio`
+-- Indexes for table `monkhood_master`
 --
-ALTER TABLE `portfolio`
-  ADD PRIMARY KEY (`portfolio_id`);
+ALTER TABLE `monkhood_master`
+  ADD PRIMARY KEY (`monkhood_id`),
+  ADD KEY `fk_monkhood_master_address1_idx` (`childmonk_address`),
+  ADD KEY `fk_monkhood_master_address2_idx` (`childmonk_t1_address`),
+  ADD KEY `fk_monkhood_master_address3_idx` (`monk_address`),
+  ADD KEY `fk_monkhood_master_address4_idx` (`monk_t1_address`),
+  ADD KEY `fk_monkhood_master_address5_idx` (`monk_t2_address`),
+  ADD KEY `fk_monkhood_master_address6_idx` (`monk_t3_address`),
+  ADD KEY `fk_monkhood_master_address7_idx` (`staymonk_address`);
+
+--
+-- Indexes for table `movetemple_trans`
+--
+ALTER TABLE `movetemple_trans`
+  ADD PRIMARY KEY (`idmove`),
+  ADD KEY `fk_movetemple_trans_address1_idx` (`address`),
+  ADD KEY `fk_movetemple_trans_person_master1_idx` (`idperson`);
+
+--
+-- Indexes for table `nationality`
+--
+ALTER TABLE `nationality`
+  ADD PRIMARY KEY (`idnationality`);
+
+--
+-- Indexes for table `person_master`
+--
+ALTER TABLE `person_master`
+  ADD PRIMARY KEY (`idperson`),
+  ADD KEY `fk_person_master_address1_idx` (`address`),
+  ADD KEY `fk_person_master_address2_idx` (`family_address`),
+  ADD KEY `fk_person_master_nationality1_idx` (`idnationality`),
+  ADD KEY `fk_person_master_user1_idx` (`user_id`);
 
 --
 -- Indexes for table `position`
 --
 ALTER TABLE `position`
-  ADD PRIMARY KEY (`position_id`);
+  ADD PRIMARY KEY (`idposition`);
+
+--
+-- Indexes for table `position_trans`
+--
+ALTER TABLE `position_trans`
+  ADD PRIMARY KEY (`idpos`),
+  ADD KEY `idperson_idx` (`idperson`),
+  ADD KEY `idposition_idx` (`position_id`),
+  ADD KEY `fk_position_trans_address1_idx` (`address_id`);
+
+--
+-- Indexes for table `promotion`
+--
+ALTER TABLE `promotion`
+  ADD PRIMARY KEY (`idpromotion`);
+
+--
+-- Indexes for table `promotion_trans`
+--
+ALTER TABLE `promotion_trans`
+  ADD PRIMARY KEY (`idpos`),
+  ADD KEY `idperson_idx` (`idperson`),
+  ADD KEY `idposition0_idx` (`idpromotion`),
+  ADD KEY `fk_promotion_trans_address1_idx` (`temple_address`);
 
 --
 -- Indexes for table `province`
@@ -18007,37 +18013,40 @@ ALTER TABLE `province`
   ADD PRIMARY KEY (`PROVINCE_ID`);
 
 --
--- Indexes for table `rank`
+-- Indexes for table `specialwork`
 --
-ALTER TABLE `rank`
-  ADD PRIMARY KEY (`rank_id`),
-  ADD KEY `fk_position_address1_idx` (`rank_temple_address`),
-  ADD KEY `fk_rank_position1_idx` (`rank_position`);
+ALTER TABLE `specialwork`
+  ADD PRIMARY KEY (`idwork`);
 
 --
--- Indexes for table `samanasak`
+-- Indexes for table `specialwork_trans`
 --
-ALTER TABLE `samanasak`
-  ADD PRIMARY KEY (`samanasak_id`),
-  ADD KEY `fk_samanasak_samanasak_level1_idx` (`samanasak_level`);
+ALTER TABLE `specialwork_trans`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idperson_idx` (`idperson`),
+  ADD KEY `idwork_idx` (`idwork`);
 
 --
--- Indexes for table `samanasak_level`
+-- Indexes for table `staytemple_trans`
 --
-ALTER TABLE `samanasak_level`
-  ADD PRIMARY KEY (`samanasak_level_id`);
-
---
--- Indexes for table `talent`
---
-ALTER TABLE `talent`
-  ADD PRIMARY KEY (`talent_id`);
+ALTER TABLE `staytemple_trans`
+  ADD PRIMARY KEY (`idstay`),
+  ADD KEY `idperson_idx` (`idperson`),
+  ADD KEY `fk_staytemple_trans_address1_idx` (`staytemple_address`);
 
 --
 -- Indexes for table `training`
 --
 ALTER TABLE `training`
-  ADD PRIMARY KEY (`training_id`);
+  ADD PRIMARY KEY (`idtraining`);
+
+--
+-- Indexes for table `training_trans`
+--
+ALTER TABLE `training_trans`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idperson_idx` (`idperson`),
+  ADD KEY `fk_training_trans_training1_idx` (`training_id`);
 
 --
 -- Indexes for table `user`
@@ -18047,16 +18056,6 @@ ALTER TABLE `user`
   ADD UNIQUE KEY `username` (`username`),
   ADD UNIQUE KEY `email` (`email`),
   ADD UNIQUE KEY `password_reset_token` (`password_reset_token`);
-
---
--- Indexes for table `woopasombod`
---
-ALTER TABLE `woopasombod`
-  ADD PRIMARY KEY (`woopasombod_id`),
-  ADD KEY `fk_woopasombod_address1_idx` (`woopasombod_address`),
-  ADD KEY `fk_woopasombod_address2_idx` (`woopatcha_address`),
-  ADD KEY `fk_woopasombod_address3_idx` (`kammawajarn_address`),
-  ADD KEY `fk_woopasombod_address4_idx` (`anutsawanajarn_address`);
 
 --
 -- Indexes for table `zipcode`
@@ -18072,177 +18071,209 @@ ALTER TABLE `zipcode`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `banpacha_data`
+-- AUTO_INCREMENT for table `amphur`
 --
-ALTER TABLE `banpacha_data`
-  MODIFY `banpacha_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `amphur`
+  MODIFY `AMPHUR_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1007;
 --
--- AUTO_INCREMENT for table `champhansa`
+-- AUTO_INCREMENT for table `district`
 --
-ALTER TABLE `champhansa`
-  MODIFY `champhansa_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `district`
+  MODIFY `DISTRICT_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8915;
 --
--- AUTO_INCREMENT for table `current_data`
+-- AUTO_INCREMENT for table `education_dhamma`
 --
-ALTER TABLE `current_data`
-  MODIFY `current_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `education_dhamma`
+  MODIFY `id_education` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสระดับการศึกษาทางธรรม';
 --
--- AUTO_INCREMENT for table `education`
+-- AUTO_INCREMENT for table `education_standard`
 --
-ALTER TABLE `education`
-  MODIFY `education_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `education_standard`
+  MODIFY `id_education` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ระดับการศึกษา';
 --
--- AUTO_INCREMENT for table `education_level`
+-- AUTO_INCREMENT for table `education_temp_trans`
 --
-ALTER TABLE `education_level`
-  MODIFY `level_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `education_temp_trans`
+  MODIFY `idedu` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับการศึกษาทางธรรม';
 --
--- AUTO_INCREMENT for table `edu_school`
+-- AUTO_INCREMENT for table `education_trans`
 --
-ALTER TABLE `edu_school`
-  MODIFY `school_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `education_trans`
+  MODIFY `idedu` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับการศึกษาทางโลก';
 --
--- AUTO_INCREMENT for table `main_table`
+-- AUTO_INCREMENT for table `hobby`
 --
-ALTER TABLE `main_table`
-  MODIFY `main_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `hobby`
+  MODIFY `idhobby` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสประเภทความสามารถพิเศษ';
 --
--- AUTO_INCREMENT for table `portfolio`
+-- AUTO_INCREMENT for table `hobby_trans`
 --
-ALTER TABLE `portfolio`
-  MODIFY `portfolio_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `hobby_trans`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับความสามารถพิเศษ';
+--
+-- AUTO_INCREMENT for table `monkhood_master`
+--
+ALTER TABLE `monkhood_master`
+  MODIFY `monkhood_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `movetemple_trans`
+--
+ALTER TABLE `movetemple_trans`
+  MODIFY `idmove` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับการย้ายวัด';
+--
+-- AUTO_INCREMENT for table `nationality`
+--
+ALTER TABLE `nationality`
+  MODIFY `idnationality` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสสัญชาติ';
 --
 -- AUTO_INCREMENT for table `position`
 --
 ALTER TABLE `position`
-  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idposition` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสตำแหน่ง';
 --
--- AUTO_INCREMENT for table `rank`
+-- AUTO_INCREMENT for table `position_trans`
 --
-ALTER TABLE `rank`
-  MODIFY `rank_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `position_trans`
+  MODIFY `idpos` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับตำแหน่ง';
 --
--- AUTO_INCREMENT for table `samanasak`
+-- AUTO_INCREMENT for table `promotion`
 --
-ALTER TABLE `samanasak`
-  MODIFY `samanasak_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `promotion`
+  MODIFY `idpromotion` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสสมณศักดิ์';
 --
--- AUTO_INCREMENT for table `samanasak_level`
+-- AUTO_INCREMENT for table `promotion_trans`
 --
-ALTER TABLE `samanasak_level`
-  MODIFY `samanasak_level_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `promotion_trans`
+  MODIFY `idpos` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับสมณศักดิ์ที่ได้รับ';
 --
--- AUTO_INCREMENT for table `talent`
+-- AUTO_INCREMENT for table `province`
 --
-ALTER TABLE `talent`
-  MODIFY `talent_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `province`
+  MODIFY `PROVINCE_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+--
+-- AUTO_INCREMENT for table `specialwork`
+--
+ALTER TABLE `specialwork`
+  MODIFY `idwork` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสประเภทผลงานทีสำคัญ';
+--
+-- AUTO_INCREMENT for table `specialwork_trans`
+--
+ALTER TABLE `specialwork_trans`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับผลงานทีสำคัญ';
+--
+-- AUTO_INCREMENT for table `staytemple_trans`
+--
+ALTER TABLE `staytemple_trans`
+  MODIFY `idstay` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับการย้ายวัด';
 --
 -- AUTO_INCREMENT for table `training`
 --
 ALTER TABLE `training`
-  MODIFY `training_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idtraining` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT for table `training_trans`
 --
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `training_trans`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับสมณศักดิ์ที่ได้รับ';
 --
--- AUTO_INCREMENT for table `woopasombod`
+-- AUTO_INCREMENT for table `zipcode`
 --
-ALTER TABLE `woopasombod`
-  MODIFY `woopasombod_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `zipcode`
+  MODIFY `ZIPCODE_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7456;
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `banpacha_data`
+-- Constraints for table `education_temp_trans`
 --
-ALTER TABLE `banpacha_data`
-  ADD CONSTRAINT `fk_banpacha_data_address1` FOREIGN KEY (`banpacha_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_banpacha_data_address2` FOREIGN KEY (`woopatcha_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `education_temp_trans`
+  ADD CONSTRAINT `fk_educationtemp_trans_address1` FOREIGN KEY (`address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `ideducation0` FOREIGN KEY (`education_level`) REFERENCES `education_dhamma` (`id_education`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `idperson000` FOREIGN KEY (`idperson`) REFERENCES `person_master` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `champhansa`
+-- Constraints for table `education_trans`
 --
-ALTER TABLE `champhansa`
-  ADD CONSTRAINT `fk_champhansa_address1` FOREIGN KEY (`champhansa_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `education_trans`
+  ADD CONSTRAINT `fk_education_trans_address1` FOREIGN KEY (`address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `ideducation` FOREIGN KEY (`education_level`) REFERENCES `education_standard` (`id_education`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `idperson00` FOREIGN KEY (`idperson`) REFERENCES `person_master` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `current_data`
+-- Constraints for table `hobby_trans`
 --
-ALTER TABLE `current_data`
-  ADD CONSTRAINT `fk_current_data_address1` FOREIGN KEY (`current_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `hobby_trans`
+  ADD CONSTRAINT `idhooby` FOREIGN KEY (`idhobby`) REFERENCES `hobby` (`idhobby`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `idperson_hobbytrans` FOREIGN KEY (`idperson`) REFERENCES `person_master` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `education`
+-- Constraints for table `monkhood_master`
 --
-ALTER TABLE `education`
-  ADD CONSTRAINT `fk_education_edu_dhamma1` FOREIGN KEY (`edu_dhamma`) REFERENCES `edu_dhamma` (`dhamma_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_education_edu_school1` FOREIGN KEY (`edu_school`) REFERENCES `edu_school` (`school_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_education_edu_university1` FOREIGN KEY (`edu_university`) REFERENCES `edu_university` (`university_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_education_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `monkhood_master`
+  ADD CONSTRAINT `fk_monkhood_idperson` FOREIGN KEY (`idperson`) REFERENCES `person_master` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_monkhood_master_address1` FOREIGN KEY (`childmonk_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_monkhood_master_address2` FOREIGN KEY (`childmonk_t1_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_monkhood_master_address3` FOREIGN KEY (`monk_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_monkhood_master_address4` FOREIGN KEY (`monk_t1_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_monkhood_master_address5` FOREIGN KEY (`monk_t2_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_monkhood_master_address6` FOREIGN KEY (`monk_t3_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_monkhood_master_address7` FOREIGN KEY (`staymonk_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `edu_dhamma`
+-- Constraints for table `movetemple_trans`
 --
-ALTER TABLE `edu_dhamma`
-  ADD CONSTRAINT `fk_edu_data_dhamma_address1` FOREIGN KEY (`dhamma_temple_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_edu_dhamma_education_level1` FOREIGN KEY (`education_level`) REFERENCES `education_level` (`level_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `movetemple_trans`
+  ADD CONSTRAINT `fk_move_temple_trans_add` FOREIGN KEY (`address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_movetemple_trans_person_master1` FOREIGN KEY (`idperson`) REFERENCES `person_master` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `edu_school`
+-- Constraints for table `person_master`
 --
-ALTER TABLE `edu_school`
-  ADD CONSTRAINT `fk_edu_data_school_address1` FOREIGN KEY (`school_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_edu_data_school_education_level1` FOREIGN KEY (`school_level`) REFERENCES `education_level` (`level_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `person_master`
+  ADD CONSTRAINT `fk_person_master_address1` FOREIGN KEY (`address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_person_master_address2` FOREIGN KEY (`family_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_person_master_nationality1` FOREIGN KEY (`idnationality`) REFERENCES `nationality` (`idnationality`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_person_master_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `edu_university`
+-- Constraints for table `position_trans`
 --
-ALTER TABLE `edu_university`
-  ADD CONSTRAINT `fk_edu_data_uni_address1` FOREIGN KEY (`university_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_edu_data_uni_education_level1` FOREIGN KEY (`university_level`) REFERENCES `education_level` (`level_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `position_trans`
+  ADD CONSTRAINT `fk_position_trans_address1` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `idperson0000` FOREIGN KEY (`idperson`) REFERENCES `person_master` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `idposition` FOREIGN KEY (`position_id`) REFERENCES `position` (`idposition`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `main_table`
+-- Constraints for table `promotion_trans`
 --
-ALTER TABLE `main_table`
-  ADD CONSTRAINT `fk_main_table_banpacha_data1` FOREIGN KEY (`banpacha_id`) REFERENCES `banpacha_data` (`banpacha_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_main_table_champhansa1` FOREIGN KEY (`champhansa_id`) REFERENCES `champhansa` (`champhansa_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_main_table_current_data1` FOREIGN KEY (`current_id`) REFERENCES `current_data` (`current_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_main_table_education1` FOREIGN KEY (`education_id`) REFERENCES `education` (`education_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_main_table_portfolio1` FOREIGN KEY (`portfolio_id`) REFERENCES `portfolio` (`portfolio_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_main_table_rank1` FOREIGN KEY (`rank_id`) REFERENCES `rank` (`rank_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_main_table_samanasak1` FOREIGN KEY (`samanasak_id`) REFERENCES `samanasak` (`samanasak_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_main_table_talent1` FOREIGN KEY (`talent_id`) REFERENCES `talent` (`talent_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_main_table_training1` FOREIGN KEY (`training_id`) REFERENCES `training` (`training_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_main_table_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_main_table_woopasombod1` FOREIGN KEY (`woopasombod_id`) REFERENCES `woopasombod` (`woopasombod_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `promotion_trans`
+  ADD CONSTRAINT `fk_promotion_trans_address1` FOREIGN KEY (`temple_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `idperson00000` FOREIGN KEY (`idperson`) REFERENCES `person_master` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `idpromotion` FOREIGN KEY (`idpromotion`) REFERENCES `promotion` (`idpromotion`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `rank`
+-- Constraints for table `specialwork_trans`
 --
-ALTER TABLE `rank`
-  ADD CONSTRAINT `fk_position_address1` FOREIGN KEY (`rank_temple_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_rank_position1` FOREIGN KEY (`rank_position`) REFERENCES `position` (`position_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `specialwork_trans`
+  ADD CONSTRAINT `idperson_specialwork_trans` FOREIGN KEY (`idperson`) REFERENCES `person_master` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `idwork` FOREIGN KEY (`idwork`) REFERENCES `specialwork` (`idwork`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `samanasak`
+-- Constraints for table `staytemple_trans`
 --
-ALTER TABLE `samanasak`
-  ADD CONSTRAINT `fk_samanasak_samanasak_level1` FOREIGN KEY (`samanasak_level`) REFERENCES `samanasak_level` (`samanasak_level_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `staytemple_trans`
+  ADD CONSTRAINT `fk_staytemple_trans_address1` FOREIGN KEY (`staytemple_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `idperson0` FOREIGN KEY (`idperson`) REFERENCES `person_master` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `woopasombod`
+-- Constraints for table `training_trans`
 --
-ALTER TABLE `woopasombod`
-  ADD CONSTRAINT `fk_woopasombod_address1` FOREIGN KEY (`woopasombod_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_woopasombod_address2` FOREIGN KEY (`woopatcha_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_woopasombod_address3` FOREIGN KEY (`kammawajarn_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_woopasombod_address4` FOREIGN KEY (`anutsawanajarn_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `training_trans`
+  ADD CONSTRAINT `fk_training_trans_training1` FOREIGN KEY (`training_id`) REFERENCES `training` (`idtraining`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `idperson000000` FOREIGN KEY (`idperson`) REFERENCES `person_master` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
