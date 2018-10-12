@@ -70,9 +70,9 @@ class SignupForm extends Model
         $user->created_at = time();
         $user->updated_at = time();
         if($user->save()){
-            $main = new MainTable();
-            $main->user_id = $user->id;
-            $main->save();
+//            $main = new MainTable();
+//            $main->user_id = $user->id;
+//            $main->save();
          return $user;
         }else{
             return null;

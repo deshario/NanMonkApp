@@ -7,10 +7,10 @@ use Yii;
 /**
  * This is the model class for table "position".
  *
- * @property int $position_id
- * @property string $position_name ชื่อตำแหน่ง
+ * @property int $idposition รหัสตำแหน่ง
+ * @property string $positionname ชื่อตำแหน่ง
  *
- * @property Rank[] $ranks
+ * @property PositionTrans[] $positionTrans
  */
 class Position extends \yii\db\ActiveRecord
 {
@@ -28,7 +28,7 @@ class Position extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['position_name'], 'string', 'max' => 80],
+            [['positionname'], 'string', 'max' => 45],
         ];
     }
 
@@ -38,16 +38,16 @@ class Position extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'position_id' => 'Position ID',
-            'position_name' => 'ตำแหน่ง',
+            'idposition' => 'รหัสตำแหน่ง',
+            'positionname' => 'ชื่อตำแหน่ง',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getRanks()
+    public function getPositionTrans()
     {
-        return $this->hasMany(Rank::className(), ['rank_position' => 'position_id']);
+        return $this->hasMany(PositionTrans::className(), ['position_id' => 'idposition']);
     }
 }

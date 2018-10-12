@@ -18,8 +18,8 @@ class PositionSearch extends Position
     public function rules()
     {
         return [
-            [['position_id'], 'integer'],
-            [['position_name'], 'safe'],
+            [['idposition'], 'integer'],
+            [['positionname'], 'safe'],
         ];
     }
 
@@ -59,10 +59,10 @@ class PositionSearch extends Position
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'position_id' => $this->position_id,
+            'idposition' => $this->idposition,
         ]);
 
-        $query->andFilterWhere(['like', 'position_name', $this->position_name]);
+        $query->andFilterWhere(['like', 'positionname', $this->positionname]);
 
         return $dataProvider;
     }

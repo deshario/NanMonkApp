@@ -5,17 +5,22 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Training */
 
-$this->title = 'Update Training: ' . $model->training_id;
+$this->title = 'แก้ไข';
 $this->params['breadcrumbs'][] = ['label' => 'Trainings', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->training_id, 'url' => ['view', 'id' => $model->training_id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = ['label' => $model->trainingname];
+$this->params['breadcrumbs'][] = 'แก้ไข';
 ?>
 <div class="training-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?= $this->title; ?></h3>
+        </div>
+        <div class="panel-body">
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]) ?>
+        </div>
+    </div>
 
 </div>

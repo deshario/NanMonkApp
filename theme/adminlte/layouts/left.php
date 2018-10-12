@@ -40,20 +40,21 @@ use yii\bootstrap\Modal;
             if ($Maccess == User::ROLE_ADMIN) {
                 $menuItems = [
                     ['label' => '', 'options' => ['class' => 'header']],
+                    ['label' => 'ความสามารถพิเศษ', 'icon' => 'arrow-right', 'url' => ['hobby/index'],],
+                    ['label' => 'ประเภทผลงาน', 'icon' => 'arrow-right', 'url' => ['specialwork/index'],],
+                    //['label' => 'ที่อยู่', 'icon' => 'arrow-right', 'url' => ['address/index'],],
+                    ['label' => 'สัญชาติ', 'icon' => 'arrow-right', 'url' => ['nationality/index'],],
+                    ['label' => 'หลักสูตรอบรม', 'icon' => 'arrow-right', 'url' => ['training/index'],],
                     ['label' => 'ตำแหน่ง', 'icon' => 'arrow-right', 'url' => ['position/index'],],
-                    ['label' => 'ที่อยู่', 'icon' => 'arrow-right', 'url' => ['address/index'],],
-                    ['label' => 'ระดับการศึกษา', 'icon' => 'arrow-right', 'url' => ['education-level/index'],],
-                    ['label' => 'ลำดับสมณศักดิ์', 'icon' => 'arrow-right', 'url' => ['samanasak-level/index'],],
+                    ['label' => 'สมณศักดิ์', 'icon' => 'arrow-right', 'url' => ['promotion/index'],],
                     [
-                        'label' => 'พืนที่ทั้งหมด',
+                        'label' => 'ระดับการศึกษา',
                         'icon' => 'key',
                         'active' => true,
                         'url' => '#',
                         'items' => [
-                            ['label' => 'ตำบล', 'icon' => 'arrow-right', 'url' => ['tambol/index'],],
-                            ['label' => 'อำเภอ', 'icon' => 'arrow-right', 'url' => ['amphur/index'],],
-                            ['label' => 'จังหวัด', 'icon' => 'arrow-right', 'url' => ['province/index'],],
-                            ['label' => 'รหัสไปรษณีย์', 'icon' => 'arrow-right', 'url' => ['zipcode/index'],],
+                            ['label' => 'ระดับการศึกษาทางโลก', 'icon' => 'arrow-right', 'url' => ['education-standard/index'],],
+                            ['label' => 'ระดับการศึกษาทางธรรม', 'icon' => 'arrow-right', 'url' => ['education-dhamma/index'],],
                         ],
                     ],
                     ['label' => 'ออกจากระบบ', 'url' => ['site/logout'], 'template' => '<a href="{url}" data-method="post"><i class="fa fa-sign-out"></i>{label}</a>'],
@@ -61,16 +62,33 @@ use yii\bootstrap\Modal;
             }else{
                 $menuItems = [
                     ['label' => 'Menu', 'options' => ['class' => 'header']],
-                    ['label' => 'ข้อมูลปัจจุบัน', 'icon' => 'arrow-right', 'url' => ['/current-data/index']],
-                    ['label' => 'การบรรพชา', 'icon' => 'arrow-right', 'url' => ['/banpacha-data/index']],
-                    ['label' => 'การอุปสมบท', 'icon' => 'arrow-right', 'url' => ['/woopasombod/index']],
-                    ['label' => 'การจำพรรษา', 'icon' => 'arrow-right', 'url' => ['/champhansa/index']],
-                    ['label' => 'ลำดับสมณศักดิ์', 'icon' => 'arrow-right', 'url' => ['/samanasak/index']],
-                    ['label' => 'ตำแหน่งทางคณะสงฆ์', 'icon' => 'arrow-right', 'url' => ['/rank/index']],
-                    ['label' => 'การศึกษา', 'icon' => 'arrow-right', 'url' => ['/education/index']],
-                    ['label' => 'การอบรม', 'icon' => 'arrow-right', 'url' => ['/training/index']],
-                    ['label' => 'ความสามารถพิเศษ', 'icon' => 'arrow-right', 'url' => ['/talent/index']],
-                    ['label' => 'ผลงาน', 'icon' => 'arrow-right', 'url' => ['/portfolio/index']],
+                    [
+                        'label' => 'ข้อมูลพืนฐาน',
+                        'icon' => 'key',
+                        //'active' => true,
+                        'url' => '#',
+                        'items' => [
+                            ['label' => 'person-master', 'icon' => 'arrow-right', 'url' => ['person-master/index'],],
+                            ['label' => 'monkhood-master', 'icon' => 'arrow-right', 'url' => ['monkhood-master/index'],],
+                        ],
+                    ],
+                    ['label' => 'การย้ายสังกัด', 'icon' => 'arrow-right', 'url' => ['movetemple-trans/index'],],
+                    ['label' => 'การจำพรรษา', 'icon' => 'arrow-right', 'url' => ['staytemple-trans/index'],],
+                    [
+                        'label' => 'ประวัติการศึกษา',
+                        'icon' => 'key',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => 'education-trans', 'icon' => 'arrow-right', 'url' => ['education-trans/index'],],
+                            ['label' => 'education-temp-trans', 'icon' => 'arrow-right', 'url' => ['education-temp-trans/index'],],
+                        ],
+                    ],
+
+                    ['label' => 'ตำแหน่งทางคณะสงฆ์', 'icon' => 'arrow-right', 'url' => ['position-trans/index'],],
+                    ['label' => 'ลำดับสมณศักดิ์', 'icon' => 'arrow-right', 'url' => ['promotion-trans/index'],],
+                    ['label' => 'การอบรม', 'icon' => 'arrow-right', 'url' => ['training-trans/index'],],
+                    ['label' => 'ความสามมารถพิเศษ', 'icon' => 'arrow-right', 'url' => ['hobby-trans/index'],],
+                    ['label' => 'ผลงานสำคัญ', 'icon' => 'arrow-right', 'url' => ['specialwork-trans/index'],],
                     ['label' => 'ออกจากระบบ', 'icon' => 'sign-out', 'url' => ['site/logout'], 'template' => '<a href="{url}" data-method="post"><i class="fa fa-sign-out"></i>{label}</a>'],
                 ];
             }

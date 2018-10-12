@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $AMPHUR_ID
  * @property string $AMPHUR_CODE
- * @property string $AMPHUR_NAME อำเภอ
+ * @property string $AMPHUR_NAME
  * @property int $GEO_ID
  * @property int $PROVINCE_ID
  */
@@ -29,11 +29,10 @@ class Amphur extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['AMPHUR_ID', 'AMPHUR_CODE', 'AMPHUR_NAME'], 'required'],
-            [['AMPHUR_ID', 'GEO_ID', 'PROVINCE_ID'], 'integer'],
+            [['AMPHUR_CODE', 'AMPHUR_NAME'], 'required'],
+            [['GEO_ID', 'PROVINCE_ID'], 'integer'],
             [['AMPHUR_CODE'], 'string', 'max' => 4],
             [['AMPHUR_NAME'], 'string', 'max' => 150],
-            [['AMPHUR_ID'], 'unique'],
         ];
     }
 

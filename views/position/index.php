@@ -23,14 +23,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'kartik\grid\SerialColumn', 'header' => '',],
 
-            //'position_id',
-            'position_name',
+            //'idposition',
+            'positionname',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
         'resizableColumns' => false,
         'responsiveWrap' => false,
     ]); ?>
+
 </div>
 
 <div class="panel panel-default">
@@ -59,5 +60,3 @@ $this->params['breadcrumbs'][] = $this->title;
         ?>
     </div>
 </div>
-
-

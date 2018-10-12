@@ -7,12 +7,10 @@ use Yii;
 /**
  * This is the model class for table "training".
  *
- * @property int $training_id
- * @property string $training_course หัวข้ออบรม
- * @property string $training_date วันที่อบรม
- * @property string $training_by จัดโดย
+ * @property int $idtraining
+ * @property string $trainingname ชื่อหลักสูตรอบรม
  *
- * @property MainTable[] $mainTables
+ * @property TrainingTrans[] $trainingTrans
  */
 class Training extends \yii\db\ActiveRecord
 {
@@ -30,9 +28,7 @@ class Training extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['training_course', 'training_date', 'training_by'], 'required'],
-            [['training_date'], 'safe'],
-            [['training_course', 'training_by'], 'string', 'max' => 100],
+            [['trainingname'], 'string', 'max' => 255],
         ];
     }
 
@@ -42,18 +38,16 @@ class Training extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'training_id' => 'Training ID',
-            'training_course' => 'หัวข้ออบรม',
-            'training_date' => 'วันที่อบรม',
-            'training_by' => 'จัดโดย',
+            'idtraining' => 'Idtraining',
+            'trainingname' => 'ชื่อหลักสูตรอบรม',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMainTables()
+    public function getTrainingTrans()
     {
-        return $this->hasMany(MainTable::className(), ['training_id' => 'training_id']);
+        return $this->hasMany(TrainingTrans::className(), ['training_id' => 'idtraining']);
     }
 }

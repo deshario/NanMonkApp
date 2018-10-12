@@ -30,11 +30,9 @@ class Zipcode extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ZIPCODE_ID', 'DISTRICT_CODE', 'PROVINCE_ID', 'AMPHUR_ID', 'DISTRICT_ID', 'ZIPCODE'], 'required'],
-            [['ZIPCODE_ID'], 'integer'],
+            [['DISTRICT_CODE', 'PROVINCE_ID', 'AMPHUR_ID', 'DISTRICT_ID', 'ZIPCODE'], 'required'],
             [['DISTRICT_CODE', 'PROVINCE_ID', 'AMPHUR_ID', 'DISTRICT_ID'], 'string', 'max' => 100],
             [['ZIPCODE'], 'string', 'max' => 5],
-            [['ZIPCODE_ID'], 'unique'],
         ];
     }
 

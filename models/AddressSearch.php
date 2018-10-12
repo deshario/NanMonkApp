@@ -18,8 +18,7 @@ class AddressSearch extends Address
     public function rules()
     {
         return [
-            [['address_id'], 'integer'],
-            [['home_no', 'tambol', 'amphur', 'province', 'zipcode'], 'safe'],
+            [['address_id', 'tambol_id', 'amphur_id', 'province_id', 'zipcode'], 'integer'],
         ];
     }
 
@@ -60,13 +59,11 @@ class AddressSearch extends Address
         // grid filtering conditions
         $query->andFilterWhere([
             'address_id' => $this->address_id,
+            'tambol_id' => $this->tambol_id,
+            'amphur_id' => $this->amphur_id,
+            'province_id' => $this->province_id,
+            'zipcode' => $this->zipcode,
         ]);
-
-        $query->andFilterWhere(['like', 'home_no', $this->home_no])
-            ->andFilterWhere(['like', 'tambol', $this->tambol])
-            ->andFilterWhere(['like', 'amphur', $this->amphur])
-            ->andFilterWhere(['like', 'province', $this->province])
-            ->andFilterWhere(['like', 'zipcode', $this->zipcode]);
 
         return $dataProvider;
     }

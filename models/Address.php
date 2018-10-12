@@ -8,13 +8,19 @@ use Yii;
  * This is the model class for table "address".
  *
  * @property int $address_id
- * @property string $home_no บ้านเลขที่
- * @property string $tambol ตำบล
- * @property string $amphur อำเภอ
- * @property string $province จังหวัด
- * @property string $zipcode รหัสไปรษณีย์
+ * @property int $tambol_id ตำบล
+ * @property int $amphur_id อำเภอ
+ * @property int $province_id จังหวัด
+ * @property int $zipcode รหัสไปรษณีย์
  *
- * @property Rank[] $ranks
+ * @property EducationTempTrans[] $educationTempTrans
+ * @property EducationTrans[] $educationTrans
+ * @property MovetempleTrans[] $movetempleTrans
+ * @property PersonMaster[] $personMasters
+ * @property PersonMaster[] $personMasters0
+ * @property PositionTrans[] $positionTrans
+ * @property PromotionTrans[] $promotionTrans
+ * @property StaytempleTrans[] $staytempleTrans
  */
 class Address extends \yii\db\ActiveRecord
 {
@@ -32,9 +38,8 @@ class Address extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['home_no', 'tambol', 'amphur', 'province'], 'required'],
-            [['home_no'], 'string', 'max' => 10],
-            [['tambol', 'amphur', 'province', 'zipcode'], 'string', 'max' => 5],
+            [['tambol_id', 'amphur_id', 'province_id'], 'required'],
+            [['tambol_id', 'amphur_id', 'province_id', 'zipcode'], 'integer'],
         ];
     }
 
@@ -45,19 +50,74 @@ class Address extends \yii\db\ActiveRecord
     {
         return [
             'address_id' => 'Address ID',
-            'home_no' => 'Home No',
-            'tambol' => 'Tambol',
-            'amphur' => 'Amphur',
-            'province' => 'Province',
-            'zipcode' => 'Zipcode',
+            'tambol_id' => 'ตำบล',
+            'amphur_id' => 'อำเภอ',
+            'province_id' => 'จังหวัด',
+            'zipcode' => 'รหัสไปรษณีย์',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getRanks()
+    public function getEducationTempTrans()
     {
-        return $this->hasMany(Rank::className(), ['rank_temple_address' => 'address_id']);
+        return $this->hasMany(EducationTempTrans::className(), ['address' => 'address_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEducationTrans()
+    {
+        return $this->hasMany(EducationTrans::className(), ['address' => 'address_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMovetempleTrans()
+    {
+        return $this->hasMany(MovetempleTrans::className(), ['address' => 'address_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPersonMasters()
+    {
+        return $this->hasMany(PersonMaster::className(), ['address' => 'address_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPersonMasters0()
+    {
+        return $this->hasMany(PersonMaster::className(), ['family_address' => 'address_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPositionTrans()
+    {
+        return $this->hasMany(PositionTrans::className(), ['address_id' => 'address_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPromotionTrans()
+    {
+        return $this->hasMany(PromotionTrans::className(), ['temple_address' => 'address_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStaytempleTrans()
+    {
+        return $this->hasMany(StaytempleTrans::className(), ['staytemple_address' => 'address_id']);
     }
 }

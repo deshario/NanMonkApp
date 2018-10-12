@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 $this->title = 'แก้ไข';
 $this->params['breadcrumbs'][] = ['label' => 'ตำแหน่ง', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->position_name, 'url' => ['view', 'id' => $model->position_id]];
+$this->params['breadcrumbs'][] = ['label' => $model->positionname];
 $this->params['breadcrumbs'][] = 'แก้ไข';
 ?>
 <div class="position-update">

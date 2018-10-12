@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $PROVINCE_ID
  * @property string $PROVINCE_CODE
- * @property string $PROVINCE_NAME จังหวัด
+ * @property string $PROVINCE_NAME
  * @property int $GEO_ID
  */
 class Province extends \yii\db\ActiveRecord
@@ -28,11 +28,10 @@ class Province extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['PROVINCE_ID', 'PROVINCE_CODE', 'PROVINCE_NAME'], 'required'],
-            [['PROVINCE_ID', 'GEO_ID'], 'integer'],
+            [['PROVINCE_CODE', 'PROVINCE_NAME'], 'required'],
+            [['GEO_ID'], 'integer'],
             [['PROVINCE_CODE'], 'string', 'max' => 2],
             [['PROVINCE_NAME'], 'string', 'max' => 150],
-            [['PROVINCE_ID'], 'unique'],
         ];
     }
 
@@ -43,9 +42,9 @@ class Province extends \yii\db\ActiveRecord
     {
         return [
             'PROVINCE_ID' => 'Province  ID',
-            'PROVINCE_CODE' => 'PROVINCE CODE',
-            'PROVINCE_NAME' => 'PROVINCE NAME',
-            'GEO_ID' => 'Geo ID',
+            'PROVINCE_CODE' => 'Province  Code',
+            'PROVINCE_NAME' => 'Province  Name',
+            'GEO_ID' => 'Geo  ID',
         ];
     }
 }

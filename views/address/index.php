@@ -3,6 +3,7 @@
 use kartik\tabs\TabsX;
 use yii\helpers\Html;
 use kartik\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\AddressSearch */
@@ -23,18 +24,19 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'kartik\grid\SerialColumn', 'header' => '',],
 
             'address_id',
-            'home_no',
-            'tambol',
-            'amphur',
-            'province',
-            //'zipcode',
+            'tambol_id',
+            'amphur_id',
+            'province_id',
+            'zipcode',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => 'yii\grid\ActionColumn'],
         ],
         'resizableColumns' => false,
         'responsiveWrap' => false,
     ]); ?>
+
 </div>
+
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title"><i class="fa fa-users"></i>&nbsp;<?= $this->title; ?></h3>

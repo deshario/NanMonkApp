@@ -18,8 +18,8 @@ class TrainingSearch extends Training
     public function rules()
     {
         return [
-            [['training_id'], 'integer'],
-            [['training_course', 'training_date', 'training_by'], 'safe'],
+            [['idtraining'], 'integer'],
+            [['trainingname'], 'safe'],
         ];
     }
 
@@ -59,12 +59,10 @@ class TrainingSearch extends Training
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'training_id' => $this->training_id,
-            'training_date' => $this->training_date,
+            'idtraining' => $this->idtraining,
         ]);
 
-        $query->andFilterWhere(['like', 'training_course', $this->training_course])
-            ->andFilterWhere(['like', 'training_by', $this->training_by]);
+        $query->andFilterWhere(['like', 'trainingname', $this->trainingname]);
 
         return $dataProvider;
     }
