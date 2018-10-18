@@ -62,16 +62,7 @@ use yii\bootstrap\Modal;
             }else{
                 $menuItems = [
                     ['label' => 'Menu', 'options' => ['class' => 'header']],
-                    [
-                        'label' => 'ข้อมูลพืนฐาน',
-                        'icon' => 'key',
-                        //'active' => true,
-                        'url' => '#',
-                        'items' => [
-                            ['label' => 'person-master', 'icon' => 'arrow-right', 'url' => ['person-master/index'],],
-                            ['label' => 'monkhood-master', 'icon' => 'arrow-right', 'url' => ['monkhood-master/index'],],
-                        ],
-                    ],
+                    ['label' => 'ข้อมูลพืนฐาน', 'icon' => 'arrow-right', 'url' => ['person-master/index'],],
                     ['label' => 'การย้ายสังกัด', 'icon' => 'arrow-right', 'url' => ['movetemple-trans/index'],],
                     ['label' => 'การจำพรรษา', 'icon' => 'arrow-right', 'url' => ['staytemple-trans/index'],],
                     [
@@ -79,8 +70,8 @@ use yii\bootstrap\Modal;
                         'icon' => 'key',
                         'url' => '#',
                         'items' => [
-                            ['label' => 'education-trans', 'icon' => 'arrow-right', 'url' => ['education-trans/index'],],
-                            ['label' => 'education-temp-trans', 'icon' => 'arrow-right', 'url' => ['education-temp-trans/index'],],
+                            ['label' => 'ทางโลก', 'icon' => 'arrow-right', 'url' => ['education-trans/index'],],
+                            ['label' => 'ทางธรรม', 'icon' => 'arrow-right', 'url' => ['education-temp-trans/index'],],
                         ],
                     ],
 

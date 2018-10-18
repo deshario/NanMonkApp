@@ -53,10 +53,12 @@ class MonkhoodMaster extends \yii\db\ActiveRecord
     public $amphur_ii,$amphur_iii,$amphur_iv,$amphur_v,$amphur_vi,$amphur_vii;
     public $tambol_ii,$tambol_iii,$tambol_iv,$tambol_v,$tambol_vi,$tambol_vii;
 
+    const banpacha = 1;
+    const woopasombod = 2;
 
     public static function tableName()
     {
-        return 'monkhood_master';
+        return 'monk_master';
     }
 
     /**

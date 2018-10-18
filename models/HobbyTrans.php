@@ -22,7 +22,7 @@ class HobbyTrans extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'hobby_trans';
+        return 'hobbie_trans';
     }
 
     /**

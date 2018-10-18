@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "education_temp_trans".
@@ -22,9 +24,12 @@ use Yii;
  */
 class EducationTempTrans extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+    public $province;
+    public $amphur;
+    public $tambol;
+
+    const UPLOAD_FOLDER = 'uploads';
+
     public static function tableName()
     {
         return 'education_temp_trans';
@@ -39,6 +44,7 @@ class EducationTempTrans extends \yii\db\ActiveRecord
             [['idperson'], 'required'],
             [['education_level', 'placeprovince', 'address'], 'integer'],
             [['idperson'], 'string', 'max' => 13],
+            [['province','amphur','tambol','education_level','temple'], 'required'],
             [['temple'], 'string', 'max' => 100],
             [['place'], 'string', 'max' => 80],
             [['attachfile'], 'string', 'max' => 255],
@@ -62,6 +68,9 @@ class EducationTempTrans extends \yii\db\ActiveRecord
             'placeprovince' => 'สำนักเรียนคณะจังหวัด',
             'attachfile' => 'เส้นทางการจัดเก็บไฟล์แนบ',
             'address' => 'ที่อยู่ของสถานศึกษา',
+            'province' => 'จังหวัด',
+            'amphur' => 'อำเภอ',
+            'tambol' => 'ตำบล',
         ];
     }
 
@@ -87,5 +96,20 @@ class EducationTempTrans extends \yii\db\ActiveRecord
     public function getPerson()
     {
         return $this->hasOne(PersonMaster::className(), ['idperson' => 'idperson']);
+    }
+
+    public function getEducationDhammaList(){
+        $list = EducationDhamma::find()->orderBy('id_education')->all();
+        return ArrayHelper::map($list,'id_education','education_name');
+    }
+
+    public static function getUploadPath()
+    {
+        return Yii::getAlias('@webroot') . '/' . self::UPLOAD_FOLDER . '/education/';
+    }
+
+    public static function getUploadUrl()
+    {
+        return Url::base(true) . '/' . self::UPLOAD_FOLDER . '/education/';
     }
 }

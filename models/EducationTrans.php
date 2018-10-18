@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "education_trans".
@@ -24,9 +26,12 @@ use Yii;
  */
 class EducationTrans extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+    public $province;
+    public $amphur;
+    public $tambol;
+
+    const UPLOAD_FOLDER = 'uploads';
+
     public static function tableName()
     {
         return 'education_trans';
@@ -42,6 +47,7 @@ class EducationTrans extends \yii\db\ActiveRecord
             [['education_level', 'address'], 'integer'],
             [['idperson'], 'string', 'max' => 13],
             [['place', 'transcriptname'], 'string', 'max' => 100],
+            [['province','amphur','tambol','education_level'], 'required'],
             [['major'], 'string', 'max' => 45],
             [['year'], 'string', 'max' => 4],
             [['abbrev'], 'string', 'max' => 20],
@@ -63,11 +69,14 @@ class EducationTrans extends \yii\db\ActiveRecord
             'education_level' => 'ระดับการศึกษาทางโลก',
             'place' => 'ชื่อสถานศึกษา',
             'major' => 'สาขาที่จบการศึกษา',
-            'year' => 'ปีการศึกษาที่จบ พ.ศ.',
+            'year' => 'ปีการศึกษาที่จบ',
             'abbrev' => 'ชื่อย่อปริญญาบัตร',
             'transcriptname' => 'ชื่อปริญญาบัตร',
             'attachfile' => 'เส้นทางการจัดเก็บไฟล์แนบ',
             'address' => 'ที่อยู่ของสถานศึกษา',
+            'province' => 'จังหวัด',
+            'amphur' => 'อำเภอ',
+            'tambol' => 'ตำบล',
         ];
     }
 
@@ -93,5 +102,20 @@ class EducationTrans extends \yii\db\ActiveRecord
     public function getPerson()
     {
         return $this->hasOne(PersonMaster::className(), ['idperson' => 'idperson']);
+    }
+
+    public function getEducationStandardList(){
+        $list = EducationStandard::find()->orderBy('id_education')->all();
+        return ArrayHelper::map($list,'id_education','education_name');
+    }
+
+    public static function getUploadPath()
+    {
+        return Yii::getAlias('@webroot') . '/' . self::UPLOAD_FOLDER . '/education/';
+    }
+
+    public static function getUploadUrl()
+    {
+        return Url::base(true) . '/' . self::UPLOAD_FOLDER . '/education/';
     }
 }

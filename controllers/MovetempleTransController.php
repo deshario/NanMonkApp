@@ -2,6 +2,9 @@
 
 namespace app\controllers;
 
+use app\models\Address;
+use app\models\PersonMaster;
+use kartik\growl\Growl;
 use Yii;
 use app\models\MovetempleTrans;
 use app\models\MovetempleTransSearch;
@@ -37,6 +40,22 @@ class MovetempleTransController extends Controller
     {
         $searchModel = new MovetempleTransSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $id = Yii::$app->user->identity->id;
+        $key = PersonMaster::find()->where('user_id = ' . $id)->one();
+        if($key != null){
+            $dataProvider->query->where('idperson = '.$key->person);
+        }else{
+            Yii::$app->getSession()->setFlash('campaign_broadcast_warning', [
+                'type' => Growl::TYPE_DANGER,
+                'duration' => 5000,
+                'icon' => 'fa fa-close',
+                'title' => 'คำสั่งลมเหลว',
+                'message' => 'กรุณากรอกข้อมูลพืนฐานเป็นอันดับแรก',
+                'positonY' => 'bottom',
+                'positonX' => 'right'
+            ]);
+            return $this->redirect(['person-master/index']);
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -65,9 +84,22 @@ class MovetempleTransController extends Controller
     public function actionCreate()
     {
         $model = new MovetempleTrans();
+        $id = Yii::$app->user->identity->id;
+        $key = PersonMaster::find()->where('user_id = ' . $id)->one()->idperson;
+        $model->idperson = $key;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idmove]);
+        if ($model->load(Yii::$app->request->post())) {
+
+            $address = new Address();
+            $address->tambol_id = $model->tambol;
+            $address->amphur_id = $model->amphur;
+            $address->province_id = $model->province;
+            $address->save();
+            $model->address = $address->address_id;
+
+            $model->save();
+
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [

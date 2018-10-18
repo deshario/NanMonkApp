@@ -5,12 +5,13 @@ use kartik\tabs\TabsX;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
+use app\models\MonkhoodMaster;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\PersonMasterSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Person Masters';
+$this->title = 'ข้อมูลพืนฐาน';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -90,14 +91,6 @@ foreach ($dataProvider->models as $model) {
             <div class='row'>
                 <div class='col-md-12'>
                     
-                    <div class='box box-solid box-default'>
-                        <div class='box-header with-border'>
-                            <h3 class='box-title'>ข้อมูลปัจจุบัน</h3>
-                            <div class='box-tools pull-right'>
-                                <button class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-minus'></i></button>
-                            </div>
-                        </div>
-                        <div class='box-body'> 
                             <form class='' style='margin-top: 15px'>
             
                              <!--   <div class='col-md-12'>
@@ -187,9 +180,8 @@ foreach ($dataProvider->models as $model) {
                                 </div>             
                                     
                             </form>
-                        </div>
-                    </div>
-                    
+                        
+                        <div class='clearfix'></div>
                     
                     <div class='box box-solid box-default collapsed-box'>
                         <div class='box-header with-border'>
@@ -347,8 +339,15 @@ foreach ($dataProvider->models as $model) {
                 'content' => $content,
                 'active' => true,
             ],
-            ['label' => '<i class="fa fa-envelope-o"></i>&nbsp; ข้อมูลบรรพชา', 'url' => Url::to(['/monkhood-master/index'])],
-            ['label' => '<i class="fa fa-envelope-o"></i>&nbsp; ข้อมูลอุปสมบท', 'url' => Url::to(['/monkhood-master/index'])],
+
+            [
+                'label' => '<i class="fa fa-envelope-o"></i>&nbsp; ข้อมูลบรรพชา',
+                'linkOptions' => ['data-url' => Url::to(['/monkhood-master/index?data_type='.MonkhoodMaster::banpacha])],
+            ],
+            [
+                'label' => '<i class="fa fa-envelope-o"></i>&nbsp; ข้อมูลอุปสมบท',
+                'linkOptions' => ['data-url' => Url::to(['/monkhood-master/index?data_type='.MonkhoodMaster::woopasombod])],
+            ],
         ];
 
         echo TabsX::widget([

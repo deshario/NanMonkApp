@@ -6,16 +6,15 @@ use kartik\widgets\DepDrop;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use app\models\Province;
-
-$this->registerCss("
-  
-");
+use kartik\date\DatePicker;
 
 ?>
 
 <div class="monkhood-master-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'options' => ['enctype' => 'multipart/form-data']]);
+    ?>
 
     <div class="box box-default">
         <div class="box-header with-border">
@@ -29,15 +28,23 @@ $this->registerCss("
             <div class="col-md-4">
                 <?= $form->field($model, 'idperson')->textInput(['maxlength' => true, 'readonly' => true]) ?>
             </div>
-            <div class="col-md-4">
-                <?= $form->field($model, 'childmonkage')->textInput() ?>
+            <div class="">
+                <?php //$form->field($model, 'childmonkage')->textInput() ?>
             </div>
             <div class="col-md-4">
-                <?= $form->field($model, 'childmonkdate')->textInput() ?>
+                <?= $form->field($model, 'childmonkdate')->widget(DatePicker::classname(), [
+                    'options' => ['placeholder' => 'Enter birth date ...'],
+                    'pluginOptions' => [
+                        'autoclose'=>true,
+                        'format' => 'yyyy-mm-dd'
+                    ]
+                ]); ?>
             </div>
             <div class="col-md-4">
                 <?= $form->field($model, 'childmonk_temple')->textInput(['maxlength' => true]) ?>
             </div>
+
+            <div class="clearfix"></div>
 <!--            <div class="col-md-4">-->
 <!--                --><?php ////$form->field($model, 'childmonk_address')->textInput() ?>
 <!--            </div>-->
@@ -125,8 +132,15 @@ $this->registerCss("
             <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
 
             <div class="col-md-4">
-                <?= $form->field($model, 'monk_date')->textInput() ?>
+                <?= $form->field($model, 'monk_date')->widget(DatePicker::classname(), [
+                    'options' => ['placeholder' => 'Enter birth date ...'],
+                    'pluginOptions' => [
+                        'autoclose'=>true,
+                        'format' => 'yyyy-mm-dd'
+                    ]
+                ]); ?>
             </div>
+
 
             <div class="col-md-4">
                 <?= $form->field($model, 'monk_temple')->textInput(['maxlength' => true]) ?>
@@ -142,6 +156,8 @@ $this->registerCss("
                         'prompt' => 'เลือกจังหวัด'
                     ]); ?>
             </div>
+
+            <div class="clearfix"></div>
 
             <div class="col-md-4">
                 <?= $form->field($model, 'amphur_iii')->widget(DepDrop::classname(), [

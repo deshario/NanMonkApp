@@ -19,9 +19,10 @@ use Yii;
  */
 class StaytempleTrans extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+    public $province;
+    public $amphur;
+    public $tambol;
+
     public static function tableName()
     {
         return 'staytemple_trans';
@@ -35,6 +36,7 @@ class StaytempleTrans extends \yii\db\ActiveRecord
         return [
             [['idperson'], 'required'],
             [['indate', 'outdate'], 'safe'],
+            [['province','amphur','tambol'], 'safe'],
             [['staytemple_address'], 'integer'],
             [['idperson'], 'string', 'max' => 13],
             [['staytemple'], 'string', 'max' => 80],
@@ -55,6 +57,9 @@ class StaytempleTrans extends \yii\db\ActiveRecord
             'outdate' => 'วันที่ย้ายออก',
             'staytemple' => 'ชื่อวัดที่จำพรรษา',
             'staytemple_address' => 'ที่อยู่ของวัดที่จำพรรษา',
+            'province' => 'จังหวัด',
+            'amphur' => 'อำเภอ',
+            'tambol' => 'ตำบล',
         ];
     }
 
