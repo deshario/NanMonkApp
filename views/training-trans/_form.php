@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\date\DatePicker;
+use kartik\file\FileInput;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\TrainingTrans */
@@ -12,20 +14,57 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'idperson')->textInput(['maxlength' => true]) ?>
+    <div class="col-md-4">
+        <?= $form->field($model, 'idperson')->textInput(['maxlength' => true, 'readonly' => true]) ?>
+    </div>
 
-    <?= $form->field($model, 'training_id')->textInput() ?>
+    <div class="col-md-4">
+        <?= $form->field($model, 'training_id')->dropDownList($model->getTrainingList(), ['prompt' => 'กรุณาเลือกการอบรม']) ?>
+    </div>
 
-    <?= $form->field($model, 'trainingdate')->textInput() ?>
+    <div class="col-md-4">
+        <?= $form->field($model, 'trainingdate')->widget(DatePicker::classname(), [
+            'options' => ['placeholder' => ''],
+            'pluginOptions' => [
+                'autoclose' => true,
+                'format' => 'yyyy-mm-dd'
+            ]
+        ]); ?>
+    </div>
 
-    <?= $form->field($model, 'trainingby')->textInput(['maxlength' => true]) ?>
+    <div class="clearfix"></div>
 
-    <?= $form->field($model, 'others')->textInput(['maxlength' => true]) ?>
+    <div class="col-md-4">
+        <?= $form->field($model, 'trainingby')->textInput(['maxlength' => true]) ?>
+    </div>
 
-    <?= $form->field($model, 'attachfile')->textInput(['maxlength' => true]) ?>
+    <div class="col-md-8">
+        <?= $form->field($model, 'others')->textInput(['maxlength' => true]) ?>
+    </div>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+    <div class="col-md-12">
+        <?= $form->field($model, 'attachfile')->widget(FileInput::classname(), [
+            'options' => ['accept' => 'image/*', 'multiple' => false],
+            'pluginOptions' => [
+                'previewFileType' => 'image',
+                'allowedFileExtensions' => ['jpg', 'jpeg', 'png', 'pdf'],
+                'showPreview' => false,
+                'showCaption' => true,
+                'showRemove' => true,
+                'showUpload' => false,
+                'initialPreview' => [
+                    //$model->person_pic ? $imgpath : null, // checks the models to display the preview
+                ],
+                'overwriteInitial' => false,
+            ]
+        ]);
+        ?>
+    </div>
+
+    <div class="col-md-12">
+        <div class="form-group">
+            <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        </div>
     </div>
 
     <?php ActiveForm::end(); ?>

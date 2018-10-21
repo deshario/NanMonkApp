@@ -48,9 +48,9 @@ class PositionTransController extends Controller
         $id = Yii::$app->user->identity->id;
         $key = PersonMaster::find()->where('user_id = ' . $id)->one();
         if($key != null){
-            $dataProvider->query->where('idperson = '.$key->person);
+            $dataProvider->query->where('idperson = '.$key->idperson);
         }else{
-            Yii::$app->getSession()->setFlash('campaign_broadcast_warning', [
+            Yii::$app->getSession()->setFlash('position_trans_fail', [
                 'type' => Growl::TYPE_DANGER,
                 'duration' => 5000,
                 'icon' => 'fa fa-close',
@@ -124,7 +124,8 @@ class PositionTransController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idpos]);
+            //return $this->redirect(['view', 'id' => $model->idpos]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [

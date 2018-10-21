@@ -6,16 +6,21 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\HobbyTrans */
 
-$this->title = 'Create Hobby Trans';
-$this->params['breadcrumbs'][] = ['label' => 'Hobby Trans', 'url' => ['index']];
+$this->title = 'เพิ่มความสามมารถพิเศษ';
+$this->params['breadcrumbs'][] = ['label' => 'ความสามมารถพิเศษ', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="hobby-trans-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?= $this->title; ?></h3>
+        </div>
+        <div class="panel-body">
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]) ?>
+        </div>
+    </div>
 
 </div>

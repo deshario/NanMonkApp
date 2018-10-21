@@ -57,7 +57,10 @@ $this->params['breadcrumbs'][] = 'ทางธรรม';
             //'attachfile',
             //'address',
 
-            ['class' => 'kartik\grid\ActionColumn'],
+            ['class' => 'kartik\grid\ActionColumn',
+                'header' => '',
+                'template' => '{update}&nbsp{delete}',
+            ],
         ],
         'resizableColumns' => false,
         'responsiveWrap' => false,

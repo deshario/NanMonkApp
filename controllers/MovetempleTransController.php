@@ -8,6 +8,7 @@ use kartik\growl\Growl;
 use Yii;
 use app\models\MovetempleTrans;
 use app\models\MovetempleTransSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -43,9 +44,9 @@ class MovetempleTransController extends Controller
         $id = Yii::$app->user->identity->id;
         $key = PersonMaster::find()->where('user_id = ' . $id)->one();
         if($key != null){
-            $dataProvider->query->where('idperson = '.$key->person);
+            $dataProvider->query->where('idperson = '.$key->idperson);
         }else{
-            Yii::$app->getSession()->setFlash('campaign_broadcast_warning', [
+            Yii::$app->getSession()->setFlash('move_temple_fail', [
                 'type' => Growl::TYPE_DANGER,
                 'duration' => 5000,
                 'icon' => 'fa fa-close',
@@ -98,7 +99,6 @@ class MovetempleTransController extends Controller
             $model->address = $address->address_id;
 
             $model->save();
-
             return $this->redirect(['index']);
         }
 
@@ -107,23 +107,22 @@ class MovetempleTransController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing MovetempleTrans model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $master = new PersonMaster();
+        $amphur = ArrayHelper::map($master->getAmphur($model->province),'id','name');
+        $district = ArrayHelper::map($master->getDistrict($model->amphur),'id','name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idmove]);
+            return $this->redirect(['index']);
+            //return $this->redirect(['view', 'id' => $model->idmove]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'amphur'=> $amphur,
+            'district' =>$district
         ]);
     }
 

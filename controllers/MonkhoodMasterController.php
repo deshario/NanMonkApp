@@ -42,9 +42,21 @@ class MonkhoodMasterController extends Controller
         $searchModel = new MonkhoodMasterSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $id = Yii::$app->user->identity->id;
-        $key = PersonMaster::find()->where('user_id = ' . $id)->one()->idperson;
-        $dataProvider->query->where('idperson = '.$key);
-
+        $key = PersonMaster::find()->where('user_id = ' . $id)->one();
+        if($key != null){
+            $dataProvider->query->where('idperson = '.$key->idperson);
+        }else{
+            Yii::$app->getSession()->setFlash('monkhood_master_fail', [
+                'type' => Growl::TYPE_DANGER,
+                'duration' => 5000,
+                'icon' => 'fa fa-close',
+                'title' => 'คำสั่งลมเหลว',
+                'message' => 'กรุณากรอกข้อมูลพืนฐานเป็นอันดับแรก',
+                'positonY' => 'bottom',
+                'positonX' => 'right'
+            ]);
+            return $this->redirect(['person-master/index']);
+        }
         if($data_type == MonkhoodMaster::banpacha){
             $data = $this->renderPartial('index', [
                 'searchModel' => $searchModel,
@@ -57,7 +69,6 @@ class MonkhoodMasterController extends Controller
             ]);
         }
         return Json::encode($data);
-        //return $data;
     }
 
     /**

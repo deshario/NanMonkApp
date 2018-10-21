@@ -2,12 +2,16 @@
 
 namespace app\controllers;
 
+use app\models\SignupForm;
+use kartik\growl\Growl;
+use MongoDB\Driver\Manager;
 use Yii;
 use app\models\User;
 use app\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -80,13 +84,138 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Updates an existing User model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+    public function actionSignup()
+    {
+        $model = new SignupForm();
+        if ($model->load(Yii::$app->request->post())) {
+            if ($user = $model->signup()) {
+                if (Yii::$app->getUser()->login($user)) {
+                    return $this->goHome();
+                }
+            }
+        }
+        $this->layout = "main-signup";
+        return $this->render('theme_signup', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionManage()
+    {
+        $searchModel = new UserSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->where('roles = '.User::ROLE_USER);
+
+        return $this->render('manage', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function randomString($length = 8) {
+        $str = "";
+        $characters = array_merge(range('A','Z'),range('0','9'));
+        $max = count($characters) - 1;
+        for ($i = 0; $i < $length; $i++) {
+            $rand = mt_rand(0, $max);
+            $str .= $characters[$rand];
+        }
+        return $str;
+    }
+
+    public function actionGenerate(){
+        $model = new User();
+        if ($model->load(Yii::$app->request->post())) {
+
+              $counter =  $model->no_users+1;
+
+            for( $i = 0; $i<5; $i++ ) {
+                $virtual = $this->randomString(8);
+                $email = strtolower($virtual).'@virtual.com';
+                $model->username = $virtual;
+                $model->email = $email;
+                $model->status = \app\models\User::STATUS_ACTIVE;
+                $model->setPassword($model->password);
+                $model->generateAuthKey();
+                $model->created_at = time();
+                $model->updated_at = time();
+                $model->save();
+            }
+
+            return $this->redirect(['/user/manage']);
+
+//            $virtual = $this->randomString(8);
+//            $email = strtolower($virtual).'@virtual.com';
+//            $model->username = $virtual;
+//            $model->email = $email;
+//            $model->status = \app\models\User::STATUS_ACTIVE;
+//            $model->setPassword($model->password);
+//            $model->generateAuthKey();
+//            $model->created_at = time();
+//            $model->updated_at = time();
+//            $model->save();
+//            return $this->redirect(['/user/manage']);
+
+
+            //$transaction = Yii::$app->db->beginTransaction();
+//            try {
+//                for($io = 0; $io <$model->no_users; $io++){
+//
+//                }
+//
+//                $transaction->commit();
+//
+//                return $this->redirect(['index']);
+//
+//            } catch (Exception $e) {
+//                $transaction->rollBack();
+//                Yii::$app->session->setFlash('error', 'มีข้อผิดพลาดในการบันทึก');
+//                return $this->redirect(['/user/manage']);
+//            }
+        }
+        return $this->render('generate_form', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionDeactivate($id)
+    {
+        $model = $this->findModel($id);
+        $model->status = User::STATUS_DELETED;
+        $model->password = "deshario"; // Only For Validation
+        if($model->save()){
+            Yii::$app->getSession()->setFlash('login_success', [
+                'type' =>  Growl::TYPE_DANGER,
+                'duration' => 5000,
+                'icon' => 'fa fa-lock fa-lg',
+                'title' => $model->username.'ถูกปิดการใช้งาน',
+                'message' => $model->username." จะไม่สามารถเข้าถึงระบบได้อีกต่อไป",
+                'positonY' => 'bottom',
+                'positonX' => 'right'
+            ]);
+        }
+        return $this->redirect(['manage']);
+    }
+
+    public function actionActivate($id)
+    {
+        $model = $this->findModel($id);
+        $model->status = User::STATUS_ACTIVE;
+        $model->password = "deshario"; // Only For Validation
+        if($model->save()){
+            Yii::$app->getSession()->setFlash('login_success', [
+                'type' =>  Growl::TYPE_SUCCESS,
+                'duration' => 5000,
+                'icon' => 'fa fa-unlock fa-lg',
+                'title' => $model->username.' ถูกเปิดการใช้งาน',
+                'message' => $model->username." ได้รับสืทธิในการเข้าถึงระบบเรียบร้อย",
+                'positonY' => 'bottom',
+                'positonX' => 'right'
+            ]);
+        }
+        return $this->redirect(['manage']);
+    }
+
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);

@@ -36,6 +36,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     public $password;
 
+    public $no_users;
+
     public static function tableName()
     {
         return 'user';
@@ -51,10 +53,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             ['roles', 'in', 'range' => [self::ROLE_USER, self::ROLE_ADMIN]],
 
             [['username', 'email',], 'required'],
+            //[['no_users'], 'required'],
             [['status', 'roles', 'created_at', 'updated_at'], 'integer'],
             [['auth_key'], 'string', 'max' => 32],
             [['username'], 'string', 'max' => 8],
-            [['phone'], 'safe'],
+            [['no_users'], 'integer', 'max' => 5],
             [['username'], 'unique'],
             [['email'], 'unique'],
             [['password_reset_token'], 'unique'],
@@ -73,11 +76,12 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'auth_key' => 'Auth Key',
             'password_hash' => 'Password Hash',
             'password_reset_token' => 'Password Reset Token',
-            'phone' => 'Phone',
             'email' => 'Email',
             'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'no_users' => 'จำนวนผู้ใช้งานที่ต้องการ',
+            'password' => 'รหัสผ่าน',
         ];
     }
 

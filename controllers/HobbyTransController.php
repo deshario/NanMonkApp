@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\PersonMaster;
+use kartik\growl\Growl;
 use Yii;
 use app\models\HobbyTrans;
 use app\models\HobbyTransSearch;
@@ -37,7 +39,22 @@ class HobbyTransController extends Controller
     {
         $searchModel = new HobbyTransSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $id = Yii::$app->user->identity->id;
+        $key = PersonMaster::find()->where('user_id = ' . $id)->one();
+        if($key != null){
+            $dataProvider->query->where('idperson = '.$key->idperson);
+        }else{
+            Yii::$app->getSession()->setFlash('hobby_trans_fail', [
+                'type' => Growl::TYPE_DANGER,
+                'duration' => 5000,
+                'icon' => 'fa fa-close',
+                'title' => 'คำสั่งลมเหลว',
+                'message' => 'กรุณากรอกข้อมูลพืนฐานเป็นอันดับแรก',
+                'positonY' => 'bottom',
+                'positonX' => 'right'
+            ]);
+            return $this->redirect(['person-master/index']);
+        }
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -65,9 +82,13 @@ class HobbyTransController extends Controller
     public function actionCreate()
     {
         $model = new HobbyTrans();
+        $id = Yii::$app->user->identity->id;
+        $key = PersonMaster::find()->where('user_id = ' . $id)->one()->idperson;
+        $model->idperson = $key;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -87,7 +108,8 @@ class HobbyTransController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            //return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [

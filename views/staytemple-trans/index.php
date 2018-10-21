@@ -46,6 +46,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 
            // ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'kartik\grid\ActionColumn',
+                'header' => '',
+                'template' => '{update}&nbsp{delete}',
+            ],
         ],
         'resizableColumns' => false,
         'responsiveWrap' => false,

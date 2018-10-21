@@ -13,6 +13,7 @@ class SignupForm extends Model
     public $email;
     public $Tpassword;
     public $confirm_password;
+    public $no_users;
 
 
     /**
@@ -25,6 +26,8 @@ class SignupForm extends Model
             ['username', 'required'],
             ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 8],
+
+            [['no_users'], 'integer', 'max' => 5],
 
             ['email', 'trim'],
             ['email', 'required'],
@@ -45,7 +48,8 @@ class SignupForm extends Model
             'id' => 'ID',
             'username' => 'Username',
             'email' => 'Email',
-            'Tpassword' => 'Password'
+            'Tpassword' => 'Password',
+            'no_users' => 'จำนวนผู้ใช้งานที่ต้องการ',
         ];
     }
 
@@ -73,10 +77,32 @@ class SignupForm extends Model
 //            $main = new MainTable();
 //            $main->user_id = $user->id;
 //            $main->save();
-         return $user;
+            return $user;
         }else{
             return null;
         }
         //return $status ? $user : null;
+    }
+
+    public function generateUser($username,$email)
+    {
+//        if (!$this->validate()) {
+//            return null;
+//        }
+
+        $user = new User();
+        $user->username = $username;
+        $user->email = $email;
+        $user->password = "deshario"; // It'll be not valid because its temp variable of user model
+        $user->status = \app\models\User::STATUS_ACTIVE;
+        $user->setPassword('hello');
+        $user->generateAuthKey();
+        $user->created_at = time();
+        $user->updated_at = time();
+        if($user->save()){
+            return $user;
+        }else{
+            return $user->getErrors();
+        }
     }
 }

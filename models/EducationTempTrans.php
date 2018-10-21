@@ -41,7 +41,7 @@ class EducationTempTrans extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idperson'], 'required'],
+            [['idperson','place','placeprovince'], 'required'],
             [['education_level', 'placeprovince', 'address'], 'integer'],
             [['idperson'], 'string', 'max' => 13],
             [['province','amphur','tambol','education_level','temple'], 'required'],

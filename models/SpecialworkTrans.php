@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "specialwork_trans".
@@ -31,7 +32,7 @@ class SpecialworkTrans extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idperson'], 'required'],
+            [['idperson','idwork','description'], 'required'],
             [['idwork'], 'integer'],
             [['idperson'], 'string', 'max' => 13],
             [['description'], 'string', 'max' => 150],
@@ -49,7 +50,7 @@ class SpecialworkTrans extends \yii\db\ActiveRecord
             'id' => 'ลำดับผลงานทีสำคัญ',
             'idperson' => 'หมายเลขบัตรประชาชน',
             'idwork' => 'รหัสประเภทผลงานสำคัญ',
-            'description' => 'รายละเอียดเพิ่มเติม',
+            'description' => 'ชื่อผลงาน',
         ];
     }
 
@@ -67,5 +68,10 @@ class SpecialworkTrans extends \yii\db\ActiveRecord
     public function getWork()
     {
         return $this->hasOne(Specialwork::className(), ['idwork' => 'idwork']);
+    }
+
+    public function getSpecialworkList(){
+        $list = Specialwork::find()->orderBy('idwork')->all();
+        return ArrayHelper::map($list,'idwork','worktype');
     }
 }

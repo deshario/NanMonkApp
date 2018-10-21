@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\PersonMaster;
+use kartik\growl\Growl;
 use Yii;
 use app\models\SpecialworkTrans;
 use app\models\SpecialworkTransSearch;
@@ -37,6 +39,22 @@ class SpecialworkTransController extends Controller
     {
         $searchModel = new SpecialworkTransSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $id = Yii::$app->user->identity->id;
+        $key = PersonMaster::find()->where('user_id = ' . $id)->one();
+        if($key != null){
+            $dataProvider->query->where('idperson = '.$key->idperson);
+        }else{
+            Yii::$app->getSession()->setFlash('special_work_fail', [
+                'type' => Growl::TYPE_DANGER,
+                'duration' => 5000,
+                'icon' => 'fa fa-close',
+                'title' => 'คำสั่งลมเหลว',
+                'message' => 'กรุณากรอกข้อมูลพืนฐานเป็นอันดับแรก',
+                'positonY' => 'bottom',
+                'positonX' => 'right'
+            ]);
+            return $this->redirect(['person-master/index']);
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -44,12 +62,6 @@ class SpecialworkTransController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single SpecialworkTrans model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -57,17 +69,16 @@ class SpecialworkTransController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new SpecialworkTrans model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
     public function actionCreate()
     {
         $model = new SpecialworkTrans();
+        $id = Yii::$app->user->identity->id;
+        $key = PersonMaster::find()->where('user_id = ' . $id)->one()->idperson;
+        $model->idperson = $key;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -75,19 +86,13 @@ class SpecialworkTransController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing SpecialworkTrans model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            //return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [

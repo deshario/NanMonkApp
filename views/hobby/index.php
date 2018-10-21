@@ -39,11 +39,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php
         $items = [
             [
-                'label' => '<i class="fa fa-envelope-o"></i>&nbsp; ความสามารถพิเศษทั้งหมด',
+                'label' => '<i class="fa fa-envelope-o"></i>&nbsp; ชนิดความสามารถทั้งหมด',
                 'content' => $content,
                 'active' => true,
             ],
-            ['label'=>'<i class="fa fa-plus"></i>&nbsp; เพิ่มความสามารถพิเศษ', 'url' => Url::to(['create'])]
+            ['label'=>'<i class="fa fa-plus"></i>&nbsp; เพิ่มชนิด', 'url' => Url::to(['create'])]
         ];
 
         echo TabsX::widget([

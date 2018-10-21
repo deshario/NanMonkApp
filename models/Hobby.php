@@ -39,7 +39,7 @@ class Hobby extends \yii\db\ActiveRecord
     {
         return [
             'idhobby' => 'รหัสประเภทความสามารถพิเศษ',
-            'hobbytype' => 'ความสามารถพิเศษ',
+            'hobbytype' => 'ชนิดความสามารถพิเศษ',
         ];
     }
 

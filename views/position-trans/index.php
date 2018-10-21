@@ -1,6 +1,7 @@
 <?php
 
 use kartik\tabs\TabsX;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\helpers\Url;
@@ -18,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'hover' => true,
-        'showOnEmpty' => false,
+        'showOnEmpty' => true,
         'summary' => '',
         'columns' => [
             ['class' => 'kartik\grid\SerialColumn', 'header' => '',],
@@ -26,10 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
             //'idpos',
             //'idperson',
             //'position_id',
-            ['attribute' => 'position_id',
-                'value' => function ($model) {
+            [
+                'attribute' => 'position_id',
+                'filter' => ArrayHelper::map(\app\models\Position::find()->all(), 'idposition', 'positionname'),
+                'value' => function($model){
                     return $model->position->positionname;
-                },
+                }
             ],
             'positiondate',
             'temple',
@@ -64,7 +67,10 @@ $this->params['breadcrumbs'][] = $this->title;
             //'attachfile',
             //'address_id',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'kartik\grid\ActionColumn',
+                'header' => '',
+                'template' => '{update}&nbsp{delete}',
+            ],
         ],
         'resizableColumns' => false,
         'responsiveWrap' => false,

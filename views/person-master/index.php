@@ -83,7 +83,6 @@ foreach ($dataProvider->models as $model) {
 }
 ?>
 
-
 <div class="person-master-index">
 
     <?php if ($dataExists == 1){

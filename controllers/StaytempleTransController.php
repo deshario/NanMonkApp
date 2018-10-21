@@ -43,7 +43,7 @@ class StaytempleTransController extends Controller
         $id = Yii::$app->user->identity->id;
         $key = PersonMaster::find()->where('user_id = ' . $id)->one();
         if($key != null){
-            $dataProvider->query->where('idperson = '.$key->person);
+            $dataProvider->query->where('idperson = '.$key->idperson);
         }else{
             Yii::$app->getSession()->setFlash('campaign_broadcast_warning', [
                 'type' => Growl::TYPE_DANGER,
@@ -119,7 +119,8 @@ class StaytempleTransController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idstay]);
+            //return $this->redirect(['view', 'id' => $model->idstay]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [

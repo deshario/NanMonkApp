@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Hobby */
 
-$this->title = 'เพิ่มใหม่';
-$this->params['breadcrumbs'][] = ['label' => 'ความสามารถพิเศษ', 'url' => ['index']];
+$this->title = 'เพิ่มชนิด';
+$this->params['breadcrumbs'][] = ['label' => 'ชนิดความสามารถพิเศษ', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="hobby-create">

@@ -6,6 +6,7 @@ use app\models\PasswordResetRequestForm;
 use app\models\ResetPasswordForm;
 use app\models\SignupForm;
 use app\models\User;
+use kartik\growl\Growl;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -102,18 +103,44 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             $MStatus = Yii::$app->user->identity->status;
             if($MStatus == User::STATUS_DELETED){
+                Yii::$app->getSession()->setFlash('deleted', [
+                    'type' => Growl::TYPE_DANGER,
+                    'duration' => 5000,
+                    'icon' => 'fa fa-close',
+                    'title' => 'Account DeActivated !',
+                    'message' => 'Please contact administrator to activate it.',
+                    'positonY' => 'top',
+                    'positonX' => 'right'
+                ]);
                 return $this->redirect(['login']);
             }elseif ($MStatus == User::STATUS_WAITING){
+                Yii::$app->getSession()->setFlash('waiting', [
+                    'type' =>  Growl::TYPE_INFO,
+                    'duration' => 5000,
+                    'icon' => 'fa fa-refresh fa-spin',
+                    'title' => 'Your account is InActive !',
+                    'message' => 'Please contact administrator to activate it.',
+                    'positonY' => 'top',
+                    'positonX' => 'right'
+                ]);
                 return $this->redirect(['login']);
             }else{
-//                $MRoles = Yii::$app->user->identity->roles;
-//                $logged_user = Yii::$app->user->identity->username;
-//                if($MRoles == User::ROLE_MANAGER){
-//                    return $this->redirect(['/blood-requests']);
-//                }elseif ($MRoles == User::ROLE_ADMIN){
-//                    return $this->redirect(['/managers']);
-//                }
-                return $this->redirect(['index']);
+                $MRoles = Yii::$app->user->identity->roles;
+                $logged_user = Yii::$app->user->identity->username;
+                Yii::$app->getSession()->setFlash('jab_login_success', [
+                    'type' =>  Growl::TYPE_SUCCESS,
+                    'duration' => 5000,
+                    'icon' => 'fa fa-user-o',
+                    'title' => ' Hey '.$logged_user.' !',
+                    'message' => 'Welcome to MonkApp.',
+                    'positonY' => 'bottom',
+                    'positonX' => 'right'
+                ]);
+                if($MRoles == User::ROLE_USER){
+                    return $this->redirect(['/person-master/index']);
+                }elseif ($MRoles == User::ROLE_ADMIN){
+                    return $this->redirect(['/hobby/index']);
+                }
             }
 
         } else {
@@ -127,15 +154,14 @@ class SiteController extends Controller
 
     public function actionHome(){
         if (Yii::$app->user->isGuest) {
-            return $this->redirect(['login']);
+            return $this->redirect(['/site/login']);
         }else {
-//            $MRoles = Yii::$app->user->identity->roles;
-//            if ($MRoles == Managers::ROLE_MANAGER) {
-//                return $this->redirect(['/blood-requests']);
-//            } elseif ($MRoles == Managers::ROLE_ADMIN) {
-//                return $this->redirect(['/managers']);
-//            }
-            return $this->redirect('index');
+            $MRoles = Yii::$app->user->identity->roles;
+            if ($MRoles == User::ROLE_USER) {
+                return $this->redirect(['/person-master/index']);
+            } elseif ($MRoles == User::ROLE_ADMIN) {
+                return $this->redirect(['/hobby/index']);
+            }
         }
     }
 
@@ -147,8 +173,8 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-
-        return $this->goHome();
+        //return $this->goHome();
+        return $this->redirect('home');
     }
 
     /**

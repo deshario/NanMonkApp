@@ -1,39 +1,72 @@
 <?php
 
+use kartik\tabs\TabsX;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
+use yii\helpers\Url;
 
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\TrainingTransSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
-$this->title = 'Training Trans';
+$this->title = 'การอบรม';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="training-trans-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Create Training Trans', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?= GridView::widget([
+    <?php $content = GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'hover' => true,
+        'showOnEmpty' => true,
+        'summary' => '',
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'kartik\grid\SerialColumn', 'header' => '',],
 
-            'id',
-            'idperson',
-            'training_id',
+            //'id',
+            //'idperson',
+            //'training_id',
+            [
+                'attribute' => 'training_id',
+                'filter' => ArrayHelper::map(\app\models\Training::find()->all(), 'idtraining', 'trainingname'),
+                'value' => function($model){
+                    return $model->training->trainingname;
+                }
+            ],
             'trainingdate',
             'trainingby',
             //'others',
             //'attachfile',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'kartik\grid\ActionColumn',
+                'header' => '',
+                'template' => '{update}&nbsp{delete}',
+            ],
         ],
+        'resizableColumns' => false,
+        'responsiveWrap' => false,
     ]); ?>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-users"></i>&nbsp;<?= $this->title; ?></h3>
+    </div>
+    <div class="panel-body">
+        <?php
+        $items = [
+            [
+                'label' => '<i class="fa fa-envelope-o"></i>&nbsp; การอบรมทั้งหมด',
+                'content' => $content,
+                'active' => true,
+            ],
+            ['label'=>'<i class="fa fa-plus"></i>&nbsp; เพิ่มประวัติการอบรม', 'url' => Url::to(['create'])]
+        ];
+
+        echo TabsX::widget([
+            'items' => $items,
+            'position' => TabsX::POS_ABOVE,
+            'align' => TabsX::ALIGN_LEFT,
+            'bordered' => true,
+            'encodeLabels' => false
+        ]);
+
+        ?>
+    </div>
 </div>

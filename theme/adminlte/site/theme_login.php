@@ -61,9 +61,6 @@ $fieldOptions2 = [
             <?= Html::submitButton('เข้าสู่ระบบ', ['class' => 'btn btn-default btn-block', 'name' => 'login-button']) ?>
 
         </div>
-        <div class="panel-footer clearfix">
-            <?= Html::a('<i class="fa fa-user-plus"></i> สมัครสมาชิก', ['signup'], ['class' => 'pull-right']);?>
-        </div>
         <?php ActiveForm::end(); ?>
     </div>
 

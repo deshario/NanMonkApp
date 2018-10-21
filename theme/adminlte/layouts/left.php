@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use app\models\User;
 use yii\bootstrap\Modal;
-
 ?>
 <aside class="main-sidebar">
 
@@ -25,7 +24,18 @@ use yii\bootstrap\Modal;
         <?php } else { ?>
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="<?php echo Yii::getAlias('@web').'/img/mm.png'; ?>" class="img-circle" alt="User Image"/>
+                    <?php
+                    $id = Yii::$app->user->identity->id;
+                    $model = \app\models\PersonMaster::find()->where('user_id = ' . $id)->one();
+                    if($model != null){
+                        $imgdir = Yii::getAlias('@web').'/uploads/avatars/';
+                        $img = $imgdir.$model->person_pic;
+                    }else{
+                        $imgdir = Yii::getAlias('@web').'/img/';
+                        $img = $imgdir.'mm.png';
+                    }
+                    ?>
+                    <img src="<?php echo $img; ?>" class="img-circle" alt="User Image"/>
                 </div>
                 <div class="pull-left info">
 
@@ -50,11 +60,20 @@ use yii\bootstrap\Modal;
                     [
                         'label' => 'ระดับการศึกษา',
                         'icon' => 'key',
-                        'active' => true,
                         'url' => '#',
                         'items' => [
                             ['label' => 'ระดับการศึกษาทางโลก', 'icon' => 'arrow-right', 'url' => ['education-standard/index'],],
                             ['label' => 'ระดับการศึกษาทางธรรม', 'icon' => 'arrow-right', 'url' => ['education-dhamma/index'],],
+                        ],
+                    ],
+                    [
+                        'label' => 'ผู้ใช้งาน',
+                        'icon' => 'users',
+                        'url' => '#',
+                        'active' => true,
+                        'items' => [
+                            ['label' => 'สร้างผู้ใช้งาน', 'icon' => 'plus', 'url' => ['user/generate'],],
+                            ['label' => 'จัดการผู้ใช้งาน', 'icon' => 'edit', 'url' => ['user/manage'] ],
                         ],
                     ],
                     ['label' => 'ออกจากระบบ', 'url' => ['site/logout'], 'template' => '<a href="{url}" data-method="post"><i class="fa fa-sign-out"></i>{label}</a>'],
@@ -86,9 +105,6 @@ use yii\bootstrap\Modal;
             ?>
 
         <?php } ?>
-
-
-
 
         <?= dmstr\widgets\Menu::widget([
             'options' => ['class' => 'sidebar-menu tree', 'data-widget' => 'tree'],

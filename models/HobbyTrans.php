@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "hobby_trans".
@@ -31,7 +32,7 @@ class HobbyTrans extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idperson'], 'required'],
+            [['idperson','idhobby','others'], 'required'],
             [['idhobby'], 'integer'],
             [['idperson'], 'string', 'max' => 13],
             [['others'], 'string', 'max' => 100],
@@ -48,7 +49,7 @@ class HobbyTrans extends \yii\db\ActiveRecord
         return [
             'id' => 'ลำดับความสามารถพิเศษ',
             'idperson' => 'หมายเลขบัตรประชาชน',
-            'idhobby' => 'รหัสประเภทความสามารถพิเศษ',
+            'idhobby' => 'ชนิดของความสามารถ',
             'others' => 'ความสามารถพิเศษ',
         ];
     }
@@ -67,5 +68,10 @@ class HobbyTrans extends \yii\db\ActiveRecord
     public function getPerson()
     {
         return $this->hasOne(PersonMaster::className(), ['idperson' => 'idperson']);
+    }
+
+    public function getHobbyList(){
+        $list = Hobby::find()->orderBy('idhobby')->all();
+        return ArrayHelper::map($list,'idhobby','hobbytype');
     }
 }

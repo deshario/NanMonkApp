@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "training_trans".
@@ -20,9 +22,8 @@ use Yii;
  */
 class TrainingTrans extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+    const UPLOAD_FOLDER = 'uploads';
+
     public static function tableName()
     {
         return 'training_trans';
@@ -34,7 +35,7 @@ class TrainingTrans extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idperson'], 'required'],
+            [['idperson','training_id','trainingdate','trainingby'], 'required'],
             [['training_id'], 'integer'],
             [['trainingdate'], 'safe'],
             [['idperson'], 'string', 'max' => 13],
@@ -56,7 +57,8 @@ class TrainingTrans extends \yii\db\ActiveRecord
             'training_id' => 'ชื่อหลักสูตรอบรม',
             'trainingdate' => 'วันที่ได้รับการอบรม',
             'trainingby' => 'จัดอบรมโดย',
-            'others' => 'ชื่อหลักสูตรอืนๆ',
+            //'others' => 'ชื่อหลักสูตรอืนๆ',
+            'others' => 'ชื่อหลักสูตรอืน (กรณีอืนๆ)',
             'attachfile' => 'เส้นทางการจัดเก็บไฟล์แนบ',
         ];
     }
@@ -75,5 +77,20 @@ class TrainingTrans extends \yii\db\ActiveRecord
     public function getPerson()
     {
         return $this->hasOne(PersonMaster::className(), ['idperson' => 'idperson']);
+    }
+
+    public function getTrainingList(){
+        $list = Training::find()->orderBy('idtraining')->all();
+        return ArrayHelper::map($list,'idtraining','trainingname');
+    }
+
+    public static function getUploadPath()
+    {
+        return Yii::getAlias('@webroot') . '/' . self::UPLOAD_FOLDER . '/training/';
+    }
+
+    public static function getUploadUrl()
+    {
+        return Url::base(true) . '/' . self::UPLOAD_FOLDER . '/training/';
     }
 }

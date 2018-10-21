@@ -18,7 +18,9 @@ use app\models\Province;
     <?php $form = ActiveForm::begin(); ?>
 
     <div class="row">
-        <div class="col-md-12"><?= $form->field($model, 'idperson')->textInput(['maxlength' => true]) ?></div>
+        <div class="col-md-12">
+            <?= $form->field($model, 'idperson')->textInput(['maxlength' => true, 'readonly' => true]) ?>
+        </div>
 
         <div class="col-md-4">
             <?= $form->field($model, 'indate')->widget(DatePicker::classname(), [

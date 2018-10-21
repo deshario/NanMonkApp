@@ -43,7 +43,7 @@ class EducationTrans extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idperson'], 'required'],
+            [['idperson','place','major','place','year'], 'required'],
             [['education_level', 'address'], 'integer'],
             [['idperson'], 'string', 'max' => 13],
             [['place', 'transcriptname'], 'string', 'max' => 100],

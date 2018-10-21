@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "promotion_trans".
@@ -25,24 +27,25 @@ use Yii;
  */
 class PromotionTrans extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+    public $province;
+    public $amphur;
+    public $tambol;
+
+    const UPLOAD_FOLDER = 'uploads';
+
     public static function tableName()
     {
         return 'promotion_trans';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
-            [['idperson'], 'required'],
+            [['idperson','idpromotion','promotiondate'], 'required'],
             [['idpromotion', 'temple_address'], 'integer'],
             [['promotiondate', 'year'], 'safe'],
             [['idperson'], 'string', 'max' => 13],
+            [['province','amphur','tambol'], 'required'],
             [['place1', 'place2', 'temple'], 'string', 'max' => 80],
             [['remark'], 'string', 'max' => 100],
             [['attachfile'], 'string', 'max' => 255],
@@ -66,9 +69,12 @@ class PromotionTrans extends \yii\db\ActiveRecord
             'place2' => 'ฐานานุกรมใน',
             'temple' => 'ชื่อวัดประจำตำแหน่ง',
             'temple_address' => 'ที่อยู่ของวัดที่ได้รับตำแหน่ง',
-            'year' => 'ปี พ.ศ. เมื่อได้รับตำแหน่งเช่น พระครูปลัดของสมเด็จพระราชาคณะ, พระครู...',
+            'year' => 'ได้รับเมือวันที่',
             'remark' => 'หมายเหตุหรือเพิ่มเติมข้อมูล หรือตำแหน่งอื่นๆ ',
             'attachfile' => 'เส้นทางการจัดเก็บไฟล์แนบ',
+            'province' => 'จังหวัด',
+            'amphur' => 'อำเภอ',
+            'tambol' => 'ตำบล',
         ];
     }
 
@@ -94,5 +100,20 @@ class PromotionTrans extends \yii\db\ActiveRecord
     public function getPromotion()
     {
         return $this->hasOne(Promotion::className(), ['idpromotion' => 'idpromotion']);
+    }
+
+    public function getPromotionList(){
+        $list = Promotion::find()->orderBy('idpromotion')->all();
+        return ArrayHelper::map($list,'idpromotion','promotionname');
+    }
+
+    public static function getUploadPath()
+    {
+        return Yii::getAlias('@webroot') . '/' . self::UPLOAD_FOLDER . '/promotion/';
+    }
+
+    public static function getUploadUrl()
+    {
+        return Url::base(true) . '/' . self::UPLOAD_FOLDER . '/promotion/';
     }
 }

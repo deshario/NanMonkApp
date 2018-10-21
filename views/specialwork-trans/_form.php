@@ -12,14 +12,22 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'idperson')->textInput(['maxlength' => true]) ?>
+    <div class="col-md-6">
+        <?= $form->field($model, 'idperson')->textInput(['maxlength' => true, 'readonly' => true]) ?>
+    </div>
 
-    <?= $form->field($model, 'idwork')->textInput() ?>
+    <div class="col-md-6">
+        <?= $form->field($model, 'idwork')->dropDownList($model->getSpecialworkList(), ['prompt' => 'กรุณาเลือกระดับตำแหน่งสมณศักดิ์']) ?>
+    </div>
 
-    <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
+    <div class="col-md-12">
+        <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
+    </div>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+    <div class="col-md-12">
+        <div class="form-group">
+            <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        </div>
     </div>
 
     <?php ActiveForm::end(); ?>

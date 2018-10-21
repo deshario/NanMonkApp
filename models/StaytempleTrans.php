@@ -35,8 +35,8 @@ class StaytempleTrans extends \yii\db\ActiveRecord
     {
         return [
             [['idperson'], 'required'],
-            [['indate', 'outdate'], 'safe'],
-            [['province','amphur','tambol'], 'safe'],
+            [['indate', 'outdate','staytemple'], 'required'],
+            [['province','amphur','tambol'], 'required'],
             [['staytemple_address'], 'integer'],
             [['idperson'], 'string', 'max' => 13],
             [['staytemple'], 'string', 'max' => 80],

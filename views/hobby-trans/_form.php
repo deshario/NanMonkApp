@@ -8,18 +8,27 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
+
 <div class="hobby-trans-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'idperson')->textInput(['maxlength' => true]) ?>
+    <div class="col-md-6">
+        <?= $form->field($model, 'idperson')->textInput(['maxlength' => true, 'readonly' => true]) ?>
+    </div>
 
-    <?= $form->field($model, 'idhobby')->textInput() ?>
+    <div class="col-md-6">
+        <?= $form->field($model, 'idhobby')->dropDownList($model->getHobbyList(), ['prompt' => 'กรุณาเลือกชนิดของความสามารถพิเศษ']) ?>
+    </div>
 
-    <?= $form->field($model, 'others')->textInput(['maxlength' => true]) ?>
+    <div class="col-md-12">
+        <?= $form->field($model, 'others')->textInput(['maxlength' => true]) ?>
+    </div>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+    <div class="col-md-12">
+        <div class="form-group">
+            <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        </div>
     </div>
 
     <?php ActiveForm::end(); ?>

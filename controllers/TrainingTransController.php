@@ -2,12 +2,19 @@
 
 namespace app\controllers;
 
+use app\models\PersonMaster;
+use app\models\Training;
+use kartik\growl\Growl;
 use Yii;
 use app\models\TrainingTrans;
 use app\models\TrainingTransSearch;
+use yii\base\Exception;
+use yii\helpers\BaseFileHelper;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * TrainingTransController implements the CRUD actions for TrainingTrans model.
@@ -37,6 +44,22 @@ class TrainingTransController extends Controller
     {
         $searchModel = new TrainingTransSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $id = Yii::$app->user->identity->id;
+        $key = PersonMaster::find()->where('user_id = ' . $id)->one();
+        if($key != null){
+            $dataProvider->query->where('idperson = '.$key->idperson);
+        }else{
+            Yii::$app->getSession()->setFlash('training_trans_fail', [
+                'type' => Growl::TYPE_DANGER,
+                'duration' => 5000,
+                'icon' => 'fa fa-close',
+                'title' => 'คำสั่งลมเหลว',
+                'message' => 'กรุณากรอกข้อมูลพืนฐานเป็นอันดับแรก',
+                'positonY' => 'bottom',
+                'positonX' => 'right'
+            ]);
+            return $this->redirect(['person-master/index']);
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -65,9 +88,15 @@ class TrainingTransController extends Controller
     public function actionCreate()
     {
         $model = new TrainingTrans();
+        $id = Yii::$app->user->identity->id;
+        $key = PersonMaster::find()->where('user_id = ' . $id)->one()->idperson;
+        $model->idperson = $key;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $this->CreateDir($model->idperson);
+            $model->attachfile = $this->uploadSingleFile($model);
+            $model->save();
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -87,7 +116,8 @@ class TrainingTransController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            //return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
@@ -109,13 +139,6 @@ class TrainingTransController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the TrainingTrans model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return TrainingTrans the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
         if (($model = TrainingTrans::findOne($id)) !== null) {
@@ -123,5 +146,42 @@ class TrainingTransController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    private function CreateDir($folderName){
+        if($folderName != NULL){
+            $basePath = TrainingTrans::getUploadPath();
+            try {
+                if (BaseFileHelper::createDirectory($basePath . $folderName, 0777)) {
+                    $temp = 1;
+                    // BaseFileHelper::createDirectory($basePath . $folderName . '/thumbnail', 0777);
+                }
+            } catch (\yii\base\Exception $e) {
+            }
+        }
+        return;
+    }
+
+    private function uploadSingleFile($model,$tempFile=null){
+        $file = [];
+        $json = '';
+        $newFileName = '';
+        try {
+            $UploadedFile = UploadedFile::getInstance($model,'attachfile');
+            if($UploadedFile !== null){
+                $uploadPath = TrainingTrans::getUploadPath();
+                $oldFileName = $UploadedFile->basename.'.'.$UploadedFile->extension;
+                $newFileName = md5($UploadedFile->basename.time()).'.'.$UploadedFile->extension;
+                $UploadedFile->saveAs($uploadPath.'/'.$model->idperson.'/'.$newFileName);
+                $file[$newFileName] = $oldFileName;
+                $json = Json::encode($file);
+            }else{
+                $json=$tempFile;
+            }
+        } catch (Exception $e) {
+            $json=$tempFile;
+        }
+        //return $json ;
+        return $newFileName ;
     }
 }

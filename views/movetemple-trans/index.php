@@ -45,7 +45,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $address;
                 },
             ],
-            //['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'kartik\grid\ActionColumn',
+                'header' => '',
+                'template' => '{update}&nbsp{delete}',
+            ],
         ],
         'resizableColumns' => false,
         'responsiveWrap' => false,

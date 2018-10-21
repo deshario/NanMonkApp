@@ -35,8 +35,8 @@ class MovetempleTrans extends \yii\db\ActiveRecord
     {
         return [
             [['idperson'], 'required'],
-            [['fromdate'], 'safe'],
-            [['province','amphur','tambol'], 'safe'],
+            [['fromdate','fromtemple','reason'], 'required'],
+            [['province','amphur','tambol'], 'required'],
             [['address'], 'integer'],
             [['idperson'], 'string', 'max' => 13],
             [['fromtemple'], 'string', 'max' => 80],
