@@ -23,7 +23,8 @@
         "kartik-v/yii2-grid": "@dev",
         "kartik-v/yii2-widget-fileinput": "@dev",
         "kartik-v/yii2-widget-datepicker": "@dev",
-        "kartik-v/yii2-widgets": "*"
+        "kartik-v/yii2-widgets": "*",
+        "karatae99/yii2-date-picker-thai-widget": "~1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

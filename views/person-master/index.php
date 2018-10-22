@@ -90,17 +90,12 @@ foreach ($dataProvider->models as $model) {
             <div class='row'>
                 <div class='col-md-12'>
                     
-                            <form class='' style='margin-top: 15px'>
+                    <div class='alert alert-info alert-dismissible'>
+                        <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                        แก้ไขข้อมูลพืนฐาน ".Html::a('คลิกที่นี่', ['update', 'id' => $model->idperson])."
+                    </div>
+                               <form class='' style='margin-top: 15px'>
             
-                             <!--   <div class='col-md-12'>
-                                    <label class='col-sm-2 control-label'>รูปภาพ</label>
-                                    <div class='col-xs-12 col-md-3'>
-                                        <a href='#' class='thumbnail'>
-                                            <img src='$imgpath' class='img-responsive'/>
-                                        </a>
-                                    </div>
-                                </div>-->
-                                
                                 <div class='col-md-6'>
                                     <div class='form-group'>
                                         <label>หมายเลขบัตรประชาชน</label>

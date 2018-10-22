@@ -4,6 +4,8 @@ namespace app\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
+use yii\helpers\Json;
 use yii\helpers\Url;
 
 /**
@@ -117,5 +119,27 @@ class EducationTrans extends \yii\db\ActiveRecord
     public static function getUploadUrl()
     {
         return Url::base(true) . '/' . self::UPLOAD_FOLDER . '/education/';
+    }
+    public function getAttachFile($citizen,$fileName){
+        $file = self::getUploadPath().$citizen.'/'.$fileName;
+        if(file_exists($file)){
+            $download = Html::a('<code>ดาวน์โหลด</code>',['/education-trans/download',
+                    'id'=>$this->idedu,
+                    'citizen'=>$citizen,
+                    'fileName'=>$fileName,
+                    ]);
+        }else{
+            $download = '<code>'.Html::a('<code><i>ไม่พบ</i></code>').'</code>';
+        }
+        return $download;
+    }
+
+    public function initialPreview($fileName){
+        $initial = [];
+        if($fileName != null){
+            $newFile = self::getUploadUrl().$this->person->idperson.'/'.$fileName;
+            $initial[] = Html::img($newFile,['class'=>'img-responsive']);
+        }
+        return $initial;
     }
 }

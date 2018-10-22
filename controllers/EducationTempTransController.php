@@ -9,6 +9,7 @@ use Yii;
 use app\models\EducationTempTrans;
 use app\models\EducationTempTransSearch;
 use yii\base\Exception;
+use yii\helpers\ArrayHelper;
 use yii\helpers\BaseFileHelper;
 use yii\helpers\Json;
 use yii\web\Controller;
@@ -112,24 +113,30 @@ class EducationTempTransController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing EducationTempTrans model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $master = new PersonMaster();
+        $amphur = ArrayHelper::map($master->getAmphur($model->address0->province_id), 'id', 'name');
+        $district = ArrayHelper::map($master->getDistrict($model->address0->amphur_id), 'id', 'name');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            //return $this->redirect(['view', 'id' => $model->idedu]);
+        if ($model->load(Yii::$app->request->post())){
+            $address = new Address();
+            $address->tambol_id = $model->tambol;
+            $address->amphur_id = $model->amphur;
+            $address->province_id = $model->province;
+            $address->save();
+            $model->address = $address->address_id;
+
+            $model->attachfile = $this->uploadSingleFile($model);
+            $model->save();
             return $this->redirect(['index']);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'amphur' => $amphur,
+            'district' => $district
         ]);
     }
 

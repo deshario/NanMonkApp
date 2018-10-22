@@ -51,9 +51,7 @@ use app\models\Province;
         <div class="col-md-4">
             <?= $form->field($model, 'province')->dropdownList(
                 ArrayHelper::map(Province::find()->all(),
-                    'PROVINCE_ID',
-                    'PROVINCE_NAME'),
-                [
+                    'PROVINCE_ID', 'PROVINCE_NAME'), [
                     'id' => 'ddl-province',
                     'prompt' => 'เลือกจังหวัด'
                 ]); ?>
@@ -61,7 +59,7 @@ use app\models\Province;
         <div class="col-md-4">
             <?= $form->field($model, 'amphur')->widget(DepDrop::classname(), [
                 'options' => ['id' => 'ddl-amphur'],
-                'data' => [],
+                'data'=> $amphur,
                 'pluginOptions' => [
                     'depends' => ['ddl-province'],
                     'placeholder' => 'เลือกอำเภอ...',
@@ -71,7 +69,7 @@ use app\models\Province;
         </div>
         <div class="col-md-4">
             <?= $form->field($model, 'tambol')->widget(DepDrop::classname(), [
-                'data' => [],
+                'data' =>$district,
                 'pluginOptions' => [
                     'depends' => ['ddl-province', 'ddl-amphur'],
                     'placeholder' => 'เลือกตำบล...',

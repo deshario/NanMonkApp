@@ -18,6 +18,8 @@ $this->params['breadcrumbs'][] = 'แก้ไข';
         <div class="panel-body">
             <?= $this->render('_form', [
                 'model' => $model,
+                'amphur'=> $amphur,
+                'district' =>$district
             ]) ?>
         </div>
     </div>

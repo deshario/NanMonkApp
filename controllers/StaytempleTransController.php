@@ -8,6 +8,7 @@ use kartik\growl\Growl;
 use Yii;
 use app\models\StaytempleTrans;
 use app\models\StaytempleTransSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -117,14 +118,38 @@ class StaytempleTransController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $master = new PersonMaster();
+        $amphur = ArrayHelper::map($master->getAmphur($model->staytempleAddress->province_id), 'id', 'name');
+        $district = ArrayHelper::map($master->getDistrict($model->staytempleAddress->amphur_id), 'id', 'name');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            //return $this->redirect(['view', 'id' => $model->idstay]);
+        if ($model->load(Yii::$app->request->post())) {
+            $address = new Address();
+            $address->tambol_id = $model->tambol;
+            $address->amphur_id = $model->amphur;
+            $address->province_id = $model->province;
+            $address->save();
+            if($address->validate()){
+                $model->staytemple_address = $address->address_id;
+                if($model->validate()){
+                    $model->save();
+                    Yii::$app->getSession()->setFlash('stay_updated', [
+                        'type' =>  Growl::TYPE_SUCCESS,
+                        'duration' => 4000,
+                        'icon' => 'fa fa-check',
+                        'title' => 'การจำพรรษา',
+                        'message' => 'ข้อมูลของคูณได้รับการปรับปรุงแล้ว',
+                        'positonY' => 'bottom',
+                        'positonX' => 'right'
+                    ]);
+                }
+            }
             return $this->redirect(['index']);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'amphur' => $amphur,
+            'district' => $district
         ]);
     }
 

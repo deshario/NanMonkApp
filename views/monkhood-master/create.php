@@ -7,13 +7,19 @@ use yii\helpers\Html;
 /* @var $model app\models\MonkhoodMaster */
 
 $this->title = 'เพิ่มข้อมูล';
-$this->params['breadcrumbs'][] = ['label' => 'การบรรพชาอุปสมบท', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'การบรรพชาอุปสมบท'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="monkhood-master-create">
 
     <?= $this->render('_form', [
         'model' => $model,
+        'child_amphur' => [],
+        'child_district' => [],
+        'child_t1_amphur' => [],
+        'child_t1_district' => [],
+        'monk_t1_amphur' => [],
+        'monk_t1_district' => [],
     ]) ?>
 
 </div>

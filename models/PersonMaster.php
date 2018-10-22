@@ -69,6 +69,8 @@ class PersonMaster extends \yii\db\ActiveRecord
     {
         return [
             [['idperson', 'person_pic'], 'required'],
+            [['amphur', 'tambol'], 'required'],
+            [['amphur_phumlamnao', 'tambol_phumlamnao'], 'required'],
             //['person_pic', 'image', 'minWidth' => 250, 'maxWidth' => 250,'minHeight' => 250, 'maxHeight' => 250, 'extensions' => 'jpg,png', 'maxSize' => 1024 * 1024 * 2],
             [['user_id', 'staytemp', 'address', 'idnationality', 'family_address'], 'integer'],
             [['birthdate'], 'safe'],

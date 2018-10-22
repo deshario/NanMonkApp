@@ -8,6 +8,7 @@ use kartik\growl\Growl;
 use Yii;
 use app\models\MonkhoodMaster;
 use app\models\MonkhoodMasterSearch;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -193,23 +194,32 @@ class MonkhoodMasterController extends Controller
         }
     }
 
-    /**
-     * Updates an existing MonkhoodMaster model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $master = new PersonMaster();
+        $child_amphur = ArrayHelper::map($master->getAmphur($model->childmonkAddress->province_id), 'id', 'name');
+        $child_district = ArrayHelper::map($master->getDistrict($model->childmonkAddress->amphur_id), 'id', 'name');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->monkhood_id]);
+        $child_t1_amphur = ArrayHelper::map($master->getAmphur($model->childmonkT1Address->province_id), 'id', 'name');
+        $child_t1_district = ArrayHelper::map($master->getDistrict($model->childmonkT1Address->amphur_id), 'id', 'name');
+
+        $monk_t1_amphur = ArrayHelper::map($master->getAmphur($model->monkAddress->province_id), 'id', 'name');
+        $monk_t1_district = ArrayHelper::map($master->getDistrict($model->monkAddress->amphur_id), 'id', 'name');
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            return $this->redirect(['/person-master/index']);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'child_amphur' => $child_amphur,
+            'child_district' => $child_district,
+            'child_t1_amphur' => $child_t1_amphur,
+            'child_t1_district' => $child_t1_district,
+            'monk_t1_amphur' => $monk_t1_amphur,
+            'monk_t1_district' => $monk_t1_district,
         ]);
     }
 

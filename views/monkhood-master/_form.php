@@ -62,7 +62,7 @@ use kartik\date\DatePicker;
             <div class="col-md-4">
                 <?= $form->field($model, 'amphur')->widget(DepDrop::classname(), [
                     'options' => ['id' => 'ddl-amphur'],
-                    'data' => [],
+                    'data' => $child_amphur,
                     'pluginOptions' => [
                         'depends' => ['ddl-province'],
                         'placeholder' => 'เลือกอำเภอ...',
@@ -72,7 +72,7 @@ use kartik\date\DatePicker;
             </div>
             <div class="col-md-4">
                 <?= $form->field($model, 'tambol')->widget(DepDrop::classname(), [
-                    'data' => [],
+                    'data' => $child_district,
                     'pluginOptions' => [
                         'depends' => ['ddl-province', 'ddl-amphur'],
                         'placeholder' => 'เลือกตำบล...',
@@ -109,7 +109,7 @@ use kartik\date\DatePicker;
             <div class="col-md-4">
                 <?= $form->field($model, 'amphur_ii')->widget(DepDrop::classname(), [
                     'options' => ['id' => 'ddl-amphur-ii'],
-                    'data' => [],
+                    'data' => $child_t1_amphur,
                     'pluginOptions' => [
                         'depends' => ['ddl-province-ii'],
                         'placeholder' => 'เลือกอำเภอ...',
@@ -120,7 +120,7 @@ use kartik\date\DatePicker;
 
             <div class="col-md-4">
                 <?= $form->field($model, 'tambol_ii')->widget(DepDrop::classname(), [
-                    'data' => [],
+                    'data' => $child_t1_district,
                     'pluginOptions' => [
                         'depends' => ['ddl-province-ii', 'ddl-amphur-ii'],
                         'placeholder' => 'เลือกตำบล...',
@@ -162,7 +162,7 @@ use kartik\date\DatePicker;
             <div class="col-md-4">
                 <?= $form->field($model, 'amphur_iii')->widget(DepDrop::classname(), [
                     'options' => ['id' => 'ddl-amphur-iii'],
-                    'data' => [],
+                    'data' => $monk_t1_amphur,
                     'pluginOptions' => [
                         'depends' => ['ddl-province-iii'],
                         'placeholder' => 'เลือกอำเภอ...',
@@ -173,7 +173,7 @@ use kartik\date\DatePicker;
 
             <div class="col-md-4">
                 <?= $form->field($model, 'tambol_iii')->widget(DepDrop::classname(), [
-                    'data' => [],
+                    'data' => $monk_t1_district,
                     'pluginOptions' => [
                         'depends' => ['ddl-province-iii', 'ddl-amphur-iii'],
                         'placeholder' => 'เลือกตำบล...',
@@ -365,13 +365,13 @@ use kartik\date\DatePicker;
 
             <!--    --><?php //$form->field($model, 'staymonk_address')->textInput() ?>
 
+            <div class="col-md-12">
+                <div class="form-group">
+                    <?= Html::submitButton('บันทึก', ['class' => 'btn btn-success']) ?>
+                </div>
+            </div>
+
         </div>
-    </div>
-
-
-
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

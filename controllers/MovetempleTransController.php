@@ -43,9 +43,9 @@ class MovetempleTransController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $id = Yii::$app->user->identity->id;
         $key = PersonMaster::find()->where('user_id = ' . $id)->one();
-        if($key != null){
-            $dataProvider->query->where('idperson = '.$key->idperson);
-        }else{
+        if ($key != null) {
+            $dataProvider->query->where('idperson = ' . $key->idperson);
+        } else {
             Yii::$app->getSession()->setFlash('move_temple_fail', [
                 'type' => Growl::TYPE_DANGER,
                 'duration' => 5000,
@@ -111,18 +111,38 @@ class MovetempleTransController extends Controller
     {
         $model = $this->findModel($id);
         $master = new PersonMaster();
-        $amphur = ArrayHelper::map($master->getAmphur($model->province),'id','name');
-        $district = ArrayHelper::map($master->getDistrict($model->amphur),'id','name');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $amphur = ArrayHelper::map($master->getAmphur($model->address0->province_id), 'id', 'name');
+        $district = ArrayHelper::map($master->getDistrict($model->address0->amphur_id), 'id', 'name');
+
+        if ($model->load(Yii::$app->request->post())) {
+            $address = new Address();
+            $address->tambol_id = $model->tambol;
+            $address->amphur_id = $model->amphur;
+            $address->province_id = $model->province;
+            $address->save();
+            if($address->validate()){
+                $model->address = $address->address_id;
+                if($model->validate()){
+                    $model->save();
+                    Yii::$app->getSession()->setFlash('move_updated', [
+                        'type' =>  Growl::TYPE_SUCCESS,
+                        'duration' => 4000,
+                        'icon' => 'fa fa-check',
+                        'title' => 'การย้ายสังกัด',
+                        'message' => 'ข้อมูลของคูณได้รับการปรับปรุงแล้ว',
+                        'positonY' => 'bottom',
+                        'positonX' => 'right'
+                    ]);
+                }
+            }
             return $this->redirect(['index']);
-            //return $this->redirect(['view', 'id' => $model->idmove]);
         }
 
         return $this->render('update', [
             'model' => $model,
-            'amphur'=> $amphur,
-            'district' =>$district
+            'amphur' => $amphur,
+            'district' => $district
         ]);
     }
 

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\User;
 use kartik\range\RangeInput;
 
 /* @var $this yii\web\View */
@@ -21,9 +22,22 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?php $form = ActiveForm::begin(); ?>
 
-            <?= $form->field($model, 'no_users')->textInput(['type' => 'number']) ?>
+            <?= $form->field($model, 'username')->textInput(['maxlength' => 8]) ?>
+
+            <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
             <?= $form->field($model, 'password')->passwordInput() ?>
+
+            <?= $form->field($model, 'status')->dropDownList([
+                User::STATUS_WAITING => $model->getStatus(User::STATUS_WAITING),
+                User::STATUS_ACTIVE => $model->getStatus(User::STATUS_ACTIVE),
+                User::STATUS_DELETED => $model->getStatus(User::STATUS_DELETED),
+            ],['prompt' => 'กรุณาเลือกสถานะ']) ?>
+
+            <?= $form->field($model, 'roles')->dropDownList([
+                User::ROLE_USER => $model->getRoles(User::ROLE_USER),
+                User::ROLE_ADMIN => $model->getRoles(User::ROLE_ADMIN),
+            ],['prompt' => 'กรุณาเลือกบทบาทการใช้งาน']) ?>
 
             <div class="form-group">
                 <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

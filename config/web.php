@@ -6,6 +6,7 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic',
     'name' => 'MonkApp',
+    'homeUrl' => ['site/home'],
     'basePath' => dirname(__DIR__),
     'timeZone' => 'Asia/Bangkok',
     'bootstrap' => ['log'],

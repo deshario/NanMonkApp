@@ -8,7 +8,7 @@ use yii\helpers\Html;
 $this->title = 'แก้ไข';
 $this->params['breadcrumbs'][] = ['label' => 'ลำดับสมณศักดิ์', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->promotion->promotionname];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'แก้ไข';
 ?>
 <div class="promotion-trans-update">
 
@@ -19,6 +19,8 @@ $this->params['breadcrumbs'][] = 'Update';
         <div class="panel-body">
             <?= $this->render('_form', [
                 'model' => $model,
+                'amphur'=> $amphur,
+                'district' =>$district
             ]) ?>
         </div>
     </div>

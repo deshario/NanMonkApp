@@ -6,16 +6,20 @@ use yii\helpers\Html;
 /* @var $model app\models\MonkhoodMaster */
 
 $this->title = 'แก้ไข';
-$this->params['breadcrumbs'][] = ['label' => 'การบรรพชาอุปสมบท', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->monkhood_id];
+$this->params['breadcrumbs'][] = ['label' => 'การบรรพชาอุปสมบท'];
+$this->params['breadcrumbs'][] = ['label' => $model->idperson];
 $this->params['breadcrumbs'][] = 'แก้ไข';
 ?>
 <div class="monkhood-master-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?= $this->render('_form', [
         'model' => $model,
+        'child_amphur' => $child_amphur,
+        'child_district' => $child_district,
+        'child_t1_amphur' => $child_t1_amphur,
+        'child_t1_district' => $child_t1_district,
+        'monk_t1_amphur' => $monk_t1_amphur,
+        'monk_t1_district' => $monk_t1_district,
     ]) ?>
 
 </div>

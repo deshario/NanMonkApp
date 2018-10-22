@@ -72,7 +72,7 @@ use yii\bootstrap\Modal;
                         'url' => '#',
                         'active' => true,
                         'items' => [
-                            ['label' => 'สร้างผู้ใช้งาน', 'icon' => 'plus', 'url' => ['user/generate'],],
+                            ['label' => 'สร้างผู้ใช้งาน', 'icon' => 'plus', 'url' => ['user/create'],],
                             ['label' => 'จัดการผู้ใช้งาน', 'icon' => 'edit', 'url' => ['user/manage'] ],
                         ],
                     ],

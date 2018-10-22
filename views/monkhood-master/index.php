@@ -104,6 +104,11 @@ foreach ($dataProvider->models as $model) {
         $content = "
             <div class='row'>
                 <div class='col-md-12'>
+                
+                <div class='alert alert-info alert-dismissible'>
+                        <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                        แก้ไขข้อมูลบรรพชาอุปสมบท ".Html::a('คลิกที่นี่', ['update', 'id' => $model->monkhood_id])."
+                    </div>
                     
                     <form class='' style='margin-top: 15px'>
                                 

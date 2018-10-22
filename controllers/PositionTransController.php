@@ -10,6 +10,7 @@ use Yii;
 use app\models\PositionTrans;
 use app\models\PositionTransSearch;
 use yii\base\Exception;
+use yii\helpers\ArrayHelper;
 use yii\helpers\BaseFileHelper;
 use yii\helpers\Json;
 use yii\web\Controller;
@@ -122,14 +123,38 @@ class PositionTransController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $master = new PersonMaster();
+        $amphur = ArrayHelper::map($master->getAmphur($model->address->province_id), 'id', 'name');
+        $district = ArrayHelper::map($master->getDistrict($model->address->amphur_id), 'id', 'name');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            //return $this->redirect(['view', 'id' => $model->idpos]);
+        if ($model->load(Yii::$app->request->post())){
+            $address = new Address();
+            $address->tambol_id = $model->tambol;
+            $address->amphur_id = $model->amphur;
+            $address->province_id = $model->province;
+            if($address->validate()){
+                $address->save();
+                $model->address_id = $address->address_id;
+                if($model->validate()){
+                    $model->save();
+                    Yii::$app->getSession()->setFlash('position_updated', [
+                        'type' =>  Growl::TYPE_SUCCESS,
+                        'duration' => 4000,
+                        'icon' => 'fa fa-check',
+                        'title' => 'ตำแหน่งทางคณะสงฆ์',
+                        'message' => 'ข้อมูลของคูณได้รับการปรับปรุงแล้ว',
+                        'positonY' => 'bottom',
+                        'positonX' => 'right'
+                    ]);
+                }
+            }
             return $this->redirect(['index']);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'amphur' => $amphur,
+            'district' => $district
         ]);
     }
 

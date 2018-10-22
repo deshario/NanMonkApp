@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model) {
                     $province_id = $model->address0->province_id;
                     $amphur_id = $model->address0->amphur_id;
-                    $tambol_id = $model->address0->amphur_id;
+                    $tambol_id = $model->address0->tambol_id;
                     $province = \app\models\Province::find()->where('PROVINCE_ID = ' . $province_id)->one()->PROVINCE_NAME;
                     $amphur = \app\models\Amphur::find()->where('AMPHUR_ID = ' . $amphur_id)->one()->AMPHUR_NAME;
                     $tambon = \app\models\District::find()->where('DISTRICT_ID = ' . $tambol_id)->one()->DISTRICT_NAME;

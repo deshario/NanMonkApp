@@ -42,8 +42,8 @@ use kartik\date\DatePicker;
             //'type' => DatePicker::TYPE_COMPONENT_PREPEND,
             'pluginOptions' => [
                 'autoclose' => true,
-                'startView'=>'year',
-                'minViewMode'=>1,
+                'startView' => 'year',
+                'minViewMode' => 1,
                 'format' => 'yyyy'
             ]
         ]) ?>
@@ -70,7 +70,7 @@ use kartik\date\DatePicker;
     <div class="col-md-4">
         <?= $form->field($model, 'amphur')->widget(DepDrop::classname(), [
             'options' => ['id' => 'ddl-amphur'],
-            'data' => [],
+            'data'=> $amphur,
             'pluginOptions' => [
                 'depends' => ['ddl-province'],
                 'placeholder' => 'เลือกอำเภอ...',
@@ -80,7 +80,7 @@ use kartik\date\DatePicker;
     </div>
     <div class="col-md-4">
         <?= $form->field($model, 'tambol')->widget(DepDrop::classname(), [
-            'data' => [],
+            'data' => $district,
             'pluginOptions' => [
                 'depends' => ['ddl-province', 'ddl-amphur'],
                 'placeholder' => 'เลือกตำบล...',
@@ -95,14 +95,12 @@ use kartik\date\DatePicker;
             'pluginOptions' => [
                 'previewFileType' => 'image',
                 'allowedFileExtensions' => ['jpg', 'jpeg', 'png', 'pdf'],
-                'showPreview' => false,
+                'showPreview' => true,
                 'showCaption' => true,
                 'showRemove' => true,
                 'showUpload' => false,
-                'initialPreview' => [
-                    //$model->person_pic ? $imgpath : null, // checks the models to display the preview
-                ],
                 'overwriteInitial' => false,
+                'initialPreview'=>$model->initialPreview($model->attachfile,'attachfile'),
             ]
         ]);
         ?>

@@ -2,11 +2,11 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use kartik\date\DatePicker;
 use kartik\widgets\DepDrop;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use app\models\Province;
+use karatae99\datepicker\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\MovetempleTrans */
@@ -23,13 +23,14 @@ use app\models\Province;
        </div>
 
        <div class="col-md-6">
-           <?= $form->field($model, 'fromdate')->widget(DatePicker::classname(), [
-               'options' => ['placeholder' => 'เลือกวันที่ย้าย'],
-               'pluginOptions' => [
-                   'autoclose'=>true,
+           <?= $form->field($model, 'fromdate')->widget(
+               DatePicker::className(), [
+               'language' => 'th', // Thai B.E.
+               'clientOptions' => [
+                   'autoclose' => true,
                    'format' => 'yyyy-mm-dd'
                ]
-           ]); ?>
+           ]);?>
        </div>
 
        <div class="col-md-6"><?= $form->field($model, 'fromtemple')->textInput(['maxlength' => true]) ?></div>
@@ -49,7 +50,7 @@ use app\models\Province;
        <div class="col-md-4">
            <?= $form->field($model, 'amphur')->widget(DepDrop::classname(), [
                'options' => ['id' => 'ddl-amphur'],
-               'data' => [],
+               'data'=> $amphur,
                'pluginOptions' => [
                    'depends' => ['ddl-province'],
                    'placeholder' => 'เลือกอำเภอ...',
@@ -59,7 +60,7 @@ use app\models\Province;
        </div>
        <div class="col-md-4">
            <?= $form->field($model, 'tambol')->widget(DepDrop::classname(), [
-               'data' => [],
+               'data' =>$district,
                'pluginOptions' => [
                    'depends' => ['ddl-province', 'ddl-amphur'],
                    'placeholder' => 'เลือกตำบล...',

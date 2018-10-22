@@ -14,6 +14,10 @@ $this->params['breadcrumbs'][] = 'แก้ไข';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'amphur'=> $amphur,
+        'district' =>$district,
+        'phumlamnao_amphur'=> $phumlamnao_amphur,
+        'phumlamnao_district' => $phumlamnao_district,
     ]) ?>
 
 </div>

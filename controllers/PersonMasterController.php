@@ -3,9 +3,11 @@
 namespace app\controllers;
 
 use app\models\Address;
+use kartik\growl\Growl;
 use Yii;
 use app\models\PersonMaster;
 use app\models\PersonMasterSearch;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -40,7 +42,7 @@ class PersonMasterController extends Controller
     {
         $searchModel = new PersonMasterSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->where('user_id = '.Yii::$app->user->identity->id);
+        $dataProvider->query->where('user_id = ' . Yii::$app->user->identity->id);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -70,7 +72,7 @@ class PersonMasterController extends Controller
     {
         $model = new PersonMaster();
 
-        if ($model->load(Yii::$app->request->post())){
+        if ($model->load(Yii::$app->request->post())) {
             $id = Yii::$app->user->identity->id;
             $model->user_id = $id;
             $photo = UploadedFile::getInstance($model, 'person_pic');
@@ -103,23 +105,61 @@ class PersonMasterController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing PersonMaster model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $master = new PersonMaster();
+        $amphur = ArrayHelper::map($master->getAmphur($model->address0->province_id), 'id', 'name');
+        $district = ArrayHelper::map($master->getDistrict($model->address0->amphur_id), 'id', 'name');
+        $phumlamnao_amphur = ArrayHelper::map($master->getAmphur($model->familyAddress->province_id), 'id', 'name');
+        $phumlamnao_district = ArrayHelper::map($master->getDistrict($model->familyAddress->amphur_id), 'id', 'name');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idperson]);
+        if ($model->load(Yii::$app->request->post())) {
+            $address_1 = null;
+            $address_2 = null;
+            if ($model->province != null) {
+                $address = new Address();
+                $address->tambol_id = $model->tambol;
+                $address->amphur_id = $model->amphur;
+                $address->province_id = $model->province;
+                if($address->validate()){
+                    $address->save();
+                    $model->address = $address->address_id;
+                }
+            }
+
+            if ($model->province_phumlamnao != null) {
+                $address_phumlamnao = new Address();
+                $address_phumlamnao->tambol_id = $model->tambol_phumlamnao;
+                $address_phumlamnao->amphur_id = $model->amphur_phumlamnao;
+                $address_phumlamnao->province_id = $model->province_phumlamnao;
+                if($address_phumlamnao->validate()){
+                    $address_phumlamnao->save();
+                    $model->family_address = $address_phumlamnao->address_id;
+                }
+            }
+
+            if($model->validate()){
+                $model->save();
+                Yii::$app->getSession()->setFlash('basicinfo_updated', [
+                    'type' =>  Growl::TYPE_SUCCESS,
+                    'duration' => 4000,
+                    'icon' => 'fa fa-check',
+                    'title' => 'ข้อมูลพืนฐาน',
+                    'message' => 'ข้อมูลของคูณได้รับการปรับปรุงแล้ว',
+                    'positonY' => 'bottom',
+                    'positonX' => 'right'
+                ]);
+            }
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'amphur' => $amphur,
+            'district' => $district,
+            'phumlamnao_amphur' => $phumlamnao_amphur,
+            'phumlamnao_district' => $phumlamnao_district,
         ]);
     }
 
@@ -170,7 +210,7 @@ class PersonMasterController extends Controller
         echo Json::encode(['output' => '', 'selected' => '']);
     }
 
-    public function actionGetdistrict()
+    public static function actionGetdistrict()
     {
         $out = [];
         $master = new PersonMaster();

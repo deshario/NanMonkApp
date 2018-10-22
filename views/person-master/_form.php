@@ -22,7 +22,7 @@ $imgpath = Html::img(Yii::getAlias('@web').'/uploads/avatars/'.$model->person_pi
 
         <div class="box box-default">
             <div class="box-header with-border">
-                <h3 class="box-title">ข้อมูลปัจจุบัน</h3>
+                <h3 class="box-title">ข้อมูลพืนฐาน</h3>
                 <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                 </div><!-- /.box-tools -->
@@ -50,10 +50,20 @@ $imgpath = Html::img(Yii::getAlias('@web').'/uploads/avatars/'.$model->person_pi
                 <?php } ?>
 
                 <div class="col-md-6">
-                    <?= $form->field($model, 'idperson')->textInput(['maxlength' => true]) ?>
+                    <?php if($model->isNewRecord) {
+                        echo $form->field($model, 'idperson')->textInput(['maxlength' => true]);
+                    }else{
+                        echo $form->field($model, 'idperson')->textInput(['maxlength' => true, 'readonly' => true]);
+                    }
+                    ?>
                 </div>
                 <div class="col-md-6">
-                    <?= $form->field($model, 'person_book_no')->textInput(['maxlength' => true]) ?>
+                    <?php if($model->isNewRecord) {
+                        echo $form->field($model, 'person_book_no')->textInput(['maxlength' => true]);
+                    }else{
+                        echo $form->field($model, 'person_book_no')->textInput(['maxlength' => true, 'readonly' => true]);
+                    }
+                    ?>
                 </div>
 
                 <div class="col-md-4">
@@ -108,7 +118,7 @@ $imgpath = Html::img(Yii::getAlias('@web').'/uploads/avatars/'.$model->person_pi
                 <div class="col-md-4">
                     <?= $form->field($model, 'amphur')->widget(DepDrop::classname(), [
                         'options' => ['id' => 'ddl-amphur'],
-                        'data' => [],
+                        'data'=> $amphur,
                         'pluginOptions' => [
                             'depends' => ['ddl-province'],
                             'placeholder' => 'เลือกอำเภอ...',
@@ -118,7 +128,7 @@ $imgpath = Html::img(Yii::getAlias('@web').'/uploads/avatars/'.$model->person_pi
                 </div>
                 <div class="col-md-4">
                     <?= $form->field($model, 'tambol')->widget(DepDrop::classname(), [
-                        'data' => [],
+                        'data' =>$district,
                         'pluginOptions' => [
                             'depends' => ['ddl-province', 'ddl-amphur'],
                             'placeholder' => 'เลือกตำบล...',
@@ -177,7 +187,7 @@ $imgpath = Html::img(Yii::getAlias('@web').'/uploads/avatars/'.$model->person_pi
                 <div class="col-md-4">
                     <?= $form->field($model, 'amphur_phumlamnao')->widget(DepDrop::classname(), [
                         'options' => ['id' => 'ddl-amphur-phumlamnao'],
-                        'data' => [],
+                        'data' => $phumlamnao_amphur,
                         'pluginOptions' => [
                             'depends' => ['ddl-province-phumlamnao'],
                             'placeholder' => 'เลือกอำเภอ...',
@@ -187,7 +197,7 @@ $imgpath = Html::img(Yii::getAlias('@web').'/uploads/avatars/'.$model->person_pi
                 </div>
                 <div class="col-md-4">
                     <?= $form->field($model, 'tambol_phumlamnao')->widget(DepDrop::classname(), [
-                        'data' => [],
+                        'data' => $phumlamnao_district,
                         'pluginOptions' => [
                             'depends' => ['ddl-province-phumlamnao', 'ddl-amphur-phumlamnao'],
                             'placeholder' => 'เลือกตำบล...',
@@ -196,12 +206,14 @@ $imgpath = Html::img(Yii::getAlias('@web').'/uploads/avatars/'.$model->person_pi
                     ]); ?>
                 </div>
 
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <?= Html::submitButton('บันทึก', ['class' => 'btn btn-success']) ?>
+                    </div>
+                </div>
+
             </div><!-- /.box-body -->
         </div><!-- /.box -->
-
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-    </div>
 
     <?php ActiveForm::end(); ?>
 

@@ -59,7 +59,7 @@ use kartik\widgets\FileInput;
     <div class="col-md-4">
         <?= $form->field($model, 'amphur')->widget(DepDrop::classname(), [
             'options' => ['id' => 'ddl-amphur'],
-            'data' => [],
+            'data'=> $amphur,
             'pluginOptions' => [
                 'depends' => ['ddl-province'],
                 'placeholder' => 'เลือกอำเภอ...',
@@ -69,7 +69,7 @@ use kartik\widgets\FileInput;
     </div>
     <div class="col-md-4">
         <?= $form->field($model, 'tambol')->widget(DepDrop::classname(), [
-            'data' => [],
+            'data' => $district,
             'pluginOptions' => [
                 'depends' => ['ddl-province', 'ddl-amphur'],
                 'placeholder' => 'เลือกตำบล...',

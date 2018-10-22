@@ -9,6 +9,7 @@ use Yii;
 use app\models\EducationTrans;
 use app\models\EducationTransSearch;
 use yii\base\Exception;
+use yii\helpers\ArrayHelper;
 use yii\helpers\BaseFileHelper;
 use yii\helpers\Json;
 use yii\web\Controller;
@@ -111,34 +112,33 @@ class EducationTransController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing EducationTrans model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $master = new PersonMaster();
+        $amphur = ArrayHelper::map($master->getAmphur($model->address0->province_id), 'id', 'name');
+        $district = ArrayHelper::map($master->getDistrict($model->address0->amphur_id), 'id', 'name');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            //return $this->redirect(['view', 'id' => $model->idedu]);
+        if ($model->load(Yii::$app->request->post())) {
+            $address = new Address();
+            $address->tambol_id = $model->tambol;
+            $address->amphur_id = $model->amphur;
+            $address->province_id = $model->province;
+            $address->save();
+            $model->address = $address->address_id;
+
+            $model->attachfile = $this->uploadSingleFile($model);
+            $model->save();
             return $this->redirect(['index']);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'amphur' => $amphur,
+            'district' => $district
         ]);
     }
 
-    /**
-     * Deletes an existing EducationTrans model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -146,13 +146,6 @@ class EducationTransController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the EducationTrans model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return EducationTrans the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
         if (($model = EducationTrans::findOne($id)) !== null) {
@@ -198,5 +191,14 @@ class EducationTransController extends Controller
         }
         //return $json ;
         return $newFileName ;
+    }
+
+    public function actionDownload($id,$citizen,$fileName){
+        $model = $this->findModel($id);
+        if(!empty($model->attachfile)){
+            Yii::$app->response->sendFile($model->getUploadPath().'/'.$citizen.'/'.$fileName);
+        }else{
+            $this->redirect(['index']);
+        }
     }
 }

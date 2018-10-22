@@ -82,13 +82,13 @@ Modal::end();
         }else{
             echo "<div class='box box-danger'>";
         }?>
+
         <div class="box-header with-border">
             <h3 class="box-title" style="font-family: 'Maven Pro', sans-serif; text-transform: capitalize;"><span class="fa fa-user-o"></span> <?php echo $model->username; ?></h3>
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 
                 <?php
-
                 echo  Html::a("<span class='fa fa-power-off'></span>",
                     ['/user/deactivate','id' => $model->id],
                     ['class'=>'btn btn-box-tool',
@@ -107,9 +107,9 @@ Modal::end();
             <img src="<?= Yii::getAlias('@web').'/img/monk.png';?>"  class="img-responsive img-circle" width="200" style="padding:10px; margin: 0 auto"/>
             <div style="padding-left: 10px; padding-right: 10px; margin-top:-15px; padding-top:-40px;">
                 <hr/>
-                <p><span class="fa fa-envelope-o"></span> Email : <?php echo $model->email; ?></p>
-                <p><span class="fa fa-calendar-o"></span> Created : <?php echo Yii::$app->formatter->asDateTime($model->created_at,'medium') ?></p>
-                <a style="color: black"><span class="fa fa-wifi"></span> Status : <?php echo $model->getStatus($model->status); ?></a>
+                <p><span class="fa fa-envelope-o"></span> อีเมล์ : <?php echo $model->email; ?></p>
+                <p><span class="fa fa-calendar-o"></span> วันที่สมัคร : <?php echo Yii::$app->formatter->asDate($model->created_at,'medium') ?></p>
+                <a style="color: black"><span class="fa fa-wifi"></span> สถานะ : <?php echo $model->getStatus($model->status); ?></a>
                 <p style="margin-top: 5px"> </p>
             </div>
 
@@ -117,8 +117,29 @@ Modal::end();
 
         <div class="box-footer" align="center">
 
+            <?php if($model->roles == User::ROLE_ADMIN){ ?>
+                <?= Html::a("<span class='fa fa-user-circle'></span>&nbsp;เปลียนสิทธิ",
+                    ['/user/change_roles', 'id' => $model->id , 'newRole' => User::ROLE_USER],
+                    ['class'=>'btn btn-primary btn-flat',
+                        'data' => [
+                            'confirm' => 'Are you sure you want to Activate this manager?',
+                            'method' => 'post',
+                        ],
+                    ]) ?>
+            <?php }else{?>
+                <?= Html::a("<span class='fa fa-user'></span>&nbsp;เปลียนสิทธิ",
+                    ['/user/change_roles', 'id' => $model->id, 'newRole' => User::ROLE_ADMIN],
+                    ['class'=>'btn btn-success btn-flat',
+                        'data' => [
+                            'confirm' => 'Are you sure you want to Activate this manager?',
+                            'method' => 'post',
+                        ],
+                    ]) ?>
+            <?php } ?>
+
+
             <?php if($model->status == User::STATUS_WAITING){ ?>
-                <?= Html::a("<span class='fa fa-check'></span>&nbsp;Activate",
+                <?= Html::a("<span class='fa fa-check'></span>&nbsp;เปิดการใช้งาน",
                     ['/user/activate', 'id' => $model->id],
                     ['class'=>'btn btn-default btn-flat',
                         'data' => [
@@ -127,16 +148,16 @@ Modal::end();
                         ],
                     ]) ?>
             <?php }elseif ($model->status == User::STATUS_ACTIVE){?>
-                <?= Html::a("<span class='fa fa-power-off'></span>&nbsp;DeActivate",
+                <?= Html::a("<span class='fa fa-power-off'></span>&nbsp;ปิดการใช้งาน",
                     ['/user/deactivate','id' => $model->id],
-                    ['class'=>'btn btn-default btn-flat',
+                    ['class'=>'btn btn-danger btn-flat',
                         'data' => [
                             'confirm' => 'Are you sure you want to DeActivate this manager?',
                             'method' => 'post',
                         ],
                     ]) ?>
             <?php }elseif ($model->status == User::STATUS_DELETED){?>
-                <?= Html::a("<span class='fa fa-check'></span>&nbsp;ReActivate",
+                <?= Html::a("<span class='fa fa-power-off'></span>&nbsp;เปิดการใช้งาน",
                     ['/user/activate', 'id' => $model->id],
                     ['class'=>'btn btn-default btn-flat',
                         'data' => [
