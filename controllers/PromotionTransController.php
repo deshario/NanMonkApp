@@ -114,6 +114,7 @@ class PromotionTransController extends Controller
     {
         $model = $this->findModel($id);
         $master = new PersonMaster();
+        $model->province = $model->templeAddress->province_id;
         $amphur = ArrayHelper::map($master->getAmphur($model->templeAddress->province_id), 'id', 'name');
         $district = ArrayHelper::map($master->getDistrict($model->templeAddress->amphur_id), 'id', 'name');
 
@@ -122,10 +123,11 @@ class PromotionTransController extends Controller
             $address->tambol_id = $model->tambol;
             $address->amphur_id = $model->amphur;
             $address->province_id = $model->province;
-            $address->save();
             if($address->validate()){
+                $address->save();
                 $model->temple_address = $address->address_id;
                 if($model->validate()){
+                    $model->attachfile = $this->uploadSingleFile($model);
                     $model->save();
                     Yii::$app->getSession()->setFlash('promotion_updated', [
                         'type' =>  Growl::TYPE_SUCCESS,
@@ -199,5 +201,14 @@ class PromotionTransController extends Controller
         }
         //return $json ;
         return $newFileName ;
+    }
+
+    public function actionDownload($id,$citizen,$fileName){
+        $model = $this->findModel($id);
+        if(!empty($model->attachfile)){
+            Yii::$app->response->sendFile($model->getUploadPath().'/'.$citizen.'/'.$fileName);
+        }else{
+            $this->redirect(['index']);
+        }
     }
 }

@@ -20,6 +20,8 @@ $this->params['breadcrumbs'][] = 'แก้ไข';
         'child_t1_district' => $child_t1_district,
         'monk_t1_amphur' => $monk_t1_amphur,
         'monk_t1_district' => $monk_t1_district,
+        'monk_t2_amphur' => $monk_t2_amphur,
+        'monk_t2_district' => $monk_t2_district,
     ]) ?>
 
 </div>

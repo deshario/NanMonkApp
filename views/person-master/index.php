@@ -31,7 +31,9 @@ foreach ($dataProvider->models as $model) {
         $lastname = $model->surname;
         $aliasname = $model->aliasname;
         $birthdate = $model->birthdate;
-        $age = date_diff(date_create($birthdate), date_create('now'))->y;
+        //$age = date('Y-m-d', strtotime('+54 years'));
+        //$age = date_diff(date_create($birthdate), date_create($th_now))->y;
+        $age = date_diff(date_create('2540-10-10'), date_create('now'))->y;
         $staytemp = $model->staytemp;
         $level = $model->level;
         $temple = $model->temple;

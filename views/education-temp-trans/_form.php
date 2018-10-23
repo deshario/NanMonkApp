@@ -84,13 +84,11 @@ use kartik\widgets\FileInput;
             'pluginOptions' => [
                 'previewFileType' => 'image',
                 'allowedFileExtensions' => ['jpg', 'jpeg', 'png', 'pdf'],
-                'showPreview' => false,
+                'showPreview' => true,
                 'showCaption' => true,
                 'showRemove' => true,
                 'showUpload' => false,
-                'initialPreview' => [
-                    //$model->person_pic ? $imgpath : null, // checks the models to display the preview
-                ],
+                'initialPreview'=>$model->initialPreview($model->attachfile),
                 'overwriteInitial' => false,
             ]
         ]);
@@ -99,7 +97,7 @@ use kartik\widgets\FileInput;
 
     <div class="col-md-12">
         <div class="form-group">
-            <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton('บันทึก', ['class' => 'btn btn-success']) ?>
         </div>
     </div>
 

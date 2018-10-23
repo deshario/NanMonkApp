@@ -1,12 +1,12 @@
 <?php
 
 use yii\helpers\Html;
-use kartik\date\DatePicker;
 use yii\widgets\ActiveForm;
 use kartik\widgets\DepDrop;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use app\models\Province;
+use karatae99\datepicker\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\StaytempleTrans */
@@ -23,23 +23,25 @@ use app\models\Province;
         </div>
 
         <div class="col-md-4">
-            <?= $form->field($model, 'indate')->widget(DatePicker::classname(), [
-                'options' => ['placeholder' => 'เลือกวันที่ย้าย'],
-                'pluginOptions' => [
-                    'autoclose'=>true,
+            <?= $form->field($model, 'indate')->widget(
+                DatePicker::className(), [
+                'language' => 'th', // Thai B.E.
+                'clientOptions' => [
+                    'autoclose' => true,
                     'format' => 'yyyy-mm-dd'
                 ]
-            ]); ?>
+            ]);?>
         </div>
 
         <div class="col-md-4">
-            <?= $form->field($model, 'outdate')->widget(DatePicker::classname(), [
-                'options' => ['placeholder' => 'เลือกวันที่ย้าย'],
-                'pluginOptions' => [
-                    'autoclose'=>true,
+            <?= $form->field($model, 'outdate')->widget(
+                DatePicker::className(), [
+                'language' => 'th', // Thai B.E.
+                'clientOptions' => [
+                    'autoclose' => true,
                     'format' => 'yyyy-mm-dd'
                 ]
-            ]); ?>
+            ]);?>
         </div>
 
         <div class="col-md-4">

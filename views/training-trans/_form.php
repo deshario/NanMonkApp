@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use kartik\date\DatePicker;
+use karatae99\datepicker\DatePicker;
 use kartik\file\FileInput;
 
 /* @var $this yii\web\View */
@@ -23,13 +23,14 @@ use kartik\file\FileInput;
     </div>
 
     <div class="col-md-4">
-        <?= $form->field($model, 'trainingdate')->widget(DatePicker::classname(), [
-            'options' => ['placeholder' => ''],
-            'pluginOptions' => [
+        <?= $form->field($model, 'trainingdate')->widget(
+            DatePicker::className(), [
+            'language' => 'th', // Thai B.E.
+            'clientOptions' => [
                 'autoclose' => true,
                 'format' => 'yyyy-mm-dd'
             ]
-        ]); ?>
+        ]);?>
     </div>
 
     <div class="clearfix"></div>

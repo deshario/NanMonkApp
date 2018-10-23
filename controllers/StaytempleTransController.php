@@ -119,6 +119,7 @@ class StaytempleTransController extends Controller
     {
         $model = $this->findModel($id);
         $master = new PersonMaster();
+        $model->province = $model->staytempleAddress->province_id;
         $amphur = ArrayHelper::map($master->getAmphur($model->staytempleAddress->province_id), 'id', 'name');
         $district = ArrayHelper::map($master->getDistrict($model->staytempleAddress->amphur_id), 'id', 'name');
 

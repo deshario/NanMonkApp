@@ -117,6 +117,7 @@ class EducationTempTransController extends Controller
     {
         $model = $this->findModel($id);
         $master = new PersonMaster();
+        $model->province = $model->address0->province_id;
         $amphur = ArrayHelper::map($master->getAmphur($model->address0->province_id), 'id', 'name');
         $district = ArrayHelper::map($master->getDistrict($model->address0->amphur_id), 'id', 'name');
 
@@ -125,11 +126,23 @@ class EducationTempTransController extends Controller
             $address->tambol_id = $model->tambol;
             $address->amphur_id = $model->amphur;
             $address->province_id = $model->province;
-            $address->save();
-            $model->address = $address->address_id;
-
-            $model->attachfile = $this->uploadSingleFile($model);
-            $model->save();
+            if($address->validate()){
+                $address->save();
+                $model->address = $address->address_id;
+                if($model->validate()){
+                    $model->attachfile = $this->uploadSingleFile($model);
+                    $model->save();
+                    Yii::$app->getSession()->setFlash('education_trans_updated', [
+                        'type' =>  Growl::TYPE_SUCCESS,
+                        'duration' => 4000,
+                        'icon' => 'fa fa-check',
+                        'title' => 'ประวัติการศึกษา',
+                        'message' => 'ข้อมูลของคูณได้รับการปรับปรุงแล้ว',
+                        'positonY' => 'bottom',
+                        'positonX' => 'right'
+                    ]);
+                }
+            }
             return $this->redirect(['index']);
         }
 
@@ -206,5 +219,14 @@ class EducationTempTransController extends Controller
         }
         //return $json ;
         return $newFileName ;
+    }
+
+    public function actionDownload($id,$citizen,$fileName){
+        $model = $this->findModel($id);
+        if(!empty($model->attachfile)){
+            Yii::$app->response->sendFile($model->getUploadPath().'/'.$citizen.'/'.$fileName);
+        }else{
+            $this->redirect(['index']);
+        }
     }
 }

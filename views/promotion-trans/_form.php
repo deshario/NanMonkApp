@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use kartik\date\DatePicker;
+use karatae99\datepicker\DatePicker;
 use kartik\file\FileInput;
 use yii\helpers\Url;
 use kartik\depdrop\DepDrop;
@@ -27,13 +27,14 @@ use yii\helpers\ArrayHelper;
     </div>
 
     <div class="col-md-4">
-        <?= $form->field($model, 'promotiondate')->widget(DatePicker::classname(), [
-            'options' => ['placeholder' => ''],
-            'pluginOptions' => [
+        <?= $form->field($model, 'promotiondate')->widget(
+            DatePicker::className(), [
+            'language' => 'th', // Thai B.E.
+            'clientOptions' => [
                 'autoclose' => true,
                 'format' => 'yyyy-mm-dd'
             ]
-        ]); ?>
+        ]);?>
     </div>
 
     <div class="clearfix"></div>
@@ -87,16 +88,16 @@ use yii\helpers\ArrayHelper;
     <div class="clearfix"></div>
 
     <div class="col-md-4">
-        <?= $form->field($model, 'year')->widget(DatePicker::classname(), [
-            'options' => ['placeholder' => 'เลือกปีการศึกษา'],
-            //'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-            'pluginOptions' => [
-                'autoclose' => true,
+        <?= $form->field($model, 'year')->widget(
+            DatePicker::className(), [
+            'language' => 'th', // Thai B.E.
+            'clientOptions' => [
                 'startView' => 'year',
                 'minViewMode' => 1,
-                'format' => 'yyyy'
+                'autoclose' => true,
+                'format' => 'yyyy',
             ]
-        ]) ?>
+        ]);?>
     </div>
 
     <div class="col-md-8">
@@ -111,15 +112,13 @@ use yii\helpers\ArrayHelper;
             'pluginOptions' => [
                 'previewFileType' => 'image',
                 'allowedFileExtensions' => ['jpg', 'jpeg', 'png', 'pdf'],
-                'showPreview' => false,
+                'showPreview' => true,
                 'showCaption' => true,
                 'showRemove' => true,
                 'showUpload' => false,
-                'initialPreview' => [
-                    //$model->person_pic ? $imgpath : null, // checks the models to display the preview
-                ],
+                'initialPreview'=>$model->initialPreview($model->attachfile),
                 'overwriteInitial' => false,
-            ]
+            ],
         ]);
         ?>
     </div>

@@ -6,7 +6,7 @@ use kartik\widgets\DepDrop;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use app\models\Province;
-use kartik\date\DatePicker;
+use karatae99\datepicker\DatePicker;
 
 ?>
 
@@ -32,13 +32,14 @@ use kartik\date\DatePicker;
                 <?php //$form->field($model, 'childmonkage')->textInput() ?>
             </div>
             <div class="col-md-4">
-                <?= $form->field($model, 'childmonkdate')->widget(DatePicker::classname(), [
-                    'options' => ['placeholder' => 'Enter birth date ...'],
-                    'pluginOptions' => [
-                        'autoclose'=>true,
+                <?= $form->field($model, 'childmonkdate')->widget(
+                    DatePicker::className(), [
+                    'language' => 'th', // Thai B.E.
+                    'clientOptions' => [
+                        'autoclose' => true,
                         'format' => 'yyyy-mm-dd'
                     ]
-                ]); ?>
+                ]);?>
             </div>
             <div class="col-md-4">
                 <?= $form->field($model, 'childmonk_temple')->textInput(['maxlength' => true]) ?>
@@ -132,13 +133,14 @@ use kartik\date\DatePicker;
             <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
 
             <div class="col-md-4">
-                <?= $form->field($model, 'monk_date')->widget(DatePicker::classname(), [
-                    'options' => ['placeholder' => 'Enter birth date ...'],
-                    'pluginOptions' => [
-                        'autoclose'=>true,
+                <?= $form->field($model, 'monk_date')->widget(
+                    DatePicker::className(), [
+                    'language' => 'th', // Thai B.E.
+                    'clientOptions' => [
+                        'autoclose' => true,
                         'format' => 'yyyy-mm-dd'
                     ]
-                ]); ?>
+                ]);?>
             </div>
 
 
@@ -207,7 +209,7 @@ use kartik\date\DatePicker;
             <div class="col-md-4">
                 <?= $form->field($model, 'amphur_iv')->widget(DepDrop::classname(), [
                     'options' => ['id' => 'ddl-amphur-iv'],
-                    'data' => [],
+                    'data' => $monk_t2_amphur,
                     'pluginOptions' => [
                         'depends' => ['ddl-province-iv'],
                         'placeholder' => 'เลือกอำเภอ...',
@@ -218,7 +220,7 @@ use kartik\date\DatePicker;
 
             <div class="col-md-4">
                 <?= $form->field($model, 'tambol_iv')->widget(DepDrop::classname(), [
-                    'data' => [],
+                    'data' => $monk_t2_district,
                     'pluginOptions' => [
                         'depends' => ['ddl-province-iv', 'ddl-amphur-iv'],
                         'placeholder' => 'เลือกตำบล...',

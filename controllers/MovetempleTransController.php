@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Address;
 use app\models\PersonMaster;
+use app\models\Province;
 use kartik\growl\Growl;
 use Yii;
 use app\models\MovetempleTrans;
@@ -110,6 +111,7 @@ class MovetempleTransController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->province = $model->address0->province_id;
         $master = new PersonMaster();
 
         $amphur = ArrayHelper::map($master->getAmphur($model->address0->province_id), 'id', 'name');

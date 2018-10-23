@@ -68,8 +68,9 @@ class MonkhoodMaster extends \yii\db\ActiveRecord
     {
         return [
             [['idperson'], 'required'],
-            [['province','amphur','tambol'], 'safe'],
-            [['province_ii','amphur_ii','tambol_ii'], 'safe'], //ผู้บรรพชา
+            [['childmonkdate','childmonk_temple'], 'required'],
+            [['province','amphur','tambol'], 'required'],
+            [['province_ii','amphur_ii','tambol_ii'], 'required'], //ผู้บรรพชา
             [['province_iii','amphur_iii','tambol_iii'], 'safe'], //บรรพชาเมือ
             [['province_iv','amphur_iv','tambol_iv'], 'safe'], //บรรพชาเมือ
             [['province_v','amphur_v','tambol_v'], 'safe'], //บรรพชาเมือ

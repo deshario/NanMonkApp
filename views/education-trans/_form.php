@@ -7,7 +7,7 @@ use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use app\models\Province;
 use kartik\widgets\FileInput;
-use kartik\date\DatePicker;
+use karatae99\datepicker\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\EducationTrans */
@@ -37,16 +37,16 @@ use kartik\date\DatePicker;
     </div>
 
     <div class="col-md-4">
-        <?= $form->field($model, 'year')->widget(DatePicker::classname(), [
-            'options' => ['placeholder' => 'เลือกปีการศึกษา'],
-            //'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-            'pluginOptions' => [
-                'autoclose' => true,
-                'startView' => 'year',
+        <?= $form->field($model, 'year')->widget(
+            DatePicker::className(), [
+            'language' => 'th', // Thai B.E.
+            'clientOptions' => [
+                    'startView' => 'year',
                 'minViewMode' => 1,
-                'format' => 'yyyy'
+                'autoclose' => true,
+                'format' => 'yyyy',
             ]
-        ]) ?>
+        ]);?>
     </div>
 
     <div class="col-md-6">
@@ -99,16 +99,16 @@ use kartik\date\DatePicker;
                 'showCaption' => true,
                 'showRemove' => true,
                 'showUpload' => false,
+                'initialPreview'=>$model->initialPreview($model->attachfile),
                 'overwriteInitial' => false,
-                'initialPreview'=>$model->initialPreview($model->attachfile,'attachfile'),
-            ]
+            ],
         ]);
         ?>
     </div>
 
     <div class="col-md-12">
         <div class="form-group">
-            <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton('บันทึก', ['class' => 'btn btn-success']) ?>
         </div>
     </div>
 

@@ -2,12 +2,12 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use kartik\date\DatePicker;
 use kartik\widgets\DepDrop;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use app\models\Province;
 use kartik\widgets\FileInput;
+use karatae99\datepicker\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\PositionTrans */
@@ -27,13 +27,14 @@ use kartik\widgets\FileInput;
     </div>
 
     <div class="col-md-4">
-        <?= $form->field($model, 'positiondate')->widget(DatePicker::classname(), [
-            'options' => ['placeholder' => ''],
-            'pluginOptions' => [
-                'autoclose'=>true,
+        <?= $form->field($model, 'positiondate')->widget(
+            DatePicker::className(), [
+            'language' => 'th', // Thai B.E.
+            'clientOptions' => [
+                'autoclose' => true,
                 'format' => 'yyyy-mm-dd'
             ]
-        ]); ?>
+        ]);?>
     </div>
 
     <div class="clearfix"></div>
@@ -84,15 +85,13 @@ use kartik\widgets\FileInput;
             'pluginOptions' => [
                 'previewFileType' => 'image',
                 'allowedFileExtensions' => ['jpg', 'jpeg', 'png', 'pdf'],
-                'showPreview' => false,
+                'showPreview' => true,
                 'showCaption' => true,
                 'showRemove' => true,
                 'showUpload' => false,
-                'initialPreview' => [
-                    //$model->person_pic ? $imgpath : null, // checks the models to display the preview
-                ],
+                'initialPreview'=>$model->initialPreview($model->attachfile),
                 'overwriteInitial' => false,
-            ]
+            ],
         ]);
         ?>
     </div>

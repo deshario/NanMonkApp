@@ -54,11 +54,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php
         $items = [
             [
-                'label' => '<i class="fa fa-envelope-o"></i>&nbsp; ตำแหน่งทางคณะสงฆ์ทั้งหมด',
+                'label' => '<i class="fa fa-envelope-o"></i>&nbsp; ความสามมารถพิเศษทั้งหมด',
                 'content' => $content,
                 'active' => true,
             ],
-            ['label'=>'<i class="fa fa-plus"></i>&nbsp; เพิ่มตำแหน่งที่ได้รับ', 'url' => Url::to(['create'])]
+            ['label'=>'<i class="fa fa-plus"></i>&nbsp; เพิ่มความสามมารถพิเศษ', 'url' => Url::to(['create'])]
         ];
 
         echo TabsX::widget([

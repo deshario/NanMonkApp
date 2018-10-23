@@ -25,69 +25,89 @@ foreach ($dataProvider->models as $model) {
         $childmonk_t2_date = $model->monk_date;
         $childmonk_t2_temple = $model->monk_temple;
 
-        $childmonk_t2_province_id = $model->monkAddress->province_id;
-        $childmonk_t2_amphur_id = $model->monkAddress->amphur_id;
-        $childmonk_t2_tambol_id = $model->monkAddress->tambol_id;
-
-        $province_t2 = \app\models\Province::find()->where('PROVINCE_ID = ' . $childmonk_t2_province_id)->one()->PROVINCE_NAME;
-        $amphur_t2 = \app\models\Amphur::find()->where('AMPHUR_ID = ' . $childmonk_t2_amphur_id)->one()->AMPHUR_NAME;
-        $tambon_t2 = \app\models\District::find()->where('DISTRICT_ID = ' . $childmonk_t2_tambol_id)->one()->DISTRICT_NAME;
-        $province_t2 = str_replace(' ', '', $province_t2);
-        $amphur_t2 = str_replace(' ', '', $amphur_t2);
-        $tambon_t2 = str_replace(' ', '', $tambon_t2);
-        $childmonk_t2_address =  ' ตำบล ' . $tambon_t2 . ' อำเภอ ' . $amphur_t2 . ' จังหวัด ' . $province_t2;
+        if($model->monkAddress != null){
+            $childmonk_t2_province_id = $model->monkAddress->province_id;
+            $childmonk_t2_amphur_id = $model->monkAddress->amphur_id;
+            $childmonk_t2_tambol_id = $model->monkAddress->tambol_id;
+            $province_t2 = \app\models\Province::find()->where('PROVINCE_ID = ' . $childmonk_t2_province_id)->one()->PROVINCE_NAME;
+            $amphur_t2 = \app\models\Amphur::find()->where('AMPHUR_ID = ' . $childmonk_t2_amphur_id)->one()->AMPHUR_NAME;
+            $tambon_t2 = \app\models\District::find()->where('DISTRICT_ID = ' . $childmonk_t2_tambol_id)->one()->DISTRICT_NAME;
+            $province_t2 = str_replace(' ', '', $province_t2);
+            $amphur_t2 = str_replace(' ', '', $amphur_t2);
+            $tambon_t2 = str_replace(' ', '', $tambon_t2);
+            $childmonk_t2_address =  ' ตำบล ' . $tambon_t2 . ' อำเภอ ' . $amphur_t2 . ' จังหวัด ' . $province_t2;
+        }else{
+            $childmonk_t2_address = '';
+        }
 
         $monk_t1_name = $model->monk_t1_name;
         $monk_t1_temple = $model->monk_t1_temple;
-        $monk_t1_province_id = $model->monkT1Address->province_id;
-        $monk_t1_amphur_id = $model->monkT1Address->amphur_id;
-        $monk_t1_tambol_id = $model->monkT1Address->tambol_id;
-        $monk_t1_province = \app\models\Province::find()->where('PROVINCE_ID = ' . $monk_t1_province_id)->one()->PROVINCE_NAME;
-        $monk_t1_amphur = \app\models\Amphur::find()->where('AMPHUR_ID = ' . $monk_t1_amphur_id)->one()->AMPHUR_NAME;
-        $monk_t1_tambol = \app\models\District::find()->where('DISTRICT_ID = ' . $monk_t1_tambol_id)->one()->DISTRICT_NAME;
-        $monk_t1_province = str_replace(' ', '', $monk_t1_province);
-        $monk_t1_amphur = str_replace(' ', '', $monk_t1_amphur);
-        $monk_t1_tambol = str_replace(' ', '', $monk_t1_tambol);
-        $monk_t1_address =  ' ตำบล ' . $monk_t1_tambol . ' อำเภอ ' . $monk_t1_amphur . ' จังหวัด ' . $monk_t1_province;
+        if($model->monkT1Address != null){
+            $monk_t1_province_id = $model->monkT1Address->province_id;
+            $monk_t1_amphur_id = $model->monkT1Address->amphur_id;
+            $monk_t1_tambol_id = $model->monkT1Address->tambol_id;
+            $monk_t1_province = \app\models\Province::find()->where('PROVINCE_ID = ' . $monk_t1_province_id)->one()->PROVINCE_NAME;
+            $monk_t1_amphur = \app\models\Amphur::find()->where('AMPHUR_ID = ' . $monk_t1_amphur_id)->one()->AMPHUR_NAME;
+            $monk_t1_tambol = \app\models\District::find()->where('DISTRICT_ID = ' . $monk_t1_tambol_id)->one()->DISTRICT_NAME;
+            $monk_t1_province = str_replace(' ', '', $monk_t1_province);
+            $monk_t1_amphur = str_replace(' ', '', $monk_t1_amphur);
+            $monk_t1_tambol = str_replace(' ', '', $monk_t1_tambol);
+            $monk_t1_address =  ' ตำบล ' . $monk_t1_tambol . ' อำเภอ ' . $monk_t1_amphur . ' จังหวัด ' . $monk_t1_province;
+        }else{
+            $monk_t1_address = '';
+        }
 
         $monk_t2_name = $model->monk_t2_name;
         $monk_t2_temple = $model->monk_t2_temple;
-        $monk_t2_province_id = $model->monkT2Address->province_id;
-        $monk_t2_amphur_id = $model->monkT2Address->amphur_id;
-        $monk_t2_tambol_id = $model->monkT2Address->tambol_id;
-        $monk_t2_province = \app\models\Province::find()->where('PROVINCE_ID = ' . $monk_t2_province_id)->one()->PROVINCE_NAME;
-        $monk_t2_amphur = \app\models\Amphur::find()->where('AMPHUR_ID = ' . $monk_t2_amphur_id)->one()->AMPHUR_NAME;
-        $monk_t2_tambol = \app\models\District::find()->where('DISTRICT_ID = ' . $monk_t2_tambol_id)->one()->DISTRICT_NAME;
-        $monk_t2_province = str_replace(' ', '', $monk_t2_province);
-        $monk_t2_amphur = str_replace(' ', '', $monk_t2_amphur);
-        $monk_t2_tambol = str_replace(' ', '', $monk_t2_tambol);
-        $monk_t2_address =  ' ตำบล ' . $monk_t2_tambol . ' อำเภอ ' . $monk_t2_amphur . ' จังหวัด ' . $monk_t2_province;
+        if($model->monkT2Address != null){
+            $monk_t2_province_id = $model->monkT2Address->province_id;
+            $monk_t2_amphur_id = $model->monkT2Address->amphur_id;
+            $monk_t2_tambol_id = $model->monkT2Address->tambol_id;
+            $monk_t2_province = \app\models\Province::find()->where('PROVINCE_ID = ' . $monk_t2_province_id)->one()->PROVINCE_NAME;
+            $monk_t2_amphur = \app\models\Amphur::find()->where('AMPHUR_ID = ' . $monk_t2_amphur_id)->one()->AMPHUR_NAME;
+            $monk_t2_tambol = \app\models\District::find()->where('DISTRICT_ID = ' . $monk_t2_tambol_id)->one()->DISTRICT_NAME;
+            $monk_t2_province = str_replace(' ', '', $monk_t2_province);
+            $monk_t2_amphur = str_replace(' ', '', $monk_t2_amphur);
+            $monk_t2_tambol = str_replace(' ', '', $monk_t2_tambol);
+            $monk_t2_address =  ' ตำบล ' . $monk_t2_tambol . ' อำเภอ ' . $monk_t2_amphur . ' จังหวัด ' . $monk_t2_province;
+        }else{
+            $monk_t2_address = '';
+        }
 
         $monk_t3_name = $model->monk_t3_name;
         $monk_t3_temple = $model->monk_t3_temple;
-        $monk_t3_province_id = $model->monkT3Address->province_id;
-        $monk_t3_amphur_id = $model->monkT3Address->amphur_id;
-        $monk_t3_tambol_id = $model->monkT3Address->tambol_id;
-        $monk_t3_province = \app\models\Province::find()->where('PROVINCE_ID = ' . $monk_t3_province_id)->one()->PROVINCE_NAME;
-        $monk_t3_amphur = \app\models\Amphur::find()->where('AMPHUR_ID = ' . $monk_t3_amphur_id)->one()->AMPHUR_NAME;
-        $monk_t3_tambol = \app\models\District::find()->where('DISTRICT_ID = ' . $monk_t3_tambol_id)->one()->DISTRICT_NAME;
-        $monk_t3_province = str_replace(' ', '', $monk_t3_province);
-        $monk_t3_amphur = str_replace(' ', '', $monk_t3_amphur);
-        $monk_t3_tambol = str_replace(' ', '', $monk_t3_tambol);
-        $monk_t3_address =  ' ตำบล ' . $monk_t3_tambol . ' อำเภอ ' . $monk_t3_amphur . ' จังหวัด ' . $monk_t3_province;
+        if($model->monkT3Address != null){
+            $monk_t3_province_id = $model->monkT3Address->province_id;
+            $monk_t3_amphur_id = $model->monkT3Address->amphur_id;
+            $monk_t3_tambol_id = $model->monkT3Address->tambol_id;
+            $monk_t3_province = \app\models\Province::find()->where('PROVINCE_ID = ' . $monk_t3_province_id)->one()->PROVINCE_NAME;
+            $monk_t3_amphur = \app\models\Amphur::find()->where('AMPHUR_ID = ' . $monk_t3_amphur_id)->one()->AMPHUR_NAME;
+            $monk_t3_tambol = \app\models\District::find()->where('DISTRICT_ID = ' . $monk_t3_tambol_id)->one()->DISTRICT_NAME;
+            $monk_t3_province = str_replace(' ', '', $monk_t3_province);
+            $monk_t3_amphur = str_replace(' ', '', $monk_t3_amphur);
+            $monk_t3_tambol = str_replace(' ', '', $monk_t3_tambol);
+            $monk_t3_address =  ' ตำบล ' . $monk_t3_tambol . ' อำเภอ ' . $monk_t3_amphur . ' จังหวัด ' . $monk_t3_province;
+        }else{
+            $monk_t3_address = '';
+        }
 
         $staytemple = $model->staytemple;
         $staymonkname = $model->staymonkname;
-        $monk_stay_province_id = $model->staymonkAddress->province_id;
-        $monk_stay_amphur_id = $model->staymonkAddress->amphur_id;
-        $monk_stay_tambol_id = $model->staymonkAddress->tambol_id;
-        $monk_stay_province = \app\models\Province::find()->where('PROVINCE_ID = ' . $monk_stay_province_id)->one()->PROVINCE_NAME;
-        $monk_stay_amphur = \app\models\Amphur::find()->where('AMPHUR_ID = ' . $monk_stay_amphur_id)->one()->AMPHUR_NAME;
-        $monk_stay_tambol = \app\models\District::find()->where('DISTRICT_ID = ' . $monk_stay_tambol_id)->one()->DISTRICT_NAME;
-        $monk_stay_province = str_replace(' ', '', $monk_stay_province);
-        $monk_stay_amphur = str_replace(' ', '', $monk_stay_amphur);
-        $monk_stay_tambol = str_replace(' ', '', $monk_stay_tambol);
-        $monk_stay_address =  ' ตำบล ' . $monk_stay_tambol . ' อำเภอ ' . $monk_stay_amphur . ' จังหวัด ' . $monk_stay_province;
+        if($model->staymonkAddress != null){
+            $monk_stay_province_id = $model->staymonkAddress->province_id;
+            $monk_stay_amphur_id = $model->staymonkAddress->amphur_id;
+            $monk_stay_tambol_id = $model->staymonkAddress->tambol_id;
+            $monk_stay_province = \app\models\Province::find()->where('PROVINCE_ID = ' . $monk_stay_province_id)->one()->PROVINCE_NAME;
+            $monk_stay_amphur = \app\models\Amphur::find()->where('AMPHUR_ID = ' . $monk_stay_amphur_id)->one()->AMPHUR_NAME;
+            $monk_stay_tambol = \app\models\District::find()->where('DISTRICT_ID = ' . $monk_stay_tambol_id)->one()->DISTRICT_NAME;
+            $monk_stay_province = str_replace(' ', '', $monk_stay_province);
+            $monk_stay_amphur = str_replace(' ', '', $monk_stay_amphur);
+            $monk_stay_tambol = str_replace(' ', '', $monk_stay_tambol);
+            $monk_stay_address =  ' ตำบล ' . $monk_stay_tambol . ' อำเภอ ' . $monk_stay_amphur . ' จังหวัด ' . $monk_stay_province;
+        }else{
+            $monk_stay_address = '';
+        }
+
     }
 }
 

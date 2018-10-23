@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = 'ทางธรรม';
                 'format' => 'html',
                 'value' => function ($model) {
                     if($model->attachfile != null){
-                        return "<code>มี</code>";
+                        return $model->getAttachFile($model->person->idperson, $model->attachfile);
                     }else{
                         return "<code>ไม่มี</code>";
                     }

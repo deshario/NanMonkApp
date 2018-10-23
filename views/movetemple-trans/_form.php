@@ -11,6 +11,8 @@ use karatae99\datepicker\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model app\models\MovetempleTrans */
 /* @var $form yii\widgets\ActiveForm */
+
+$model->province = $model->province;
 ?>
 
 <div class="movetemple-trans-form">

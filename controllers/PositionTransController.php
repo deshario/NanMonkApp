@@ -124,6 +124,7 @@ class PositionTransController extends Controller
     {
         $model = $this->findModel($id);
         $master = new PersonMaster();
+        $model->province = $model->address->province_id;
         $amphur = ArrayHelper::map($master->getAmphur($model->address->province_id), 'id', 'name');
         $district = ArrayHelper::map($master->getDistrict($model->address->amphur_id), 'id', 'name');
 
@@ -136,6 +137,7 @@ class PositionTransController extends Controller
                 $address->save();
                 $model->address_id = $address->address_id;
                 if($model->validate()){
+                    $model->attachfile = $this->uploadSingleFile($model);
                     $model->save();
                     Yii::$app->getSession()->setFlash('position_updated', [
                         'type' =>  Growl::TYPE_SUCCESS,
@@ -224,5 +226,14 @@ class PositionTransController extends Controller
         }
         //return $json ;
         return $newFileName ;
+    }
+
+    public function actionDownload($id,$citizen,$fileName){
+        $model = $this->findModel($id);
+        if(!empty($model->attachfile)){
+            Yii::$app->response->sendFile($model->getUploadPath().'/'.$citizen.'/'.$fileName);
+        }else{
+            $this->redirect(['index']);
+        }
     }
 }

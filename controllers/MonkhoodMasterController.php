@@ -198,17 +198,58 @@ class MonkhoodMasterController extends Controller
     {
         $model = $this->findModel($id);
         $master = new PersonMaster();
-        $child_amphur = ArrayHelper::map($master->getAmphur($model->childmonkAddress->province_id), 'id', 'name');
-        $child_district = ArrayHelper::map($master->getDistrict($model->childmonkAddress->amphur_id), 'id', 'name');
+
+        $model->province = $model->childmonkAddress->province_id;
+        $model->province_ii = $model->childmonkT1Address->province_id;
+
+        if($model->childmonkAddress != null){
+            $child_amphur = ArrayHelper::map($master->getAmphur($model->childmonkAddress->province_id), 'id', 'name');
+            $child_district = ArrayHelper::map($master->getDistrict($model->childmonkAddress->amphur_id), 'id', 'name');
+        }else{
+            $child_amphur = [];
+            $child_district = [];
+        }
 
         $child_t1_amphur = ArrayHelper::map($master->getAmphur($model->childmonkT1Address->province_id), 'id', 'name');
         $child_t1_district = ArrayHelper::map($master->getDistrict($model->childmonkT1Address->amphur_id), 'id', 'name');
 
-        $monk_t1_amphur = ArrayHelper::map($master->getAmphur($model->monkAddress->province_id), 'id', 'name');
-        $monk_t1_district = ArrayHelper::map($master->getDistrict($model->monkAddress->amphur_id), 'id', 'name');
+        if($model->monkAddress != null){
+            $monk_t1_amphur = ArrayHelper::map($master->getAmphur($model->monkAddress->province_id), 'id', 'name');
+            $monk_t1_district = ArrayHelper::map($master->getDistrict($model->monkAddress->amphur_id), 'id', 'name');
+        }else{
+            $monk_t1_amphur = [];
+            $monk_t1_district = [];
+        }
+
+        if($model->monkT1Address != null){
+            $monk_t2_amphur = ArrayHelper::map($master->getAmphur($model->monkT1Address->province_id), 'id', 'name');
+            $monk_t2_district = ArrayHelper::map($master->getDistrict($model->monkT1Address->amphur_id), 'id', 'name');
+        }else{
+            $monk_t2_amphur = [];
+            $monk_t2_district = [];
+        }
 
         if ($model->load(Yii::$app->request->post())) {
-
+            $address = new Address();
+            $address->tambol_id = $model->tambol;
+            $address->amphur_id = $model->amphur;
+            $address->province_id = $model->province;
+            $address->save();
+            if($address->validate()){
+                $model->childmonk_address = $address->address_id;
+                if($model->validate()){
+                    $model->save();
+                    Yii::$app->getSession()->setFlash('monkhood_updated', [
+                        'type' =>  Growl::TYPE_SUCCESS,
+                        'duration' => 4000,
+                        'icon' => 'fa fa-check',
+                        'title' => 'บรรพชาอุปสมบท',
+                        'message' => 'ข้อมูลของคูณได้รับการปรับปรุงแล้ว',
+                        'positonY' => 'bottom',
+                        'positonX' => 'right'
+                    ]);
+                }
+            }
             return $this->redirect(['/person-master/index']);
         }
 
@@ -220,6 +261,8 @@ class MonkhoodMasterController extends Controller
             'child_t1_district' => $child_t1_district,
             'monk_t1_amphur' => $monk_t1_amphur,
             'monk_t1_district' => $monk_t1_district,
+            'monk_t2_amphur' => $monk_t2_amphur,
+            'monk_t2_district' => $monk_t2_district,
         ]);
     }
 

@@ -78,8 +78,8 @@ class SiteController extends Controller
     public function actionIndex()
     {
         //$this->layout = "main-signup";
-        return $this->render('index');
-//        return $this->redirect('index.php');
+//        return $this->render('index');
+        return $this->redirect(['/site/home']);
 //        return 'ee';
     }
 

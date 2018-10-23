@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\widgets\DepDrop;
 use yii\helpers\Url;
-use kartik\date\DatePicker;
+use karatae99\datepicker\DatePicker;
 use kartik\widgets\FileInput;
 use yii\helpers\ArrayHelper;
 use app\models\Province;
@@ -77,13 +77,14 @@ $imgpath = Html::img(Yii::getAlias('@web').'/uploads/avatars/'.$model->person_pi
                 </div>
 
                 <div class="col-md-4">
-                    <?= $form->field($model, 'birthdate')->widget(DatePicker::classname(), [
-                        'options' => ['placeholder' => 'Enter birth date ...'],
-                        'pluginOptions' => [
-                            'autoclose'=>true,
+                    <?= $form->field($model, 'birthdate')->widget(
+                        DatePicker::className(), [
+                        'language' => 'th', // Thai B.E.
+                        'clientOptions' => [
+                            'autoclose' => true,
                             'format' => 'yyyy-mm-dd'
                         ]
-                    ]); ?>
+                    ]);?>
                 </div>
 
                 <div class="col-md-4">
