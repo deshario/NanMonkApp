@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2018 at 06:54 PM
--- Server version: 10.1.22-MariaDB
--- PHP Version: 7.0.18
+-- Generation Time: Oct 24, 2018 at 09:44 PM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `jab_thesis`
+-- Database: `thesis_jab`
 --
 
 -- --------------------------------------------------------
@@ -34,7 +34,228 @@ CREATE TABLE `address` (
   `amphur_id` int(11) NOT NULL COMMENT 'อำเภอ',
   `province_id` int(11) NOT NULL COMMENT 'จังหวัด',
   `zipcode` int(11) DEFAULT NULL COMMENT 'รหัสไปรษณีย์'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `address`
+--
+
+INSERT INTO `address` (`address_id`, `tambol_id`, `amphur_id`, `province_id`, `zipcode`) VALUES
+(1, 1751, 212, 18, NULL),
+(2, 1612, 198, 16, NULL),
+(3, 671, 94, 6, NULL),
+(4, 1624, 199, 16, NULL),
+(5, 1497, 185, 15, NULL),
+(6, 648, 92, 6, NULL),
+(7, 1676, 204, 17, NULL),
+(8, 1666, 203, 17, NULL),
+(9, 1395, 174, 14, NULL),
+(10, 1457, 181, 15, NULL),
+(11, 1385, 173, 14, NULL),
+(12, 1447, 180, 15, NULL),
+(13, 1397, 174, 14, NULL),
+(14, 1397, 174, 14, NULL),
+(15, 1479, 182, 15, NULL),
+(16, 1479, 182, 15, NULL),
+(17, 1457, 181, 15, NULL),
+(18, 1553, 192, 16, NULL),
+(19, 1395, 174, 14, NULL),
+(20, 1545, 191, 16, NULL),
+(21, 1456, 181, 15, NULL),
+(22, 1614, 198, 16, NULL),
+(23, 1557, 192, 16, NULL),
+(24, 1385, 173, 14, NULL),
+(25, 1448, 180, 15, NULL),
+(26, 1, 1, 1, NULL),
+(27, 1496, 185, 15, NULL),
+(28, 5675, 633, 43, NULL),
+(29, 1690, 206, 18, NULL),
+(30, 1690, 206, 18, NULL),
+(31, 1690, 206, 18, NULL),
+(32, 1662, 203, 17, NULL),
+(33, 1662, 203, 17, NULL),
+(34, 5675, 633, 43, NULL),
+(35, 5675, 633, 43, NULL),
+(36, 5799, 648, 44, NULL),
+(37, 5799, 648, 44, NULL),
+(38, 1536, 190, 16, NULL),
+(39, 1535, 190, 16, NULL),
+(40, 1649, 202, 17, NULL),
+(41, 1690, 206, 18, NULL),
+(42, 1760, 215, 19, NULL),
+(43, 5781, 644, 43, NULL),
+(44, 5675, 633, 43, NULL),
+(45, 1665, 203, 17, NULL),
+(46, 1478, 182, 15, NULL),
+(47, 1671, 204, 17, NULL),
+(48, 5788, 646, 43, NULL),
+(49, 1015, 127, 10, NULL),
+(50, 5788, 646, 43, NULL),
+(51, 1, 1, 1, NULL),
+(52, 5788, 646, 43, NULL),
+(53, 1448, 180, 15, NULL),
+(54, 1690, 206, 18, NULL),
+(55, 1690, 206, 18, NULL),
+(56, 1690, 206, 18, NULL),
+(57, 1203, 151, 12, NULL),
+(58, 1364, 171, 14, NULL),
+(59, 1702, 207, 18, NULL),
+(60, 1164, 142, 11, NULL),
+(61, 1971, 230, 19, NULL),
+(62, 368, 67, 4, NULL),
+(63, 1690, 206, 18, NULL),
+(64, 1690, 206, 18, NULL),
+(65, 5790, 646, 43, NULL),
+(66, 1663, 203, 17, NULL),
+(67, 1691, 206, 18, NULL),
+(68, 1264, 160, 13, NULL),
+(69, 1692, 206, 18, NULL),
+(70, 5679, 633, 43, NULL),
+(71, 5675, 633, 43, NULL),
+(72, 5794, 646, 43, NULL),
+(73, 1706, 207, 18, NULL),
+(74, 1626, 199, 16, NULL),
+(75, 1659, 202, 17, NULL),
+(76, 1550, 192, 16, NULL),
+(77, 1613, 198, 16, NULL),
+(78, 1713, 208, 18, NULL),
+(79, 1611, 198, 16, NULL),
+(80, 1693, 206, 18, NULL),
+(81, 1544, 191, 16, NULL),
+(82, 1445, 180, 15, NULL),
+(83, 1543, 191, 16, NULL),
+(84, 1541, 190, 16, NULL),
+(85, 6461, 730, 51, NULL),
+(86, 2010, 233, 19, NULL),
+(87, 1717, 208, 18, NULL),
+(88, 2009, 233, 19, NULL),
+(89, 1691, 206, 18, NULL),
+(90, 1377, 171, 14, NULL),
+(91, 365, 66, 4, NULL),
+(92, 1512, 189, 16, NULL),
+(93, 1544, 191, 16, NULL),
+(94, 1664, 203, 17, NULL),
+(95, 272, 54, 2, NULL),
+(96, 1558, 192, 16, NULL),
+(97, 1564, 193, 16, NULL),
+(98, 1690, 206, 18, NULL),
+(99, 1606, 198, 16, NULL),
+(100, 1302, 162, 13, NULL),
+(101, 1682, 205, 17, NULL),
+(102, 1671, 204, 17, NULL),
+(103, 499, 79, 5, NULL),
+(104, 447, 76, 5, NULL),
+(105, 1365, 171, 14, NULL),
+(106, 1447, 180, 15, NULL),
+(107, 1671, 204, 17, NULL),
+(108, 1539, 190, 16, NULL),
+(109, 1663, 203, 17, NULL),
+(110, 1650, 202, 17, NULL),
+(111, 1433, 179, 15, NULL),
+(112, 1664, 203, 17, NULL),
+(113, 736, 99, 7, NULL),
+(114, 486, 78, 5, NULL),
+(115, 1544, 191, 16, NULL),
+(116, 1380, 172, 14, NULL),
+(117, 641, 91, 6, NULL),
+(118, 271, 54, 2, NULL),
+(119, 2511, 287, 21, NULL),
+(120, 1691, 206, 18, NULL),
+(121, 5692, 633, 43, NULL),
+(122, 1380, 172, 14, NULL),
+(123, 1662, 202, 3, NULL),
+(124, 1524, 189, 16, NULL),
+(125, 1378, 171, 14, NULL),
+(126, 1679, 202, 17, NULL),
+(127, 1669, 202, 17, NULL),
+(128, 1650, 202, 17, NULL),
+(129, 1656, 202, 17, NULL),
+(130, 1671, 204, 17, NULL),
+(131, 1662, 203, 17, NULL),
+(132, 1496, 178, 15, NULL),
+(133, 1430, 178, 15, NULL),
+(134, 1429, 178, 15, NULL),
+(135, 1514, 189, 16, NULL),
+(136, 1511, 189, 16, NULL),
+(137, 1411, 178, 15, NULL),
+(138, 1411, 178, 15, NULL),
+(139, 1411, 178, 15, NULL),
+(140, 1411, 178, 15, NULL),
+(141, 1411, 178, 15, NULL),
+(142, 1662, 202, 17, NULL),
+(143, 1649, 202, 17, NULL),
+(144, 1364, 171, 14, NULL),
+(145, 1411, 178, 15, NULL),
+(146, 1411, 178, 15, NULL),
+(147, 1511, 189, 16, NULL),
+(148, 1710, 208, 18, NULL),
+(149, 1639, 200, 16, NULL),
+(150, 1709, 206, 18, NULL),
+(151, 1690, 206, 18, NULL),
+(152, 1690, 206, 18, NULL),
+(153, 1690, 206, 18, NULL),
+(154, 1446, 180, 15, NULL),
+(155, 1447, 180, 15, NULL),
+(156, 1444, 178, 15, NULL),
+(157, 1230, 154, 12, NULL),
+(158, 1286, 160, 13, NULL),
+(159, 1263, 160, 13, NULL),
+(160, 1627, 189, 16, NULL),
+(161, 1749, 206, 16, NULL),
+(162, 1749, 206, 16, NULL),
+(163, 1605, 189, 16, NULL),
+(164, 669, 90, 6, NULL),
+(165, 5755, 640, 43, NULL),
+(166, 1263, 160, 13, NULL),
+(167, 1511, 189, 16, NULL),
+(168, 1690, 189, 16, NULL),
+(169, 1690, 189, 16, NULL),
+(170, 1511, 189, 16, NULL),
+(171, 623, 90, 6, NULL),
+(172, 840, 105, 7, NULL),
+(173, 1263, 160, 13, NULL),
+(174, 1511, 189, 16, NULL),
+(175, 5717, 637, 43, NULL),
+(176, 1511, 189, 16, NULL),
+(177, 1511, 189, 16, NULL),
+(178, 623, 90, 6, NULL),
+(179, 838, 97, 7, NULL),
+(180, 1169, 142, 11, NULL),
+(181, 1511, 189, 16, NULL),
+(182, 5714, 633, 43, NULL),
+(183, 1511, 189, 16, NULL),
+(184, 1511, 189, 16, NULL),
+(185, 623, 90, 6, NULL),
+(186, 696, 97, 7, NULL),
+(187, 1146, 141, 11, NULL),
+(188, 1511, 189, 16, NULL),
+(189, 5675, 633, 43, NULL),
+(190, 1511, 189, 16, NULL),
+(191, 1511, 189, 16, NULL),
+(192, 623, 90, 6, NULL),
+(193, 696, 97, 7, NULL),
+(194, 1672, 204, 17, NULL),
+(195, 5788, 646, 43, NULL),
+(196, 136, 1136, 11, NULL),
+(197, 5792, 646, 43, NULL),
+(198, 5675, 633, 43, NULL),
+(199, 1511, 189, 16, NULL),
+(200, 1511, 189, 16, NULL),
+(201, 623, 90, 6, NULL),
+(202, 696, 97, 7, NULL),
+(203, 5794, 646, 43, NULL),
+(204, 5794, 646, 43, NULL),
+(205, 5788, 633, 43, NULL),
+(206, 5788, 633, 43, NULL),
+(207, 5675, 633, 43, NULL),
+(208, 5675, 633, 43, NULL),
+(209, 2, 1, 1, NULL),
+(210, 5698, 634, 43, NULL),
+(211, 2310, 267, 20, NULL),
+(212, 5697, 633, 43, NULL),
+(213, 2309, 250, 20, NULL),
+(214, 5675, 633, 43, NULL),
+(215, 2092, 250, 20, NULL);
 
 -- --------------------------------------------------------
 
@@ -9986,7 +10207,24 @@ INSERT INTO `district` (`DISTRICT_ID`, `DISTRICT_CODE`, `DISTRICT_NAME`, `AMPHUR
 CREATE TABLE `education_dhamma` (
   `id_education` int(11) NOT NULL COMMENT 'รหัสระดับการศึกษาทางธรรม',
   `education_name` varchar(45) DEFAULT NULL COMMENT 'ชื่อระดับการศึกษาทางธรรม'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `education_dhamma`
+--
+
+INSERT INTO `education_dhamma` (`id_education`, `education_name`) VALUES
+(1, 'นักธรรมชั้นตรี'),
+(2, 'นักธรรมชั้นโท'),
+(3, 'นักธรรมชั้นเอก'),
+(4, 'ประโยค ๑-๒'),
+(5, 'ประโยค ๓'),
+(6, 'ประโยค ๔'),
+(7, 'ประโยค ๕'),
+(8, 'ประโยค ๖'),
+(9, 'ประโยค ๗'),
+(10, 'ประโยค ๘'),
+(11, 'ประโยค ๙');
 
 -- --------------------------------------------------------
 
@@ -9997,7 +10235,21 @@ CREATE TABLE `education_dhamma` (
 CREATE TABLE `education_standard` (
   `id_education` int(11) NOT NULL COMMENT 'ระดับการศึกษา',
   `education_name` varchar(60) DEFAULT NULL COMMENT '''ชื่อระดับการศึกษาทางโลก'''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `education_standard`
+--
+
+INSERT INTO `education_standard` (`id_education`, `education_name`) VALUES
+(1, 'ประถมศึกษา'),
+(2, 'มัธยมศึกษา ตอนต้น'),
+(3, 'มัธยมศึกษา ตอนปลาย'),
+(4, 'อนุปริญญา'),
+(5, 'ปริญญาตรี'),
+(6, 'ปริญญาโท'),
+(7, 'ปริญญาเอก'),
+(8, 'ปริญญากิตติมศักดิ์');
 
 -- --------------------------------------------------------
 
@@ -10014,7 +10266,17 @@ CREATE TABLE `education_temp_trans` (
   `placeprovince` int(11) DEFAULT NULL COMMENT 'สำนักเรียนคณะจังหวัด',
   `attachfile` varchar(255) DEFAULT NULL COMMENT 'เส้นทางการจัดเก็บไฟล์แนบ',
   `address` int(11) DEFAULT NULL COMMENT 'ที่อยู่ของสถานศึกษา'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `education_temp_trans`
+--
+
+INSERT INTO `education_temp_trans` (`idedu`, `idperson`, `education_level`, `temple`, `place`, `placeprovince`, `attachfile`, `address`) VALUES
+(1, '43534', 5, 'dsadsa', 'lorem ipsum', 4, '', 11),
+(2, '123456', 4, 'testl', 'lorem ipsum', 16, 'b9d4d76d5d998632e15b2cec4bd23924.png', 104),
+(3, '123456', 2, 'dsad', 'asdas', 19, '1544c1c9c5c41fd809128a617fd476db.pdf', 103),
+(4, '123456', 4, 'asdasd', 'no', 11, 'ade59256d181e42311860350672da5a0.png', 143);
 
 -- --------------------------------------------------------
 
@@ -10033,7 +10295,38 @@ CREATE TABLE `education_trans` (
   `transcriptname` varchar(100) DEFAULT NULL COMMENT 'ชื่อปริญญาบัตร',
   `attachfile` varchar(255) DEFAULT NULL COMMENT 'เส้นทางการจัดเก็บไฟล์แนบ',
   `address` int(11) DEFAULT NULL COMMENT 'ที่อยู่ของสถานศึกษา'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `education_trans`
+--
+
+INSERT INTO `education_trans` (`idedu`, `idperson`, `education_level`, `place`, `major`, `year`, `abbrev`, `transcriptname`, `attachfile`, `address`) VALUES
+(1, '43534', 2, 'rmul', 'asd', '2018', '', '', '', 10),
+(2, '123456', 3, 'dsadsa', 'asd', '2561', 'asd', 'asd', '', 126),
+(4, '123456', 3, 'dsa', 'dasd', '2568', 'eew', '', 'cdcc54c2e337e2ad05b8f3d9f48b8f40.png', 146);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hobbie_trans`
+--
+
+CREATE TABLE `hobbie_trans` (
+  `id` int(11) NOT NULL COMMENT 'ลำดับความสามารถพิเศษ',
+  `idperson` varchar(13) NOT NULL COMMENT 'หมายเลขบัตรประชาชน',
+  `idhobby` int(11) DEFAULT NULL COMMENT 'รหัสประเภทความสามารถพิเศษ.',
+  `others` varchar(100) DEFAULT NULL COMMENT 'ความสามารถพิเศษ'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `hobbie_trans`
+--
+
+INSERT INTO `hobbie_trans` (`id`, `idperson`, `idhobby`, `others`) VALUES
+(1, '43534', 9, 'MS EXCEL'),
+(2, '435h34u', 9, 'MS EXCEL'),
+(3, '123456', 9, 'eeee');
 
 -- --------------------------------------------------------
 
@@ -10044,28 +10337,24 @@ CREATE TABLE `education_trans` (
 CREATE TABLE `hobby` (
   `idhobby` int(11) NOT NULL COMMENT 'รหัสประเภทความสามารถพิเศษ',
   `hobbytype` varchar(100) DEFAULT NULL COMMENT 'ความสามารถพิเศษ'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `hobby`
+--
+
+INSERT INTO `hobby` (`idhobby`, `hobbytype`) VALUES
+(9, 'ภาษาต่างประเทศ'),
+(10, 'คอมพิวเตอร์'),
+(11, 'อืนๆ');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hobby_trans`
+-- Table structure for table `monk_master`
 --
 
-CREATE TABLE `hobby_trans` (
-  `id` int(11) NOT NULL COMMENT 'ลำดับความสามารถพิเศษ',
-  `idperson` varchar(13) NOT NULL COMMENT 'หมายเลขบัตรประชาชน',
-  `idhobby` int(11) DEFAULT NULL COMMENT 'รหัสประเภทความสามารถพิเศษ',
-  `others` varchar(100) DEFAULT NULL COMMENT 'ความสามารถพิเศษ'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `monkhood_master`
---
-
-CREATE TABLE `monkhood_master` (
+CREATE TABLE `monk_master` (
   `monkhood_id` int(11) NOT NULL,
   `idperson` varchar(13) NOT NULL COMMENT 'หมายเลขบัตรประชาชน',
   `childmonkage` int(11) DEFAULT NULL COMMENT 'อายุวันที่บรรพชา',
@@ -10092,7 +10381,14 @@ CREATE TABLE `monkhood_master` (
   `staytemple` varchar(60) DEFAULT NULL COMMENT 'สังกัดวัดเมื่อบวช',
   `staymonkname` varchar(60) DEFAULT NULL COMMENT 'ชื่อเจ้าอาวาสวัดที่สังกัดเมื่อบวช',
   `staymonk_address` int(11) DEFAULT NULL COMMENT 'ที่อยู่วัดที่สังกัดเมื่อบวช'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `monk_master`
+--
+
+INSERT INTO `monk_master` (`monkhood_id`, `idperson`, `childmonkage`, `childmonkdate`, `childmonk_temple`, `childmonk_address`, `childmonk_t1_name`, `childmonk_t1_temple`, `childmonk_t1_address`, `monk_age`, `monk_date`, `monk_time`, `monk_temple`, `monk_address`, `monk_t1_name`, `monk_t1_temple`, `monk_t1_address`, `monk_t2_name`, `monk_t2_temple`, `monk_t2_address`, `monk_t3_name`, `monk_t3_temple`, `monk_t3_address`, `staytemple`, `staymonkname`, `staymonk_address`) VALUES
+(5, '123456', 10, '2551-02-16', 'วัดพระธาตุแช่แห้ง', 214, 'aj note', 'วัดพระธาตุแช่แห้ง', 215, 4, '2557-07-18', NULL, 'วัดพระธาตุแช่แห้ง', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -10107,7 +10403,18 @@ CREATE TABLE `movetemple_trans` (
   `fromtemple` varchar(80) DEFAULT NULL COMMENT 'ย้ายมาจากวัด',
   `reason` varchar(100) DEFAULT NULL COMMENT 'สาเหตุที่ย้าย',
   `address` int(11) DEFAULT NULL COMMENT 'ที่อยู่ของวัดที่ย้ายมา'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `movetemple_trans`
+--
+
+INSERT INTO `movetemple_trans` (`idmove`, `idperson`, `fromdate`, `fromtemple`, `reason`, `address`) VALUES
+(2, '43534', '2018-10-18', 'chaehaeng', 'dsa', 8),
+(4, '123456', '2561-10-20', 'chaehaeng', 'เบื่อ', 157),
+(5, '123456', '2561-10-26', 'naiwiang', 'เบื่อ11', 122),
+(6, '123456', '2552-11-18', 'chaehaeng', 'เบื่อ11', 123),
+(7, '123456', '2561-10-12', 'chaehaeng', 'borec', 83);
 
 -- --------------------------------------------------------
 
@@ -10118,7 +10425,20 @@ CREATE TABLE `movetemple_trans` (
 CREATE TABLE `nationality` (
   `idnationality` int(11) NOT NULL COMMENT 'รหัสสัญชาติ',
   `nationalityname` varchar(45) DEFAULT NULL COMMENT 'ชื่อสัญชาติ'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `nationality`
+--
+
+INSERT INTO `nationality` (`idnationality`, `nationalityname`) VALUES
+(1, 'ไทย'),
+(2, 'ลาว'),
+(3, 'กัมพูชา'),
+(4, 'เวียดนาม'),
+(5, 'สิงคโปร์'),
+(6, 'มาเลเซีย'),
+(7, 'อินโดนีเซีย');
 
 -- --------------------------------------------------------
 
@@ -10150,7 +10470,17 @@ CREATE TABLE `person_master` (
   `mother` varchar(60) DEFAULT NULL COMMENT 'ชื่อมารดา',
   `family_homeno` varchar(60) DEFAULT NULL COMMENT 'บ้านเลขที่, หมู่, หมู่บ้าน (ภูมิลำเนา)',
   `family_address` int(11) DEFAULT NULL COMMENT 'ที่อยู่ภูมิลำเนา'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `person_master`
+--
+
+INSERT INTO `person_master` (`idperson`, `user_id`, `person_book_no`, `person_pic`, `firstname`, `surname`, `aliasname`, `birthdate`, `staytemp`, `level`, `temple`, `homeno`, `address`, `section`, `idnationality`, `occupation`, `quality`, `color`, `special`, `father`, `mother`, `family_homeno`, `family_address`) VALUES
+('123456', 2, '12399', '2573_1540126080_21101948.png', 'sadsadsa', 'dsadas1', '123', '2540-07-31', 2, 'sdfsd', 'sdf', 'sdf', 75, 'sdf', 5, 'sdf', 'sdf', 'สีเหลือง', 'sdf', 'sdf', 'sdf', '89/2', 119),
+('43534', 3, '345', '8651_1540130045_21102054.jpg', '34', '345', '345', '2018-10-23', 53, '534', '345', '345', 3, '345', 3, 'utyu', 'ty', '#00ff00', 'tyu', 'tyu', 'tyu', 'tyu', 4),
+('112233', 3, '21321', '529_1540130772_21102106.png', '12312', 'sad', 'asd', '2018-10-16', 1, 'asd', 'sda', 'asd', 3, 'dasd', 6, 'asd', 'asd', '#93c47d', 'asd', 'asd', 'asd', 'asd', 5),
+('333', 3, '555', '7107_1540130872_21102107.png', 'พะำะพ', 'asdsad', 'asd', '2018-10-26', 1, 'dfg', 'fsd', 'sdf', 6, 'sdf', 2, 'sdf', 'sdf', '#93c47d', 'sdf', 'sdf', 'sdf', 'sdfs', 7);
 
 -- --------------------------------------------------------
 
@@ -10161,7 +10491,49 @@ CREATE TABLE `person_master` (
 CREATE TABLE `position` (
   `idposition` int(11) NOT NULL COMMENT 'รหัสตำแหน่ง',
   `positionname` varchar(45) DEFAULT NULL COMMENT 'ชื่อตำแหน่ง'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `position`
+--
+
+INSERT INTO `position` (`idposition`, `positionname`) VALUES
+(1, 'ผู้ช่วยเจ้าอาวาส'),
+(2, 'รองเจ้าอาวาส'),
+(3, 'เจ้าอาวาส'),
+(4, 'รองเจ้าคณะแขวง/ตำบล'),
+(5, 'เจ้าคณะแขวง/ตำบล'),
+(6, 'รองเจ้าคณะเขต/อำเภอ'),
+(7, 'เจ้าคณะเขต/อำเภอ'),
+(8, 'รองเจ้าคณะจังหวัด'),
+(9, 'เจ้าคณะจังหวัด'),
+(10, 'รองเจ้าคณะภาค'),
+(11, 'เจ้าคณะภาค'),
+(12, 'เจ้าคณะใหญ่'),
+(13, 'พระอุปัชฌาย์ สามัญ'),
+(14, 'พระอุปัชฌาย์ วิสามัญ'),
+(15, 'อาจารย์ใหญ่สำนักเรียน'),
+(16, 'เลขานุการวัด'),
+(17, 'เลขานุการรองเจ้าคณะแขวง/ตำบล'),
+(18, 'เลขานุการเจ้าคณะแขวง/ตำบล'),
+(19, 'เลขานุการรองเจ้าคณะเขต/อำเภอ'),
+(20, 'เลขานุการเจ้าคณะเขต/อำเภอ'),
+(21, 'เลขานุการรองเจ้าคณะจังหวัด'),
+(22, 'เลขานุการเจ้าคณะจังหวัด'),
+(23, 'เลขานุการรองเจ้าคณะภาค'),
+(24, 'เลขานุการเจ้าคณะภาค'),
+(25, 'เลขานุการเจ้าคณะใหญ่'),
+(26, 'เลขานุการแม่กองงานพระธรรมทูต'),
+(27, 'เลขานุการแม่กองธรรมสนามหลวง'),
+(28, 'เลขานุการแม่กองบาลีสนามหลวง'),
+(29, 'รองแม่กองงานพระธรรมทูต'),
+(30, 'รองแม่กองธรรมสนามหลวง'),
+(31, 'รองแม่กองบาลีสนามหลวง'),
+(32, 'แม่กองงานพระธรรมทูต'),
+(33, 'แม่กองธรรมสนามหลวง'),
+(34, 'แม่กองบาลีสนามหลวง'),
+(35, 'กรรมการมหาเถรสมาคม'),
+(36, 'อื่นๆ');
 
 -- --------------------------------------------------------
 
@@ -10178,7 +10550,16 @@ CREATE TABLE `position_trans` (
   `remark` varchar(100) DEFAULT NULL COMMENT 'หมายเหตุหรือเพิ่มเติมข้อมูล หรือตำแหน่งอื่นๆ ',
   `attachfile` varchar(100) DEFAULT NULL COMMENT 'เส้นทางการจัดเก็บไฟล์แนบ',
   `address_id` int(11) DEFAULT NULL COMMENT 'ที่อยู่ของวัดที่ได้ตำแหน่ง'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `position_trans`
+--
+
+INSERT INTO `position_trans` (`idpos`, `idperson`, `position_id`, `positiondate`, `temple`, `remark`, `attachfile`, `address_id`) VALUES
+(1, '43534', 5, '2018-10-17', '', '', '', 12),
+(3, '123456', 3, '2563-02-05', '', 'dsad', '', 195),
+(5, '123456', 2, '2563-02-05', '', '', '', 137);
 
 -- --------------------------------------------------------
 
@@ -10189,7 +10570,78 @@ CREATE TABLE `position_trans` (
 CREATE TABLE `promotion` (
   `idpromotion` int(11) NOT NULL COMMENT 'รหัสสมณศักดิ์',
   `promotionname` varchar(60) DEFAULT NULL COMMENT 'ชื่อสมณศักดิ์'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `promotion`
+--
+
+INSERT INTO `promotion` (`idpromotion`, `promotionname`) VALUES
+(1, 'สมเด็จพระสังฆราชเจ้า'),
+(2, 'สมเด็จพระสังฆราช'),
+(3, 'สมเด็จพระราชาคณะ ชั้นสุพรรณบัฏ'),
+(4, 'พระราชาคณะ เจ้าคณะ ชั้นหิรัณยบัฏ'),
+(5, 'พระราชาคณะ ชั้นธรรม'),
+(6, 'พระราชาคณะ ชั้นเทพ'),
+(7, 'พระราชาคณะ ชั้นราช'),
+(8, 'พระราชาคณะ ชั้นสามัญ'),
+(9, 'พระครูสัญญาบัตร เจ้าคณะจังหวัด'),
+(10, 'พระครูสัญญาบัตร รองเจ้าคณะจังหวัด'),
+(11, 'พระครูสัญญาบัตร เจ้าอาวาสพระอารามหลวง ชั้นเอก'),
+(12, 'พระครูสัญญาบัตร เจ้าคณะอำเภอ ชั้นพิเศษ'),
+(13, 'พระครูสัญญาบัตร เทียบเจ้าคณะอำเภอ ชั้นพิเศษ'),
+(14, 'พระครูปลัดของสมเด็จพระราชาคณะ'),
+(15, 'พระเปรียญธรรม ๙ ประโยค'),
+(16, 'พระครูสัญญาบัตร เจ้าอาวาสพระอารามหลวง ชั้นโท'),
+(17, 'พระครูสัญญาบัตร เจ้าคณะอำเภอ ชั้นเอก'),
+(18, 'พระครูสัญญาบัตร เทียบเจ้าคณะอำเภอ ชั้นเอก'),
+(19, 'พระครูสัญญาบัตร เจ้าอาวาสพระอารามหลวง ชั้นตรี'),
+(20, 'พระครูสัญญาบัตร เจ้าคณะอำเภอ ชั้นโท'),
+(21, 'พระครูสัญญาบัตร รองเจ้าอาวาสพระอารามหลวง ชั้นเอก'),
+(22, 'พระครูสัญญาบัตร เจ้าอาวาสพระอารามหลวง ชั้นโท'),
+(23, 'พระครูสัญญาบัตร รองเจ้าอาวาส'),
+(24, 'พระครูสัญญาบัตร พระอารามหลวง ชั้นตรี'),
+(25, 'พระครูสัญญาบัตร ผู้ช่วยเจ้าอาวาสพระอารามหลวง ชั้นพิเศษ'),
+(26, 'พระครูสัญญาบัตร ผู้ช่วยเจ้าอาวาสพระอารามหลวง ชั้นเอก ฝ่ายวิป'),
+(27, 'พระครูสัญญาบัตร ผู้ช่วยเจ้าอาวาสพระอารามหลวง ชั้นเอก'),
+(28, 'พระครูปลัดของพระราชาคณะ เจ้าคณะรอง ชั้นหิรัณยบัฏ'),
+(29, 'พระครูฐานานุกรมชั้นเอก ของสมเด็จพระสังฆราช'),
+(30, 'พระเปรียญธรรม ๘ ประโยค'),
+(31, 'พระครูสัญญาบัตร ผู้ช่วยเจ้าอาวาสพระอารามหลวง ชั้นโท'),
+(32, 'พระเปรียญธรรม ๗ ประโยค'),
+(33, 'พระครูปลัดของพระราชาคณะ ชั้นธรรม'),
+(34, 'พระครูฐานานุกรมชั้นโท ของสมเด็จพระสังฆราช'),
+(35, 'พระครูสัญญาบัตร รองเจ้าคณะอำเภอ ชั้นเอก'),
+(36, 'พระครูสัญญาบัตร รองเจ้าคณะอำเภอ ชั้นโท'),
+(37, 'พระครูสัญญาบัตร เจ้าคณะตำบล ชั้นเอก ฝ่ายวิปัสสนาธุระ'),
+(38, 'พระครูสัญญาบัตร เจ้าคณะตำบล ชั้นเอก'),
+(39, 'พระครูสัญญาบัตร เจ้าคณะตำบล ชั้นโท'),
+(40, 'พระครูสัญญาบัตร เจ้าคณะตำบล ชั้นตรี'),
+(41, 'พระครูสัญญาบัตร เจ้าอาวาสวัดราษฎร์ ชั้นเอก'),
+(42, 'พระครูสัญญาบัตร เจ้าอาวาสวัดราษฎร์ ชั้นโท ฝ่ายวิปัสสนาธุระ'),
+(43, 'พระครูสัญญาบัตร เจ้าอาวาสวัดราษฎร์ ชั้นโท'),
+(44, 'พระครูสัญญาบัตร เจ้าอาวาสวัดราษฎร์ ชั้นตรี'),
+(45, 'พระครูสัญญาบัตร รองเจ้าอาวาสวัดราษฎร์ '),
+(46, 'พระครูสัญญาบัตร ผู้ช่วยเจ้าอาวาสวัดราษฎร์ '),
+(47, 'พระเปรียญธรรม ๖ ประโยค'),
+(48, 'พระเปรียญธรรม ๕ ประโยค'),
+(49, 'พระครูปลัดของพระราชาคณะ ชั้นเทพ'),
+(50, 'พระครูปลัดของพระราชาคณะ ชั้นราช'),
+(51, 'พระครูวินัยธร'),
+(52, 'พระครูธรรมธร'),
+(53, 'พระครูคู่สวด'),
+(54, 'พระเปรียญธรรม ๔ ประโยค'),
+(55, 'พระปลัดของพระราชาคณะ ชั้นสามัญ'),
+(56, 'พระเปรียญธรรม ๓ ประโยค'),
+(57, 'พระครูรองคู่สวด'),
+(58, 'พระครูสังฆรักษ์'),
+(59, 'พระครูสมุห์'),
+(60, 'พระครูใบฎีกา'),
+(61, 'พระสมุห์'),
+(62, 'พระใบฎีกา'),
+(63, 'พระใบฎีกา'),
+(64, 'พระพิธีธรรม'),
+(65, 'อื่นๆ');
 
 -- --------------------------------------------------------
 
@@ -10206,10 +10658,21 @@ CREATE TABLE `promotion_trans` (
   `place2` varchar(80) DEFAULT NULL COMMENT 'ฐานานุกรมใน',
   `temple` varchar(80) DEFAULT NULL COMMENT 'ชื่อวัดประจำตำแหน่ง',
   `temple_address` int(11) DEFAULT NULL COMMENT 'ที่อยู่ของวัดที่ได้รับตำแหน่ง',
-  `year` year(4) DEFAULT NULL COMMENT 'ปี พ.ศ. เมื่อได้รับตำแหน่งเช่น พระครูปลัดของสมเด็จพระราชาคณะ, พระครู...',
+  `year` varchar(4) DEFAULT NULL COMMENT 'ปี พ.ศ. เมื่อได้รับตำแหน่งเช่น พระครูปลัดของสมเด็จพระราชาคณะ, พระครู...',
   `remark` varchar(100) DEFAULT NULL COMMENT 'หมายเหตุหรือเพิ่มเติมข้อมูล หรือตำแหน่งอื่นๆ ',
   `attachfile` varchar(255) DEFAULT NULL COMMENT 'เส้นทางการจัดเก็บไฟล์แนบ'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `promotion_trans`
+--
+
+INSERT INTO `promotion_trans` (`idpos`, `idperson`, `idpromotion`, `promotiondate`, `place1`, `place2`, `temple`, `temple_address`, `year`, `remark`, `attachfile`) VALUES
+(1, '43534', 10, '2018-10-17', '', '', '', 14, '2563', '', ''),
+(2, '43534', 5, '2018-10-15', '', '', '', 17, NULL, '', ''),
+(3, '435t34urty', 5, '2018-10-25', '', '', '', 19, NULL, '', '5fc16e24784a7cb1ccab3ab341435838.png'),
+(4, '123456', 8, '2561-10-24', '', '', '', 118, '0000', '', ''),
+(5, '123456', 2, '2561-10-19', '', '', '', 147, '2543', '', '9666c65d95b938e3fca6b27a07ab2b44.png');
 
 -- --------------------------------------------------------
 
@@ -10316,7 +10779,21 @@ INSERT INTO `province` (`PROVINCE_ID`, `PROVINCE_CODE`, `PROVINCE_NAME`, `GEO_ID
 CREATE TABLE `specialwork` (
   `idwork` int(11) NOT NULL COMMENT 'รหัสประเภทผลงานทีสำคัญ',
   `worktype` varchar(150) DEFAULT NULL COMMENT 'ประเภทผลงานที่สำคัญ'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `specialwork`
+--
+
+INSERT INTO `specialwork` (`idwork`, `worktype`) VALUES
+(1, 'ด้านการศาสนศึกษา'),
+(2, 'ด้านวิชาการ'),
+(3, 'ด้านสาธารณูปการ'),
+(4, 'ด้านการเผยแผ่'),
+(5, 'ด้านการศึกษาสงเคราะห์'),
+(6, 'ด้านสาธารณสงเคราะห์'),
+(7, 'รางวัลเกียรติยศ'),
+(8, 'อื่นๆ');
 
 -- --------------------------------------------------------
 
@@ -10329,7 +10806,16 @@ CREATE TABLE `specialwork_trans` (
   `idperson` varchar(13) NOT NULL COMMENT 'หมายเลขบัตรประชาชน',
   `idwork` int(11) DEFAULT NULL COMMENT 'รหัสประเภทผลงานสำคัญ',
   `description` varchar(150) DEFAULT NULL COMMENT 'รายละเอียดเพิ่มเติม'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `specialwork_trans`
+--
+
+INSERT INTO `specialwork_trans` (`id`, `idperson`, `idwork`, `description`) VALUES
+(3, '43534', 2, 'งาน 555'),
+(2, 'น3534', 5, 'ทำพน ยฟ่'),
+(4, '123456', 3, 'eeeee');
 
 -- --------------------------------------------------------
 
@@ -10344,7 +10830,14 @@ CREATE TABLE `staytemple_trans` (
   `outdate` date DEFAULT NULL COMMENT 'วันที่ย้ายออก',
   `staytemple` varchar(80) DEFAULT NULL COMMENT 'ชื่อวัดที่จำพรรษา',
   `staytemple_address` int(11) DEFAULT NULL COMMENT 'ที่อยู่ของวัดที่จำพรรษา'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `staytemple_trans`
+--
+
+INSERT INTO `staytemple_trans` (`idstay`, `idperson`, `indate`, `outdate`, `staytemple`, `staytemple_address`) VALUES
+(5, '123456', '2561-10-26', '2561-10-25', '546', 144);
 
 -- --------------------------------------------------------
 
@@ -10355,7 +10848,29 @@ CREATE TABLE `staytemple_trans` (
 CREATE TABLE `training` (
   `idtraining` int(11) NOT NULL,
   `trainingname` varchar(255) DEFAULT NULL COMMENT 'ชื่อหลักสูตรอบรม'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `training`
+--
+
+INSERT INTO `training` (`idtraining`, `trainingname`) VALUES
+(1, 'พระนวกะ'),
+(2, 'พระนักเทศน์'),
+(3, 'พระสอนศีลธรรม'),
+(4, 'พระนักเผยแผ่'),
+(5, 'พระวิปัสสนาจารย์'),
+(6, 'พระธรรมทูต'),
+(7, 'พระวินยาธิการ'),
+(8, 'พระจริยานิเทศ'),
+(9, 'พระปริยัตินิเทศ'),
+(10, 'พระเลชานุการ'),
+(11, 'เตรียมความพร้อมผู้ช่วยเจ้าอาวาส'),
+(12, 'เตรียมความพร้อมเจ้าอาวาาส'),
+(13, 'อบรมพระนักบริหารระดับต้น'),
+(14, 'อบรมพระนักบริหารระดับกลาง'),
+(15, 'พระนักบริหารระดับสูง'),
+(16, 'อื่นๆ');
 
 -- --------------------------------------------------------
 
@@ -10371,7 +10886,16 @@ CREATE TABLE `training_trans` (
   `trainingby` varchar(100) DEFAULT NULL COMMENT 'จัดอบรมโดย',
   `others` varchar(100) DEFAULT NULL COMMENT 'ชื่อหลักสูตรอืนๆ',
   `attachfile` varchar(255) DEFAULT NULL COMMENT 'เส้นทางการจัดเก็บไฟล์แนบ'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `training_trans`
+--
+
+INSERT INTO `training_trans` (`id`, `idperson`, `training_id`, `trainingdate`, `trainingby`, `others`, `attachfile`) VALUES
+(1, '43534', 7, '2018-10-24', 'พระ สมพงษ์', '', ''),
+(3, 'yui34', 7, '2018-10-24', 'พระ สมพงษ์', '', ''),
+(4, '123456', 4, '2561-10-19', 'eeee', '', '');
 
 -- --------------------------------------------------------
 
@@ -10390,7 +10914,17 @@ CREATE TABLE `user` (
   `roles` int(11) NOT NULL COMMENT 'บทบาทผู้ใช้งาน',
   `created_at` int(11) NOT NULL COMMENT 'วันที่สมัคร',
   `updated_at` int(11) NOT NULL COMMENT 'วันที่ปรับปรุงข้อมูลล่าสุด'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `roles`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'TPPFgbPLpkegrGPWcXd9fEEpiX-vyAfk', '$2y$13$/rPcpCkuQN3ifyx0ZFI37OsYHPa/.zI5KFJD4163GPBuG9ysPToVK', NULL, 'admin@gmail.com', 10, 20, 1539700094, 1539700094),
+(2, 'demo', 'fcEr2pyG1iBPap2zpF9GRYfg-BIhq5eC', '$2y$13$Rv5EeKzOnWQBH2MhD1ggheILrWLqER0UyqEbDqKtXsRbm91qAtF7q', NULL, 'demo@gmail.com', 10, 10, 1540126007, 1540126007),
+(16, 'BXHKM9OB', 'PLxVGJEa2Cv5QdQ6ds5vfHj5PHNNCsVO', '$2y$13$pp7gw8YP6EzluTsAXeo2/OJ81KUh7xQQBrg1Yyc.zOIZhZf0Kz/dK', NULL, 'bxhkm9ob@virtual.com', 0, 20, 1540234698, 1540234698),
+(17, 'UK036TAP', 'aFZUJmI2kYRLYTkGqZgi64t2RqvAVcme', '$2y$13$6/zs6SlBzwqPm5NBEQ9eN.AIS9WX1nxgYlMun3X/wGlXjmd9UVzpm', NULL, 'uk036tap@virtual.com', 10, 10, 1540287645, 1540287645);
 
 -- --------------------------------------------------------
 
@@ -17927,22 +18461,22 @@ ALTER TABLE `education_trans`
   ADD KEY `fk_education_trans_address1_idx` (`address`);
 
 --
+-- Indexes for table `hobbie_trans`
+--
+ALTER TABLE `hobbie_trans`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idperson_idx` (`idperson`);
+
+--
 -- Indexes for table `hobby`
 --
 ALTER TABLE `hobby`
   ADD PRIMARY KEY (`idhobby`);
 
 --
--- Indexes for table `hobby_trans`
+-- Indexes for table `monk_master`
 --
-ALTER TABLE `hobby_trans`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idperson_idx` (`idperson`);
-
---
--- Indexes for table `monkhood_master`
---
-ALTER TABLE `monkhood_master`
+ALTER TABLE `monk_master`
   ADD PRIMARY KEY (`monkhood_id`),
   ADD KEY `fk_monkhood_master_address1_idx` (`childmonk_address`),
   ADD KEY `fk_monkhood_master_address2_idx` (`childmonk_t1_address`),
@@ -18071,209 +18605,145 @@ ALTER TABLE `zipcode`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=216;
+
 --
 -- AUTO_INCREMENT for table `amphur`
 --
 ALTER TABLE `amphur`
   MODIFY `AMPHUR_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1007;
+
 --
 -- AUTO_INCREMENT for table `district`
 --
 ALTER TABLE `district`
   MODIFY `DISTRICT_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8915;
+
 --
 -- AUTO_INCREMENT for table `education_dhamma`
 --
 ALTER TABLE `education_dhamma`
-  MODIFY `id_education` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสระดับการศึกษาทางธรรม';
+  MODIFY `id_education` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสระดับการศึกษาทางธรรม', AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT for table `education_standard`
 --
 ALTER TABLE `education_standard`
-  MODIFY `id_education` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ระดับการศึกษา';
+  MODIFY `id_education` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ระดับการศึกษา', AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT for table `education_temp_trans`
 --
 ALTER TABLE `education_temp_trans`
-  MODIFY `idedu` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับการศึกษาทางธรรม';
+  MODIFY `idedu` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับการศึกษาทางธรรม', AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `education_trans`
 --
 ALTER TABLE `education_trans`
-  MODIFY `idedu` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับการศึกษาทางโลก';
+  MODIFY `idedu` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับการศึกษาทางโลก', AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `hobbie_trans`
+--
+ALTER TABLE `hobbie_trans`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับความสามารถพิเศษ', AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `hobby`
 --
 ALTER TABLE `hobby`
-  MODIFY `idhobby` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสประเภทความสามารถพิเศษ';
+  MODIFY `idhobby` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสประเภทความสามารถพิเศษ', AUTO_INCREMENT=12;
+
 --
--- AUTO_INCREMENT for table `hobby_trans`
+-- AUTO_INCREMENT for table `monk_master`
 --
-ALTER TABLE `hobby_trans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับความสามารถพิเศษ';
---
--- AUTO_INCREMENT for table `monkhood_master`
---
-ALTER TABLE `monkhood_master`
-  MODIFY `monkhood_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `monk_master`
+  MODIFY `monkhood_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `movetemple_trans`
 --
 ALTER TABLE `movetemple_trans`
-  MODIFY `idmove` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับการย้ายวัด';
+  MODIFY `idmove` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับการย้ายวัด', AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `nationality`
 --
 ALTER TABLE `nationality`
-  MODIFY `idnationality` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสสัญชาติ';
+  MODIFY `idnationality` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสสัญชาติ', AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `position`
 --
 ALTER TABLE `position`
-  MODIFY `idposition` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสตำแหน่ง';
+  MODIFY `idposition` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสตำแหน่ง', AUTO_INCREMENT=37;
+
 --
 -- AUTO_INCREMENT for table `position_trans`
 --
 ALTER TABLE `position_trans`
-  MODIFY `idpos` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับตำแหน่ง';
+  MODIFY `idpos` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับตำแหน่ง', AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `promotion`
 --
 ALTER TABLE `promotion`
-  MODIFY `idpromotion` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสสมณศักดิ์';
+  MODIFY `idpromotion` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสสมณศักดิ์', AUTO_INCREMENT=66;
+
 --
 -- AUTO_INCREMENT for table `promotion_trans`
 --
 ALTER TABLE `promotion_trans`
-  MODIFY `idpos` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับสมณศักดิ์ที่ได้รับ';
+  MODIFY `idpos` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับสมณศักดิ์ที่ได้รับ', AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `province`
 --
 ALTER TABLE `province`
   MODIFY `PROVINCE_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+
 --
 -- AUTO_INCREMENT for table `specialwork`
 --
 ALTER TABLE `specialwork`
-  MODIFY `idwork` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสประเภทผลงานทีสำคัญ';
+  MODIFY `idwork` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสประเภทผลงานทีสำคัญ', AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT for table `specialwork_trans`
 --
 ALTER TABLE `specialwork_trans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับผลงานทีสำคัญ';
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับผลงานทีสำคัญ', AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `staytemple_trans`
 --
 ALTER TABLE `staytemple_trans`
-  MODIFY `idstay` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับการย้ายวัด';
+  MODIFY `idstay` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับการย้ายวัด', AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT for table `training`
 --
 ALTER TABLE `training`
-  MODIFY `idtraining` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idtraining` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- AUTO_INCREMENT for table `training_trans`
 --
 ALTER TABLE `training_trans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับสมณศักดิ์ที่ได้รับ';
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับสมณศักดิ์ที่ได้รับ', AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
 --
 -- AUTO_INCREMENT for table `zipcode`
 --
 ALTER TABLE `zipcode`
   MODIFY `ZIPCODE_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7456;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `education_temp_trans`
---
-ALTER TABLE `education_temp_trans`
-  ADD CONSTRAINT `fk_educationtemp_trans_address1` FOREIGN KEY (`address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `ideducation0` FOREIGN KEY (`education_level`) REFERENCES `education_dhamma` (`id_education`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `idperson000` FOREIGN KEY (`idperson`) REFERENCES `person_master` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `education_trans`
---
-ALTER TABLE `education_trans`
-  ADD CONSTRAINT `fk_education_trans_address1` FOREIGN KEY (`address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `ideducation` FOREIGN KEY (`education_level`) REFERENCES `education_standard` (`id_education`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `idperson00` FOREIGN KEY (`idperson`) REFERENCES `person_master` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `hobby_trans`
---
-ALTER TABLE `hobby_trans`
-  ADD CONSTRAINT `idhooby` FOREIGN KEY (`idhobby`) REFERENCES `hobby` (`idhobby`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `idperson_hobbytrans` FOREIGN KEY (`idperson`) REFERENCES `person_master` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `monkhood_master`
---
-ALTER TABLE `monkhood_master`
-  ADD CONSTRAINT `fk_monkhood_idperson` FOREIGN KEY (`idperson`) REFERENCES `person_master` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_monkhood_master_address1` FOREIGN KEY (`childmonk_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_monkhood_master_address2` FOREIGN KEY (`childmonk_t1_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_monkhood_master_address3` FOREIGN KEY (`monk_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_monkhood_master_address4` FOREIGN KEY (`monk_t1_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_monkhood_master_address5` FOREIGN KEY (`monk_t2_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_monkhood_master_address6` FOREIGN KEY (`monk_t3_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_monkhood_master_address7` FOREIGN KEY (`staymonk_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `movetemple_trans`
---
-ALTER TABLE `movetemple_trans`
-  ADD CONSTRAINT `fk_move_temple_trans_add` FOREIGN KEY (`address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_movetemple_trans_person_master1` FOREIGN KEY (`idperson`) REFERENCES `person_master` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `person_master`
---
-ALTER TABLE `person_master`
-  ADD CONSTRAINT `fk_person_master_address1` FOREIGN KEY (`address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_person_master_address2` FOREIGN KEY (`family_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_person_master_nationality1` FOREIGN KEY (`idnationality`) REFERENCES `nationality` (`idnationality`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_person_master_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `position_trans`
---
-ALTER TABLE `position_trans`
-  ADD CONSTRAINT `fk_position_trans_address1` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `idperson0000` FOREIGN KEY (`idperson`) REFERENCES `person_master` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `idposition` FOREIGN KEY (`position_id`) REFERENCES `position` (`idposition`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `promotion_trans`
---
-ALTER TABLE `promotion_trans`
-  ADD CONSTRAINT `fk_promotion_trans_address1` FOREIGN KEY (`temple_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `idperson00000` FOREIGN KEY (`idperson`) REFERENCES `person_master` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `idpromotion` FOREIGN KEY (`idpromotion`) REFERENCES `promotion` (`idpromotion`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `specialwork_trans`
---
-ALTER TABLE `specialwork_trans`
-  ADD CONSTRAINT `idperson_specialwork_trans` FOREIGN KEY (`idperson`) REFERENCES `person_master` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `idwork` FOREIGN KEY (`idwork`) REFERENCES `specialwork` (`idwork`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `staytemple_trans`
---
-ALTER TABLE `staytemple_trans`
-  ADD CONSTRAINT `fk_staytemple_trans_address1` FOREIGN KEY (`staytemple_address`) REFERENCES `address` (`address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `idperson0` FOREIGN KEY (`idperson`) REFERENCES `person_master` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `training_trans`
---
-ALTER TABLE `training_trans`
-  ADD CONSTRAINT `fk_training_trans_training1` FOREIGN KEY (`training_id`) REFERENCES `training` (`idtraining`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `idperson000000` FOREIGN KEY (`idperson`) REFERENCES `person_master` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
