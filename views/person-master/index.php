@@ -31,9 +31,11 @@ foreach ($dataProvider->models as $model) {
         $lastname = $model->surname;
         $aliasname = $model->aliasname;
         $birthdate = $model->birthdate;
-        //$age = date('Y-m-d', strtotime('+54 years'));
-        //$age = date_diff(date_create($birthdate), date_create($th_now))->y;
-        $age = date_diff(date_create('2540-10-10'), date_create('now'))->y;
+
+        $eng_date = strtotime("now");
+        $nowdate = (date("Y",$eng_date)+543).'-'.(date("m",$eng_date)).'-'.(date("d",$eng_date));
+        $age = date_diff(date_create($birthdate), date_create($nowdate))->y;
+
         $staytemp = $model->staytemp;
         $level = $model->level;
         $temple = $model->temple;
@@ -60,11 +62,11 @@ foreach ($dataProvider->models as $model) {
         $quality = $model->quality;
         $special = $model->special;
         $color = $model->color;
-        $color = ColorInput::widget([
-            'name' => 'color',
-            'value' => $color,
-            'readonly' => true
-        ]);
+//        $color = ColorInput::widget([
+//            'name' => 'color',
+//            'value' => $color,
+//            'readonly' => true
+//        ]);
         $father = $model->father;
         $mother = $model->mother;
 
@@ -101,77 +103,77 @@ foreach ($dataProvider->models as $model) {
                                 <div class='col-md-6'>
                                     <div class='form-group'>
                                         <label>หมายเลขบัตรประชาชน</label>
-                                        <input type='text' class='form-control' value='$idperson'>
+                                        <input type='text' class='form-control' value='$idperson' readonly>
                                     </div>
                                 </div>
                                 
                                 <div class='col-md-6'>
                                     <div class='form-group'>
                                         <label>หมายเลขหนังสือสุทธิ</label>
-                                        <input type='text' class='form-control' value='$person_book_no'>
+                                        <input type='text' class='form-control' value='$person_book_no' readonly>
                                     </div>
                                 </div>
                                 
                                 <div class='col-md-4'>
                                      <div class='form-group'>
                                         <label>ชื่อปัจจุบัน</label>
-                                        <input type='text' class='form-control' value='ส.ณ $firstname'>
+                                        <input type='text' class='form-control' value='ส.ณ $firstname' readonly>
                                     </div>  
                                 </div> 
                                 
                                  <div class='col-md-4'>
                                      <div class='form-group'>
                                         <label>ฉายา</label>
-                                        <input type='text' class='form-control' value='$aliasname'>
+                                        <input type='text' class='form-control' value='$aliasname' readonly>
                                     </div>  
                                 </div>  
                                 
                                 <div class='col-md-4'>
                                      <div class='form-group'>
                                         <label>นามสกุล</label>
-                                        <input type='text' class='form-control' value='$lastname'>
+                                        <input type='text' class='form-control' value='$lastname' readonly>
                                     </div>  
                                 </div>   
                                 
                                  <div class='col-md-4'>
                                      <div class='form-group'>
                                         <label>อายุ</label>
-                                        <input type='text' class='form-control' value='$age'>
+                                        <input type='text' class='form-control' value='$age' readonly>
                                     </div>  
                                 </div>     
                                 
                                  <div class='col-md-4'>
                                      <div class='form-group'>
                                         <label>พรรษา</label>
-                                        <input type='text' class='form-control' value='$staytemp'>
+                                        <input type='text' class='form-control' value='$staytemp' readonly>
                                     </div>  
                                 </div>  
                                 
                                 <div class='col-md-4'>
                                      <div class='form-group'>
                                         <label>วิทยาฐานะ</label>
-                                        <input type='text' class='form-control' value='$level'>
+                                        <input type='text' class='form-control' value='$level' readonly>
                                     </div>  
                                 </div> 
                                 
                                  <div class='col-md-4'>
                                      <div class='form-group'>
                                         <label>วัด</label>
-                                        <input type='text' class='form-control' value='$temple'>
+                                        <input type='text' class='form-control' value='$temple' readonly>
                                     </div>  
                                 </div> 
                                 
                                  <div class='col-md-4'>
                                      <div class='form-group'>
                                         <label>ที่อยู่</label>
-                                        <input type='text' class='form-control' value='$address1'>
+                                        <input type='text' class='form-control' value='$address1' readonly>
                                     </div>  
                                 </div> 
                                 
                                 <div class='col-md-4'>
                                      <div class='form-group'>
                                         <label>สังกัดนิกาย</label>
-                                        <input type='text' class='form-control' value='$section'>
+                                        <input type='text' class='form-control' value='$section' readonly>
                                     </div>  
                                 </div>             
                                     
@@ -192,84 +194,84 @@ foreach ($dataProvider->models as $model) {
                                 <div class='col-md-6'>
                                     <div class='form-group'>
                                         <label>สถานะเดิม</label>
-                                        <input type='text' class='form-control' value='$firstname'>
+                                        <input type='text' class='form-control' value='$firstname' readonly>
                                     </div>
                                 </div>
                                 
                                 <div class='col-md-6'>
                                     <div class='form-group'>
                                         <label>นามสกุล</label>
-                                        <input type='text' class='form-control' value='$lastname'>
+                                        <input type='text' class='form-control' value='$lastname' readonly>
                                     </div>
                                 </div>
                                 
                                 <div class='col-md-6'>
                                     <div class='form-group'>
                                         <label>เกิดวันที่</label>
-                                        <input type='text' class='form-control' value='$birthdate'>
+                                        <input type='text' class='form-control' value='$birthdate' readonly>
                                     </div>
                                 </div>
                                 
                                 <div class='col-md-6'>
                                     <div class='form-group'>
                                         <label>อาชีพ</label>
-                                        <input type='text' class='form-control' value='$occupation'>
+                                        <input type='text' class='form-control' value='$occupation' readonly>
                                     </div>
                                 </div>
                                 
                                  <div class='col-md-6'>
                                     <div class='form-group'>
                                         <label>สัญชาติ</label>
-                                        <input type='text' class='form-control' value='$nationality'>
+                                        <input type='text' class='form-control' value='$nationality' readonly>
                                     </div>
                                 </div>
                                 
                                 <div class='col-md-6'>
                                     <div class='form-group'>
                                         <label>เชื้อชาติ</label>
-                                        <input type='text' class='form-control' value='$nationality'>
+                                        <input type='text' class='form-control' value='$nationality' readonly>
                                     </div>
                                 </div>
                                 
                                  <div class='col-md-4'>
                                     <div class='form-group'>
                                         <label>สัณฐาน</label>
-                                        <input type='text' class='form-control' value='$quality'>
+                                        <input type='text' class='form-control' value='$quality' readonly>
                                     </div>
                                 </div>
                                 
                                 <div class='col-md-4'>
                                     <div class='form-group'>
                                         <label>สีเนื้อ</label>
-                                        $color
+                                         <input type='text' class='form-control' value='$color' readonly>
                                     </div>
                                 </div>
                                 
                                 <div class='col-md-4'>
                                     <div class='form-group'>
                                         <label>ตำหนิ</label>
-                                        <input type='text' class='form-control' value='$special'>
+                                        <input type='text' class='form-control' value='$special' readonly>
                                     </div>
                                 </div>
                                 
                                  <div class='col-md-6'>
                                     <div class='form-group'>
                                         <label>บิดา</label>
-                                        <input type='text' class='form-control' value='$father'>
+                                        <input type='text' class='form-control' value='$father' readonly>
                                     </div>
                                 </div>
                                 
                                 <div class='col-md-6'>
                                     <div class='form-group'>
                                         <label>มารดา</label>
-                                        <input type='text' class='form-control' value='$mother'>
+                                        <input type='text' class='form-control' value='$mother' readonly>
                                     </div>
                                 </div>
                                 
                                  <div class='col-md-12'>
                                     <div class='form-group'>
                                         <label>ภูมิลำเนา (บ้านเกิด)</label>
-                                        <input type='text' class='form-control' value='$family_address'>
+                                        <input type='text' class='form-control' value='$family_address' readonly>
                                     </div>
                                 </div>
                                 
@@ -325,7 +327,7 @@ foreach ($dataProvider->models as $model) {
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-users"></i>&nbsp;<?= $this->title; ?></h3>
+        <h3 class="panel-title"><i class="fa fa-info-circle"></i>&nbsp;<?= $this->title; ?></h3>
     </div>
     <div class="panel-body">
         <?php

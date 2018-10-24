@@ -100,27 +100,34 @@ class MonkhoodMaster extends \yii\db\ActiveRecord
         return [
             'monkhood_id' => 'Monkhood ID',
             'idperson' => 'หมายเลขบัตรประชาชน',
+
             'childmonkage' => 'อายุวันที่บรรพชา',
             'childmonkdate' => 'วันที่บรรพชา',
             'childmonk_temple' => 'บรรพชาที่วัด',
             'childmonk_address' => 'ที่อยู่ของวัดที่บรรพชา',
+
             'childmonk_t1_name' => 'ชื่อพระที่บรรพชาให้',
             'childmonk_t1_temple' => 'พระที่บรรพชาให้ สังกัดวัด',
             'childmonk_t1_address' => 'ที่อยู่วัดของพระที่บรรพชา',
+
             'monk_age' => 'อายุวันที่อุปสมบท',
             'monk_date' => 'วันที่อุปสมบท',
            // 'monk_time' => 'เวลาอุปสมบท',
             'monk_temple' => 'วัดที่อุปสมบท',
             'monk_address' => 'ที่อยู่ของวัดที่อุปสมบท',
+
             'monk_t1_name' => 'ชื่อพระอุปัชฌาย์',
             'monk_t1_temple' => 'วัดของพระอุปัชฌาย์',
             'monk_t1_address' => 'ที่อยู่วัดของพระอุปัชฌาย์',
+
             'monk_t2_name' => 'ชื่อพระกรรมวาจาจารย์',
             'monk_t2_temple' => 'วัดของพระกรรมวาจาจารย์',
             'monk_t2_address' => 'ที่อยู่วัดของพระกรรมวาจาจารย์',
+
             'monk_t3_name' => 'ชื่อของพระอนุสาวนาจารย์',
             'monk_t3_temple' => 'วัดของพระอนุสาวนาจารย์',
             'monk_t3_address' => 'ที่อยู่วัดของพระอนุสาวนาจารย์',
+
             'staytemple' => 'สังกัดวัดเมื่อบวช',
             'staymonkname' => 'ชื่อเจ้าอาวาสวัดที่สังกัดเมื่อบวช',
             'staymonk_address' => 'ที่อยู่วัดที่สังกัดเมื่อบวช',

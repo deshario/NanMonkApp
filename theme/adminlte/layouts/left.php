@@ -62,7 +62,7 @@ use yii\bootstrap\Modal;
                         'icon' => 'key',
                         'url' => '#',
                         'items' => [
-                            ['label' => 'ระดับการศึกษาทางโลก', 'icon' => 'arrow-right', 'url' => ['education-standard/index'],],
+                            ['label' => 'ระดับการศึกษาทางโลก', 'icon' => 'arrow-book', 'url' => ['education-standard/index'],],
                             ['label' => 'ระดับการศึกษาทางธรรม', 'icon' => 'arrow-right', 'url' => ['education-dhamma/index'],],
                         ],
                     ],
@@ -81,12 +81,12 @@ use yii\bootstrap\Modal;
             }else{
                 $menuItems = [
                     ['label' => 'Menu', 'options' => ['class' => 'header']],
-                    ['label' => 'ข้อมูลพืนฐาน', 'icon' => 'arrow-right', 'url' => ['person-master/index'],],
-                    ['label' => 'การย้ายสังกัด', 'icon' => 'arrow-right', 'url' => ['movetemple-trans/index'],],
-                    ['label' => 'การจำพรรษา', 'icon' => 'arrow-right', 'url' => ['staytemple-trans/index'],],
+                    ['label' => 'ข้อมูลพืนฐาน', 'icon' => 'info-circle', 'url' => ['person-master/index'],],
+                    ['label' => 'การย้ายสังกัด', 'icon' => 'arrows', 'url' => ['movetemple-trans/index'],],
+                    ['label' => 'การจำพรรษา', 'icon' => 'building-o', 'url' => ['staytemple-trans/index'],],
                     [
                         'label' => 'ประวัติการศึกษา',
-                        'icon' => 'key',
+                        'icon' => 'book',
                         'url' => '#',
                         'items' => [
                             ['label' => 'ทางโลก', 'icon' => 'arrow-right', 'url' => ['education-trans/index'],],
@@ -94,11 +94,11 @@ use yii\bootstrap\Modal;
                         ],
                     ],
 
-                    ['label' => 'ตำแหน่งทางคณะสงฆ์', 'icon' => 'arrow-right', 'url' => ['position-trans/index'],],
-                    ['label' => 'ลำดับสมณศักดิ์', 'icon' => 'arrow-right', 'url' => ['promotion-trans/index'],],
-                    ['label' => 'การอบรม', 'icon' => 'arrow-right', 'url' => ['training-trans/index'],],
-                    ['label' => 'ความสามมารถพิเศษ', 'icon' => 'arrow-right', 'url' => ['hobby-trans/index'],],
-                    ['label' => 'ผลงานสำคัญ', 'icon' => 'arrow-right', 'url' => ['specialwork-trans/index'],],
+                    ['label' => 'ตำแหน่งทางคณะสงฆ์', 'icon' => 'product-hunt', 'url' => ['position-trans/index'],],
+                    ['label' => 'ลำดับสมณศักดิ์', 'icon' => 'product-hunt', 'url' => ['promotion-trans/index'],],
+                    ['label' => 'การอบรม', 'icon' => 'bandcamp', 'url' => ['training-trans/index'],],
+                    ['label' => 'ความสามมารถพิเศษ', 'icon' => 'list', 'url' => ['hobby-trans/index'],],
+                    ['label' => 'ผลงานสำคัญ', 'icon' => 'product-hunt', 'url' => ['specialwork-trans/index'],],
                     ['label' => 'ออกจากระบบ', 'icon' => 'sign-out', 'url' => ['site/logout'], 'template' => '<a href="{url}" data-method="post"><i class="fa fa-sign-out"></i>{label}</a>'],
                 ];
             }

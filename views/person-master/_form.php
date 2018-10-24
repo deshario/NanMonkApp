@@ -151,9 +151,7 @@ $imgpath = Html::img(Yii::getAlias('@web').'/uploads/avatars/'.$model->person_pi
                 </div>
 
                 <div class="col-md-4">
-                    <?= $form->field($model, 'color')->widget(ColorInput::classname(), [
-                        'options' => ['placeholder' => 'Select color ...'],
-                    ]);
+                    <?= $form->field($model, 'color')->textInput(['maxlength' => true]);
                     ?>
                 </div>
 

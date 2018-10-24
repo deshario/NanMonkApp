@@ -22,6 +22,12 @@ $this->params['breadcrumbs'][] = 'แก้ไข';
         'monk_t1_district' => $monk_t1_district,
         'monk_t2_amphur' => $monk_t2_amphur,
         'monk_t2_district' => $monk_t2_district,
+        'monk_t3_amphur' => $monk_t3_amphur,
+        'monk_t3_district' => $monk_t3_district,
+        'monk_t4_amphur' => $monk_t4_amphur,
+        'monk_t4_district' => $monk_t4_district,
+        'staymonk_amphur' => $staymonk_amphur,
+        'staymonk_district' => $staymonk_district,
     ]) ?>
 
 </div>

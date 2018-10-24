@@ -115,56 +115,56 @@ foreach ($dataProvider->models as $model) {
                                 <div class='col-md-4'>
                                     <div class='form-group'>
                                         <label>หมายเลขบัตรประชาชน</label>
-                                        <input type='text' class='form-control' value='$idperson'>
+                                        <input type='text' class='form-control' value='$idperson' readonly>
                                     </div>
                                 </div>
                                 
                                    <div class='col-md-4'>
                                     <div class='form-group'>
                                         <label>อายุวันที่บรรพชา</label>
-                                        <input type='text' class='form-control' value='$childage'>
+                                        <input type='text' class='form-control' value='$childage' readonly>
                                     </div>
                                 </div> 
                                 
                                  <div class='col-md-4'>
                                     <div class='form-group'>
                                         <label>วันที่บรรพชา</label>
-                                        <input type='text' class='form-control' value='$childmonkdate'>
+                                        <input type='text' class='form-control' value='$childmonkdate' readonly>
                                     </div>
                                 </div> 
                                 
                                 <div class='col-md-4'>
                                     <div class='form-group'>
                                         <label>บรรพชาที่วัด</label>
-                                        <input type='text' class='form-control' value='$childmonktemple'>
+                                        <input type='text' class='form-control' value='$childmonktemple' readonly>
                                     </div>
                                 </div> 
                                     
                                 <div class='col-md-8'>
                                     <div class='form-group'>
                                         <label>ที่อยู่ของวัดที่บรรพชา</label>
-                                        <input type='text' class='form-control' value='$childmonkadderss'>
+                                        <input type='text' class='form-control' value='$childmonkadderss' readonly>
                                     </div>
                                 </div>
                                 
                                 <div class='col-md-4'>
                                     <div class='form-group'>
                                         <label>ชื่อพระที่บรรพชาให้</label>
-                                        <input type='text' class='form-control' value='$childmonk_t1_name'>
+                                        <input type='text' class='form-control' value='$childmonk_t1_name' readonly>
                                     </div>
                                 </div>
                                 
                                 <div class='col-md-4'>
                                     <div class='form-group'>
                                         <label>สังกัดวัด</label>
-                                        <input type='text' class='form-control' value='$childmonk_t1_temple'>
+                                        <input type='text' class='form-control' value='$childmonk_t1_temple' readonly>
                                     </div>
                                 </div>
                                 
                                  <div class='col-md-4'>
                                     <div class='form-group'>
                                         <label>ที่อยู่</label>
-                                        <input type='text' class='form-control' value='$childmonk_t1_address'>
+                                        <input type='text' class='form-control' value='$childmonk_t1_address' readonly>
                                     </div>
                                 </div>
                                 

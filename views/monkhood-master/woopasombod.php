@@ -156,125 +156,130 @@ foreach ($dataProvider->models as $model) {
         $content = "
             <div class='row'>
                 <div class='col-md-12'>
+                
+                <div class='alert alert-info alert-dismissible'>
+                        <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                        แก้ไขข้อมูลบรรพชาอุปสมบท ".Html::a('คลิกที่นี่', ['update', 'id' => $model->monkhood_id])."
+                    </div>
                     
                     <form class='' style='margin-top: 15px'>
                                 
                                 <div class='col-md-4'>
                                     <div class='form-group'>
                                         <label>หมายเลขบัตรประชาชน</label>
-                                        <input type='text' class='form-control' value='$idperson'>
+                                        <input type='text' class='form-control' value='$idperson' readonly>
                                     </div>
                                 </div>
                                 
                                 <div class='col-md-4'>
                                     <div class='form-group'>
                                         <label>อุปสมบทเมืออายุ</label>
-                                        <input type='text' class='form-control' value='$childmonk_t2_age'>
+                                        <input type='text' class='form-control' value='$childmonk_t2_age' readonly>
                                     </div>
                                 </div>
                                 
                                 <div class='col-md-4'>
                                     <div class='form-group'>
                                         <label>วันที่อุปสมบท</label>
-                                        <input type='text' class='form-control' value='$childmonk_t2_date'>
+                                        <input type='text' class='form-control' value='$childmonk_t2_date' readonly>
                                     </div>
                                 </div>
                                 
                                 <div class='col-md-4'>
                                     <div class='form-group'>
                                         <label>วัดที่อุปสมบท</label>
-                                        <input type='text' class='form-control' value='$childmonk_t2_temple'>
+                                        <input type='text' class='form-control' value='$childmonk_t2_temple' readonly>
                                     </div>
                                 </div>
                                 
                                  <div class='col-md-8'>
                                     <div class='form-group'>
                                         <label>ที่อยู่ของวัดที่อุปสมบท</label>
-                                        <input type='text' class='form-control' value='$childmonk_t2_address'>
+                                        <input type='text' class='form-control' value='$childmonk_t2_address' readonly>
                                     </div>
                                 </div>
                                 
                                 <div class='col-md-3'>
                                     <div class='form-group'>
                                         <label>ชื่อพระอุปัชฌาย์</label>
-                                        <input type='text' class='form-control' value='$monk_t1_name'>
+                                        <input type='text' class='form-control' value='$monk_t1_name' readonly>
                                     </div>
                                 </div>
                                 
                                 <div class='col-md-4'>
                                     <div class='form-group'>
                                         <label>วัดของพระอุปัชฌาย์</label>
-                                        <input type='text' class='form-control' value='$monk_t1_temple'>
+                                        <input type='text' class='form-control' value='$monk_t1_temple' readonly>
                                     </div>
                                 </div>
                                 
                                 <div class='col-md-5'>
                                     <div class='form-group'>
                                         <label>ที่อยู่วัดของพระอุปัชฌาย์</label>
-                                        <input type='text' class='form-control' value='$monk_t1_address'>
+                                        <input type='text' class='form-control' value='$monk_t1_address' readonly>
                                     </div>
                                 </div>
                                 
                                 <div class='col-md-3'>
                                     <div class='form-group'>
                                         <label>ชื่อพระกรรมวาจาจารย์</label>
-                                        <input type='text' class='form-control' value='$monk_t2_name'>
+                                        <input type='text' class='form-control' value='$monk_t2_name' readonly>
                                     </div>
                                 </div>   
                                 
                                 <div class='col-md-4'>
                                     <div class='form-group'>
                                         <label>วัดของพระกรรมวาจาจารย์</label>
-                                        <input type='text' class='form-control' value='$monk_t2_temple'>
+                                        <input type='text' class='form-control' value='$monk_t2_temple' readonly>
                                     </div>
                                 </div>   
                                 
                                 <div class='col-md-5'>
                                     <div class='form-group'>
                                         <label>ที่อยู่วัดของพระกรรมวาจาจารย์</label>
-                                        <input type='text' class='form-control' value='$monk_t2_address'>
+                                        <input type='text' class='form-control' value='$monk_t2_address' readonly>
                                     </div>
                                 </div>   
                                 
                                 <div class='col-md-3'>
                                     <div class='form-group'>
                                         <label>ชื่อของพระอนุสาวนาจารย์</label>
-                                        <input type='text' class='form-control' value='$monk_t3_name'>
+                                        <input type='text' class='form-control' value='$monk_t3_name' readonly>
                                     </div>
                                 </div>   
                                 
                                 <div class='col-md-4'>
                                     <div class='form-group'>
                                         <label>วัดของพระอนุสาวนาจารย์</label>
-                                        <input type='text' class='form-control' value='$monk_t3_temple'>
+                                        <input type='text' class='form-control' value='$monk_t3_temple' readonly>
                                     </div>
                                 </div>   
                                 
                                 <div class='col-md-5'>
                                     <div class='form-group'>
                                         <label>ที่อยู่วัดของพระอนุสาวนาจารย์</label>
-                                        <input type='text' class='form-control' value='$monk_t3_address'>
+                                        <input type='text' class='form-control' value='$monk_t3_address' readonly>
                                     </div>
                                 </div>  
                                 
                                  <div class='col-md-4'>
                                     <div class='form-group'>
                                         <label>สังกัดวัดเมื่อบวช</label>
-                                        <input type='text' class='form-control' value='$staytemple'>
+                                        <input type='text' class='form-control' value='$staytemple' readonly>
                                     </div>
                                 </div>  
                                 
                                 <div class='col-md-3'>
                                     <div class='form-group'>
                                         <label>ชื่อเจ้าอาวาสวัดที่สังกัดเมื่อบวช</label>
-                                        <input type='text' class='form-control' value='$staymonkname'>
+                                        <input type='text' class='form-control' value='$staymonkname' readonly>
                                     </div>
                                 </div>  
                                 
                                 <div class='col-md-5'>
                                     <div class='form-group'>
                                         <label>ที่อยู่วัดที่สังกัดเมื่อบวช</label>
-                                        <input type='text' class='form-control' value='$monk_stay_address'>
+                                        <input type='text' class='form-control' value='$monk_stay_address' readonly>
                                     </div>
                                 </div>                                
                                 
