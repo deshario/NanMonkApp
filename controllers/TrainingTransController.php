@@ -115,8 +115,9 @@ class TrainingTransController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            //return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())){
+            $model->attachfile = $this->uploadSingleFile($model);
+            $model->save();
             return $this->redirect(['index']);
         }
 
@@ -183,5 +184,14 @@ class TrainingTransController extends Controller
         }
         //return $json ;
         return $newFileName ;
+    }
+
+    public function actionDownload($id,$citizen,$fileName){
+        $model = $this->findModel($id);
+        if(!empty($model->attachfile)){
+            Yii::$app->response->sendFile($model->getUploadPath().'/'.$citizen.'/'.$fileName);
+        }else{
+            $this->redirect(['index']);
+        }
     }
 }

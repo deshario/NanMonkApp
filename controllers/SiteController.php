@@ -107,8 +107,8 @@ class SiteController extends Controller
                     'type' => Growl::TYPE_DANGER,
                     'duration' => 5000,
                     'icon' => 'fa fa-close',
-                    'title' => 'Account DeActivated !',
-                    'message' => 'Please contact administrator to activate it.',
+                    'title' => 'บัญชีนี้อยู่ในสถานะปิดการใช้งาน',
+                    'message' => 'กรุณาติดต่อผู้ดูแลระบบเพื่อเปิดใช้งาน',
                     'positonY' => 'top',
                     'positonX' => 'right'
                 ]);
@@ -118,8 +118,8 @@ class SiteController extends Controller
                     'type' =>  Growl::TYPE_INFO,
                     'duration' => 5000,
                     'icon' => 'fa fa-refresh fa-spin',
-                    'title' => 'Your account is InActive !',
-                    'message' => 'Please contact administrator to activate it.',
+                    'title' => 'บัญชีนี้อยู่ในสถานะปิดการใช้งาน',
+                    'message' => 'กรุณาติดต่อผู้ดูแลระบบเพื่อเปิดใช้งาน',
                     'positonY' => 'top',
                     'positonX' => 'right'
                 ]);
@@ -129,10 +129,10 @@ class SiteController extends Controller
                 $logged_user = Yii::$app->user->identity->username;
                 Yii::$app->getSession()->setFlash('jab_login_success', [
                     'type' =>  Growl::TYPE_SUCCESS,
-                    'duration' => 5000,
+                    'duration' => 6000,
                     'icon' => 'fa fa-user-o',
-                    'title' => ' Hey '.$logged_user.' !',
-                    'message' => 'Welcome to MonkApp.',
+                    'title' => ' สวัสดีคุณ '.$logged_user.' !',
+                    'message' => 'ยินดีต้อนรับสู่ระบบทะเบียนประวัติพระภิกษุสามเณรในจังหวัดน่าน.',
                     'positonY' => 'bottom',
                     'positonX' => 'right'
                 ]);

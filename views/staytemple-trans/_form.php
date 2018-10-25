@@ -82,7 +82,7 @@ use karatae99\datepicker\DatePicker;
 
        <div class="col-md-12">
            <div class="form-group">
-               <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+               <?= Html::submitButton('บันทึก', ['class' => 'btn btn-success']) ?>
            </div>
        </div>
 

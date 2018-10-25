@@ -35,6 +35,19 @@ $this->params['breadcrumbs'][] = $this->title;
             //'others',
             //'attachfile',
 
+            ['attribute' => 'attachfile',
+                'label' => 'ไฟล์แนบ',
+                'contentOptions' => [ 'style' => 'width:5%', 'class' => 'text-center'],
+                'format' => 'html',
+                'value' => function ($model) {
+                    if($model->attachfile != null){
+                        return $model->getAttachFile($model->person->idperson, $model->attachfile);
+                    }else{
+                        return "<code>ไม่มี</code>";
+                    }
+                },
+            ],
+
             ['class' => 'kartik\grid\ActionColumn',
                 'header' => '',
                 'template' => '{update}&nbsp{delete}',
