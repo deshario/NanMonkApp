@@ -97,7 +97,7 @@ use yii\bootstrap\Modal;
                     ['label' => 'ตำแหน่งทางคณะสงฆ์', 'icon' => 'product-hunt', 'url' => ['position-trans/index'],],
                     ['label' => 'ลำดับสมณศักดิ์', 'icon' => 'product-hunt', 'url' => ['promotion-trans/index'],],
                     ['label' => 'การอบรม', 'icon' => 'bandcamp', 'url' => ['training-trans/index'],],
-                    ['label' => 'ความสามมารถพิเศษ', 'icon' => 'list', 'url' => ['hobby-trans/index'],],
+                    ['label' => 'ความสามารถพิเศษ', 'icon' => 'list', 'url' => ['hobby-trans/index'],],
                     ['label' => 'ผลงานสำคัญ', 'icon' => 'product-hunt', 'url' => ['specialwork-trans/index'],],
                     ['label' => 'ออกจากระบบ', 'icon' => 'sign-out', 'url' => ['site/logout'], 'template' => '<a href="{url}" data-method="post"><i class="fa fa-sign-out"></i>{label}</a>'],
                 ];
