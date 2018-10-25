@@ -10,7 +10,7 @@ use yii\helpers\Url;
 /* @var $searchModel app\models\HobbyTransSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'ความสามมารถพิเศษ';
+$this->title = 'ความสามารถพิเศษ';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="hobby-trans-index">
@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php
         $items = [
             [
-                'label' => '<i class="fa fa-envelope-o"></i>&nbsp; ความสามมารถพิเศษทั้งหมด',
+                'label' => '<i class="fa fa-envelope-o"></i>&nbsp; ความสามารถพิเศษทั้งหมด',
                 'content' => $content,
                 'active' => true,
             ],

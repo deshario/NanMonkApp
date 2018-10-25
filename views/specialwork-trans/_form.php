@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
     </div>
 
     <div class="col-md-6">
-        <?= $form->field($model, 'idwork')->dropDownList($model->getSpecialworkList(), ['prompt' => 'กรุณาเลือกระดับตำแหน่งสมณศักดิ์']) ?>
+        <?= $form->field($model, 'idwork')->dropDownList($model->getSpecialworkList(), ['prompt' => 'กรุณาเลือกประเภทผลงาน']) ?>
     </div>
 
     <div class="col-md-12">

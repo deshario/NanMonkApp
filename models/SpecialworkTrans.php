@@ -49,7 +49,7 @@ class SpecialworkTrans extends \yii\db\ActiveRecord
         return [
             'id' => 'ลำดับผลงานทีสำคัญ',
             'idperson' => 'หมายเลขบัตรประชาชน',
-            'idwork' => 'รหัสประเภทผลงานสำคัญ',
+            'idwork' => 'ประเภทผลงานสำคัญ',
             'description' => 'ชื่อผลงาน',
         ];
     }

@@ -64,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php
         $items = [
             [
-                'label' => '<i class="fa fa-envelope-o"></i>&nbsp; การจำพรรษาั้งหมด',
+                'label' => '<i class="fa fa-envelope-o"></i>&nbsp; การจำพรรษาทั้งหมด',
                 'content' => $content,
                 'active' => true,
             ],

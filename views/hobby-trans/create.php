@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\HobbyTrans */
 
-$this->title = 'เพิ่มความสามมารถพิเศษ';
-$this->params['breadcrumbs'][] = ['label' => 'ความสามมารถพิเศษ', 'url' => ['index']];
+$this->title = 'เพิ่มความสามารถพิเศษ';
+$this->params['breadcrumbs'][] = ['label' => 'ความสามารถพิเศษ', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="hobby-trans-create">
