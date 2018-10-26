@@ -33,18 +33,7 @@ use karatae99\datepicker\DatePicker;
             ]);?>
         </div>
 
-        <div class="col-md-4">
-            <?= $form->field($model, 'outdate')->widget(
-                DatePicker::className(), [
-                'language' => 'th', // Thai B.E.
-                'clientOptions' => [
-                    'autoclose' => true,
-                    'format' => 'yyyy-mm-dd'
-                ]
-            ]);?>
-        </div>
-
-        <div class="col-md-4">
+        <div class="col-md-8">
             <?= $form->field($model, 'staytemple')->textInput(['maxlength' => true]) ?>
         </div>
 
@@ -52,8 +41,12 @@ use karatae99\datepicker\DatePicker;
 
         <div class="col-md-4">
             <?= $form->field($model, 'province')->dropdownList(
-                ArrayHelper::map(Province::find()->all(),
-                    'PROVINCE_ID', 'PROVINCE_NAME'), [
+                ArrayHelper::map(Province::find()
+                    ->orderBy('PROVINCE_NAME')
+                    ->all(),
+                    'PROVINCE_ID',
+                    'PROVINCE_NAME'),
+                [
                     'id' => 'ddl-province',
                     'prompt' => 'เลือกจังหวัด'
                 ]); ?>

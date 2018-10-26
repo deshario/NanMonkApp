@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'idstay',
             //'idperson',
             'indate',
-            'outdate',
+            //'outdate',
             'staytemple',
             //'staytemple_address',
             ['attribute' => 'staytemple_address',

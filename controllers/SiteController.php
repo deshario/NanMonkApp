@@ -113,17 +113,6 @@ class SiteController extends Controller
                     'positonX' => 'right'
                 ]);
                 return $this->redirect(['login']);
-            }elseif ($MStatus == User::STATUS_WAITING){
-                Yii::$app->getSession()->setFlash('waiting', [
-                    'type' =>  Growl::TYPE_INFO,
-                    'duration' => 5000,
-                    'icon' => 'fa fa-refresh fa-spin',
-                    'title' => 'บัญชีนี้อยู่ในสถานะปิดการใช้งาน',
-                    'message' => 'กรุณาติดต่อผู้ดูแลระบบเพื่อเปิดใช้งาน',
-                    'positonY' => 'top',
-                    'positonX' => 'right'
-                ]);
-                return $this->redirect(['login']);
             }else{
                 $MRoles = Yii::$app->user->identity->roles;
                 $logged_user = Yii::$app->user->identity->username;

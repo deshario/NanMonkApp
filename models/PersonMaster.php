@@ -4,6 +4,8 @@ namespace app\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "person_master".
@@ -12,6 +14,7 @@ use yii\helpers\ArrayHelper;
  * @property int $user_id
  * @property string $person_book_no หมายเลขหนังสือสุทธิ
  * @property string $person_pic รูปภาพ
+ * @property int $prefix คำนำหน้า
  * @property string $firstname ชื่อ
  * @property string $surname นามสกุล
  * @property string $aliasname ฉายา
@@ -31,22 +34,8 @@ use yii\helpers\ArrayHelper;
  * @property string $mother ชื่อมารดา
  * @property string $family_homeno บ้านเลขที่, หมู่, หมู่บ้าน (ภูมิลำเนา)
  * @property int $family_address ที่อยู่ภูมิลำเนา
- *
- * @property EducationTempTrans[] $educationTempTrans
- * @property EducationTrans[] $educationTrans
- * @property HobbyTrans[] $hobbyTrans
- * @property MonkhoodMaster[] $monkhoodMasters
- * @property MovetempleTrans[] $movetempleTrans
- * @property Address $address0
- * @property Address $familyAddress
- * @property Nationality $nationality
- * @property User $user
- * @property PositionTrans[] $positionTrans
- * @property PromotionTrans[] $promotionTrans
- * @property SpecialworkTrans[] $specialworkTrans
- * @property StaytempleTrans[] $staytempleTrans
- * @property TrainingTrans[] $trainingTrans
  */
+
 class PersonMaster extends \yii\db\ActiveRecord
 {
     public $province;
@@ -57,38 +46,49 @@ class PersonMaster extends \yii\db\ActiveRecord
     public $amphur_phumlamnao;
     public $tambol_phumlamnao;
 
+    const PREFIX_SAMNER = 1;
+    const PREFIX_PHRA = 2;
+
+    const UPLOAD_FOLDER = 'uploads';
+
     public static function tableName()
     {
         return 'person_master';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
-            [['idperson', 'person_pic'], 'required'],
-            [['amphur', 'tambol'], 'required'],
-            [['amphur_phumlamnao', 'tambol_phumlamnao'], 'required'],
-            //['person_pic', 'image', 'minWidth' => 250, 'maxWidth' => 250,'minHeight' => 250, 'maxHeight' => 250, 'extensions' => 'jpg,png', 'maxSize' => 1024 * 1024 * 2],
-            [['user_id', 'staytemp', 'address', 'idnationality', 'family_address'], 'integer'],
+            [['idperson','person_book_no'], 'required'],
+            [['amphur', 'tambol','idnationality'], 'required'],
+            [['amphur_phumlamnao', 'tambol_phumlamnao','prefix'], 'required'],
+            [['user_id', 'prefix', 'staytemp', 'address', 'idnationality', 'family_address'], 'integer'],
             [['birthdate'], 'safe'],
             [['province','amphur','tambol'], 'safe'],
             [['province_phumlamnao','amphur_phumlamnao','tambol_phumlamnao'], 'safe'],
             [['idperson'], 'string', 'max' => 13],
-            [['person_book_no'], 'string', 'max' => 5],
-            [['person_pic'], 'string', 'max' => 255],
+
+            [['person_book_no'], 'string', 'length' => [5, 10]],
+
             [['firstname', 'surname', 'homeno', 'section', 'father', 'mother', 'family_homeno'], 'string', 'max' => 60],
-            [['aliasname', 'level', 'special'], 'string', 'max' => 45],
+
+            [['firstname', 'surname', 'birthdate', 'father' ,'mother', 'family_homeno', 'province_phumlamnao'], 'required'],
+
+            [['aliasname', 'special'], 'string', 'max' => 45],
             [['temple'], 'string', 'max' => 80],
+            [['level'], 'string'],
             [['occupation', 'quality'], 'string', 'max' => 50],
             [['color'], 'string', 'max' => 10],
-            [['idperson'], 'unique'],
-            [['address'], 'exist', 'skipOnError' => true, 'targetClass' => Address::className(), 'targetAttribute' => ['address' => 'address_id']],
-            [['family_address'], 'exist', 'skipOnError' => true, 'targetClass' => Address::className(), 'targetAttribute' => ['family_address' => 'address_id']],
-            [['idnationality'], 'exist', 'skipOnError' => true, 'targetClass' => Nationality::className(), 'targetAttribute' => ['idnationality' => 'idnationality']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+
+            [['idperson','person_book_no'], 'unique'],
+
+
+            [['person_pic'], 'string', 'max' => 255],
+
+//            [['address'], 'exist', 'skipOnError' => true, 'targetClass' => Address::className(), 'targetAttribute' => ['address' => 'address_id']],
+//            [['family_address'], 'exist', 'skipOnError' => true, 'targetClass' => Address::className(), 'targetAttribute' => ['family_address' => 'address_id']],
+//            [['idnationality'], 'exist', 'skipOnError' => true, 'targetClass' => Nationality::className(), 'targetAttribute' => ['idnationality' => 'idnationality']],
+//            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -103,6 +103,7 @@ class PersonMaster extends \yii\db\ActiveRecord
             'person_book_no' => 'หมายเลขหนังสือสุทธิ',
             'person_pic' => 'รูปภาพ',
             'firstname' => 'ชื่อ',
+            'prefix' => 'คำนำหน้า',
             'surname' => 'นามสกุล',
             'aliasname' => 'ฉายา',
             'birthdate' => 'วันเดือนปีเกิด',
@@ -132,9 +133,18 @@ class PersonMaster extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
+    public $strPrefix = [
+        self::PREFIX_SAMNER => 'ส.ณ',
+        self::PREFIX_PHRA => 'พระ',
+    ];
+
+    public function getPrefix($prefix = null){
+        if($prefix === null){
+            return Yii::t('app',$this->strPrefix[$this->prefix]);
+        }
+        return Yii::t('app',$this->strPrefix[$prefix]);
+    }
+
     public function getEducationTempTrans()
     {
         return $this->hasMany(EducationTempTrans::className(), ['idperson' => 'idperson']);
@@ -245,11 +255,11 @@ class PersonMaster extends \yii\db\ActiveRecord
     }
 
     public function getAmphur($id){
-        $datas = Amphur::find()->where(['PROVINCE_ID'=>$id])->all();
+        $datas = Amphur::find()->orderBy('AMPHUR_NAME')->where(['PROVINCE_ID'=>$id])->all();
         return $this->MapData($datas,'AMPHUR_ID','AMPHUR_NAME');
     }
     public function getDistrict($id){
-        $datas = District::find()->where(['AMPHUR_ID'=>$id])->all();
+        $datas = District::find()->orderBy('DISTRICT_NAME')->where(['AMPHUR_ID'=>$id])->all();
         return $this->MapData($datas,'DISTRICT_ID','DISTRICT_NAME');
     }
     public function MapData($datas,$fieldId,$fieldName){
@@ -263,6 +273,25 @@ class PersonMaster extends \yii\db\ActiveRecord
     public function getNationalityLists(){
         $list = Nationality::find()->orderBy('idnationality')->all();
         return ArrayHelper::map($list,'idnationality','nationalityname');
+    }
+
+    public static function getUploadPath()
+    {
+        return Yii::getAlias('@webroot') . '/' . self::UPLOAD_FOLDER . '/avatars/';
+    }
+
+    public static function getUploadUrl()
+    {
+        return Url::base(true) . '/' . self::UPLOAD_FOLDER . '/avatars/';
+    }
+
+    public function initialPreview($fileName){
+        $initial = [];
+        if($fileName != null){
+            $newFile = self::getUploadUrl().$fileName;
+            $initial[] = Html::img($newFile,['class'=>'img-responsive']);
+        }
+        return $initial;
     }
 
 }

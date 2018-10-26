@@ -55,7 +55,9 @@ use yii\helpers\ArrayHelper;
 
     <div class="col-md-4">
         <?= $form->field($model, 'province')->dropdownList(
-            ArrayHelper::map(Province::find()->all(),
+            ArrayHelper::map(Province::find()
+                ->orderBy('PROVINCE_NAME')
+                ->all(),
                 'PROVINCE_ID',
                 'PROVINCE_NAME'),
             [

@@ -28,7 +28,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
 
     const STATUS_DELETED = 0;
-    const STATUS_WAITING = 5;
     const STATUS_ACTIVE = 10;
 
     const ROLE_USER = 10;
@@ -47,7 +46,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_WAITING, self::STATUS_DELETED]],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
 
             ['roles', 'default', 'value' => self::ROLE_USER],
             ['roles', 'in', 'range' => [self::ROLE_USER, self::ROLE_ADMIN]],
@@ -88,8 +87,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     public $strStatus = [
         self::STATUS_DELETED => 'ปิดการใช้งาน',
-        self::STATUS_ACTIVE => 'เปิดการใช้งาน',
-        self::STATUS_WAITING => 'ไม่มีการยืนยัน'
+        self::STATUS_ACTIVE => 'เปิดการใช้งาน'
     ];
 
     public function getStatus($status = null){
@@ -142,8 +140,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     public static function findByUsername($username)
     {
-        return static::findOne(['username' => $username, 'status' => [self::STATUS_ACTIVE,self::STATUS_WAITING,self::STATUS_DELETED]]);
-        //return static::findOne(['username' => $username, 'status' => self::STATUS_WAITING]);
+        return static::findOne(['username' => $username, 'status' => [self::STATUS_ACTIVE,self::STATUS_DELETED]]);
     }
 
     public static function findByPasswordResetToken($token)

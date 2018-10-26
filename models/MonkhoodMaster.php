@@ -70,7 +70,7 @@ class MonkhoodMaster extends \yii\db\ActiveRecord
             [['idperson'], 'required'],
             [['childmonkdate','childmonk_temple'], 'required'],
             [['province','amphur','tambol'], 'required'],
-            [['province_ii','amphur_ii','tambol_ii'], 'required'], //ผู้บรรพชา
+            //[['province_ii','amphur_ii','tambol_ii'], 'required'], //ผู้บรรพชา = woopasombod
             [['province_iii','amphur_iii','tambol_iii'], 'safe'], //บรรพชาเมือ
             [['province_iv','amphur_iv','tambol_iv'], 'safe'], //บรรพชาเมือ
             [['province_v','amphur_v','tambol_v'], 'safe'], //บรรพชาเมือ

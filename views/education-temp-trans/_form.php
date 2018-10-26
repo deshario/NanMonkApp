@@ -37,7 +37,9 @@ use kartik\widgets\FileInput;
 
     <div class="col-md-6">
         <?= $form->field($model, 'placeprovince')->dropdownList(
-            ArrayHelper::map(Province::find()->all(),
+            ArrayHelper::map(Province::find()
+                ->orderBy('PROVINCE_NAME')
+                ->all(),
                 'PROVINCE_ID',
                 'PROVINCE_NAME'),
             [
@@ -48,7 +50,9 @@ use kartik\widgets\FileInput;
 
     <div class="col-md-4">
         <?= $form->field($model, 'province')->dropdownList(
-            ArrayHelper::map(Province::find()->all(),
+            ArrayHelper::map(Province::find()
+                ->orderBy('PROVINCE_NAME')
+                ->all(),
                 'PROVINCE_ID',
                 'PROVINCE_NAME'),
             [

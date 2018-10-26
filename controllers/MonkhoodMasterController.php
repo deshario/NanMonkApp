@@ -98,6 +98,7 @@ class MonkhoodMasterController extends Controller
         $model->idperson = $key;
 
         if ($model->load(Yii::$app->request->post())) {
+            //\Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
             $records = MonkhoodMaster::find()->where(['idperson' => $key])->all();
             $transaction = Yii::$app->db->beginTransaction();
             try {

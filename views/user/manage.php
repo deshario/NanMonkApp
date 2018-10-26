@@ -75,9 +75,7 @@ Modal::end();
     <div class="col-md-3">
 
         <?php
-        if($model->status == User::STATUS_WAITING){
-            echo "<div class='box box-warning'>";
-        }elseif ($model->status == User::STATUS_ACTIVE){
+        if ($model->status == User::STATUS_ACTIVE){
             echo "<div class='box box-success'>";
         }else{
             echo "<div class='box box-danger'>";
@@ -88,13 +86,23 @@ Modal::end();
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 
+                <?= Html::a("<span class='fa fa-pencil'></span>",
+                    ['/user/update', 'id' => $model->id],
+                    ['class'=>'btn btn-box-tool',
+                        //'data-toggle' => 'tooltip', 'data-placement' => 'top','title' => 'Modify',
+                        'data' => [
+                            'confirm' => 'คุณแน่ใจหรือไม่ว่าต้องการแก้ไขผู้ใช้งานคนนี้',
+                            'method' => 'post',
+                        ],
+                    ]) ?>
+
                 <?php
-                echo  Html::a("<span class='fa fa-power-off'></span>",
-                    ['/user/deactivate','id' => $model->id],
+                echo  Html::a("<span class='fa fa-trash'></span>",
+                    ['/user/delete','id' => $model->id],
                     ['class'=>'btn btn-box-tool',
                         //'data-toggle' => 'tooltip', 'data-placement' => 'top','title' => 'Deactivate',
                         'data' => [
-                            'confirm' => 'Are you sure you want to deactivate this manager?',
+                            'confirm' => 'คุณแน่ใจหรือไม่ว่าต้องการลบผู้ใช้งานคนนี้',
                             'method' => 'post',
                         ],
                     ]);
@@ -122,7 +130,7 @@ Modal::end();
                     ['/user/change_roles', 'id' => $model->id , 'newRole' => User::ROLE_USER],
                     ['class'=>'btn btn-primary btn-flat',
                         'data' => [
-                            'confirm' => 'Are you sure you want to Activate this manager?',
+                            'confirm' => 'คุณแน่ใจหรือไม่ว่าต้องการเปลียนสิทธิผู้ใช้งานคนนี้',
                             'method' => 'post',
                         ],
                     ]) ?>
@@ -131,28 +139,19 @@ Modal::end();
                     ['/user/change_roles', 'id' => $model->id, 'newRole' => User::ROLE_ADMIN],
                     ['class'=>'btn btn-success btn-flat',
                         'data' => [
-                            'confirm' => 'Are you sure you want to Activate this manager?',
+                            'confirm' => 'คุณแน่ใจหรือไม่ว่าต้องการเปลียนสิทธิผู้ใช้งานคนนี้',
                             'method' => 'post',
                         ],
                     ]) ?>
             <?php } ?>
 
 
-            <?php if($model->status == User::STATUS_WAITING){ ?>
-                <?= Html::a("<span class='fa fa-check'></span>&nbsp;เปิดการใช้งาน",
-                    ['/user/activate', 'id' => $model->id],
-                    ['class'=>'btn btn-default btn-flat',
-                        'data' => [
-                            'confirm' => 'Are you sure you want to Activate this manager?',
-                            'method' => 'post',
-                        ],
-                    ]) ?>
-            <?php }elseif ($model->status == User::STATUS_ACTIVE){?>
+            <?php if ($model->status == User::STATUS_ACTIVE){?>
                 <?= Html::a("<span class='fa fa-power-off'></span>&nbsp;ปิดการใช้งาน",
                     ['/user/deactivate','id' => $model->id],
                     ['class'=>'btn btn-danger btn-flat',
                         'data' => [
-                            'confirm' => 'Are you sure you want to DeActivate this manager?',
+                            'confirm' => 'คุณแน่ใจหรือไม่ว่าต้องการปิดใช้งานผู้ใช้งานคนนี้',
                             'method' => 'post',
                         ],
                     ]) ?>
@@ -161,7 +160,7 @@ Modal::end();
                     ['/user/activate', 'id' => $model->id],
                     ['class'=>'btn btn-default btn-flat',
                         'data' => [
-                            'confirm' => 'Are you sure you want to Activate this manager?',
+                            'confirm' => 'คุณแน่ใจหรือไม่ว่าต้องการเปิดใช้งานผู้ใช้งานคนนี้',
                             'method' => 'post',
                         ],
                     ]) ?>

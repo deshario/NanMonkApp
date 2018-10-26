@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use app\models\User;
 use yii\bootstrap\Modal;
+use app\models\PersonMaster;
+
 ?>
 <aside class="main-sidebar">
 
@@ -99,6 +101,7 @@ use yii\bootstrap\Modal;
                     ['label' => 'การอบรม', 'icon' => 'bandcamp', 'url' => ['training-trans/index'],],
                     ['label' => 'ความสามารถพิเศษ', 'icon' => 'list', 'url' => ['hobby-trans/index'],],
                     ['label' => 'ผลงานสำคัญ', 'icon' => 'product-hunt', 'url' => ['specialwork-trans/index'],],
+                    ['label' => 'พิมพ์ประวัติ', 'icon' => 'print', 'url' => ['person-master/report','id' => Yii::$app->user->identity->id],],
                     ['label' => 'ออกจากระบบ', 'icon' => 'sign-out', 'url' => ['site/logout'], 'template' => '<a href="{url}" data-method="post"><i class="fa fa-sign-out"></i>{label}</a>'],
                 ];
             }

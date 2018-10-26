@@ -4,15 +4,20 @@ namespace app\controllers;
 
 use app\models\Address;
 use kartik\growl\Growl;
+use Mpdf\Mpdf;
 use Yii;
 use app\models\PersonMaster;
 use app\models\PersonMasterSearch;
+use yii\base\Exception;
 use yii\helpers\ArrayHelper;
+use yii\helpers\BaseFileHelper;
 use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 use yii\web\UploadedFile;
+use yii\widgets\ActiveForm;
 
 /**
  * PersonMasterController implements the CRUD actions for PersonMaster model.
@@ -72,14 +77,20 @@ class PersonMasterController extends Controller
     {
         $model = new PersonMaster();
 
+        if(Yii::$app->request->isAjax){
+            $model->load(Yii::$app->request->post());
+            return Json::encode(\yii\widgets\ActiveForm::validate($model));
+        }
+
         if ($model->load(Yii::$app->request->post())) {
             $id = Yii::$app->user->identity->id;
             $model->user_id = $id;
-            $photo = UploadedFile::getInstance($model, 'person_pic');
-            $random_num = rand(0, 9999);
-            $fileName = $random_num . '_' . time() . '_' . date('dmHi') . '.' . $photo->extension; // 9185_1530960936_07071755.jpg
-            $photo->saveAs(Yii::getAlias('@webroot') . '/uploads/avatars/' . $fileName);
-            $model->person_pic = $fileName;
+//            $photo = UploadedFile::getInstance($model, 'person_pic');
+//            $random_num = rand(0, 9999);
+//            $fileName = $random_num . '_' . time() . '_' . date('dmHi') . '.' . $photo->extension; // 9185_1530960936_07071755.jpg
+//            $photo->saveAs(Yii::getAlias('@webroot') . '/uploads/avatars/' . $fileName);
+
+            $model->person_pic = $this->uploadSingleFile($model);
 
             $address = new Address();
             $address->tambol_id = $model->tambol;
@@ -95,8 +106,28 @@ class PersonMasterController extends Controller
             $address_phumlamnao->save();
             $model->family_address = $address_phumlamnao->address_id;
 
-            $model->save();
-            //return $this->redirect(['view', 'id' => $model->idperson]);
+            if($model->validate()){
+                $model->save();
+                Yii::$app->getSession()->setFlash('person_create_save', [
+                    'type' =>  Growl::TYPE_SUCCESS,
+                    'duration' => 4000,
+                    'icon' => 'fa fa-check',
+                    'title' => 'ข้อมูลพืนฐาน',
+                    'message' => 'ข้อมูลของคูณได้รับการบันทึกแล้ว',
+                    'positonY' => 'bottom',
+                    'positonX' => 'right'
+                ]);
+            }else{
+                Yii::$app->getSession()->setFlash('person_validation_fail', [
+                    'type' =>  Growl::TYPE_DANGER,
+                    'duration' => 4000,
+                    'icon' => 'fa fa-close',
+                    'title' => 'ข้อมูลพืนฐาน',
+                    'message' => 'ไม่สามารถบันทึกได้ เนื่องจากข้อมูลของคูณไม่ถูกต้อง',
+                    'positonY' => 'bottom',
+                    'positonX' => 'right'
+                ]);
+            }
             return $this->redirect(['index']);
         }
 
@@ -109,10 +140,17 @@ class PersonMasterController extends Controller
     {
         $model = $this->findModel($id);
         $master = new PersonMaster();
+        $model->province = $model->address0->province_id;
+        $model->province_phumlamnao = $model->familyAddress->province_id;
         $amphur = ArrayHelper::map($master->getAmphur($model->address0->province_id), 'id', 'name');
         $district = ArrayHelper::map($master->getDistrict($model->address0->amphur_id), 'id', 'name');
         $phumlamnao_amphur = ArrayHelper::map($master->getAmphur($model->familyAddress->province_id), 'id', 'name');
         $phumlamnao_district = ArrayHelper::map($master->getDistrict($model->familyAddress->amphur_id), 'id', 'name');
+
+        if(Yii::$app->request->isAjax){
+            $model->load(Yii::$app->request->post());
+            return Json::encode(\yii\widgets\ActiveForm::validate($model));
+        }
 
         if ($model->load(Yii::$app->request->post())) {
             $address_1 = null;
@@ -138,7 +176,7 @@ class PersonMasterController extends Controller
                     $model->family_address = $address_phumlamnao->address_id;
                 }
             }
-
+            $model->person_pic = $this->uploadSingleFile($model);
             if($model->validate()){
                 $model->save();
                 Yii::$app->getSession()->setFlash('basicinfo_updated', [
@@ -163,13 +201,6 @@ class PersonMasterController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing PersonMaster model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -177,13 +208,6 @@ class PersonMasterController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the PersonMaster model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return PersonMaster the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
         if (($model = PersonMaster::findOne($id)) !== null) {
@@ -226,5 +250,62 @@ class PersonMasterController extends Controller
             }
         }
         echo Json::encode(['output' => '', 'selected' => '']);
+    }
+
+    private function uploadSingleFile($model,$tempFile=null){
+        $file = [];
+        $json = '';
+        $temp = '';
+        try {
+            $UploadedFile = UploadedFile::getInstance($model,'person_pic');
+            if($UploadedFile !== null){
+                $uploadPath = PersonMaster::getUploadPath();
+                $temp = $model->idperson.'.'.$UploadedFile->extension;
+                $FileName = $uploadPath.$temp;
+                if(file_exists($FileName)){
+                    @unlink($FileName);
+                }
+                $UploadedFile->saveAs($FileName);
+            }else{
+                $json=$tempFile;
+            }
+        } catch (Exception $e) {
+            $json=$tempFile;
+        }
+        return $temp ;
+    }
+
+    public function actionReport($id) {
+        //$mpdf = new Mpdf(['mode' => 's']);
+        $mpdf = new \Mpdf\Mpdf(['tempDir' => __DIR__ . '/mpdf/temp']);
+        $content  = $this->renderPartial('report', [
+            'id' => $id,
+        ]);
+
+        //return $content;
+
+        $stylesheet = "
+        body{font-family: Garuda}
+         u.dotted{
+            border-bottom: 1px dotted #000;
+            text-decoration: none;
+        }
+
+        ";
+
+        $mpdf->SetHeader('||{PAGENO}');
+        //$mpdf->SetFooter('|'.'ผู้รับผิดชอบ : '.$model->responsibleBy->responsible_by.'|');
+        //$mpdf->SetWatermarkText('Deshario');
+        //$mpdf->showWatermarkText = true;
+        //$mpdf->margin_bottom_collapse = 5;
+
+        $mpdf->AddPageByArray([
+            'resetpagenum' => '1'
+        ]);
+
+        $mpdf->WriteHTML($stylesheet,1);
+        $mpdf->WriteHTML($content,2);
+        $mpdf->Output('ประวัติของฉัน', 'D');
+
     }
 }

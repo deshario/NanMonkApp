@@ -24,32 +24,42 @@ foreach ($dataProvider->models as $model) {
         $childage = $model->childmonkage;
         $childmonkdate = $model->childmonkdate;
         $childmonktemple = $model->childmonk_temple;
-        $childmonk_province_id = $model->childmonkAddress->province_id;
-        $childmonk_amphur_id = $model->childmonkAddress->amphur_id;
-        $childmonk_tambol_id = $model->childmonkAddress->tambol_id;
 
-        $province = \app\models\Province::find()->where('PROVINCE_ID = ' . $childmonk_province_id)->one()->PROVINCE_NAME;
-        $amphur = \app\models\Amphur::find()->where('AMPHUR_ID = ' . $childmonk_amphur_id)->one()->AMPHUR_NAME;
-        $tambon = \app\models\District::find()->where('DISTRICT_ID = ' . $childmonk_tambol_id)->one()->DISTRICT_NAME;
-        $province = str_replace(' ', '', $province);
-        $amphur = str_replace(' ', '', $amphur);
-        $tambon = str_replace(' ', '', $tambon);
-        $childmonkadderss =  ' ตำบล ' . $tambon . ' อำเภอ ' . $amphur . ' จังหวัด ' . $province;
+        if($model->childmonkAddress != null){
+            $childmonk_province_id = $model->childmonkAddress->province_id;
+            $childmonk_amphur_id = $model->childmonkAddress->amphur_id;
+            $childmonk_tambol_id = $model->childmonkAddress->tambol_id;
+
+            $province = \app\models\Province::find()->where('PROVINCE_ID = ' . $childmonk_province_id)->one()->PROVINCE_NAME;
+            $amphur = \app\models\Amphur::find()->where('AMPHUR_ID = ' . $childmonk_amphur_id)->one()->AMPHUR_NAME;
+            $tambon = \app\models\District::find()->where('DISTRICT_ID = ' . $childmonk_tambol_id)->one()->DISTRICT_NAME;
+            $province = str_replace(' ', '', $province);
+            $amphur = str_replace(' ', '', $amphur);
+            $tambon = str_replace(' ', '', $tambon);
+            $childmonkadderss =  ' ตำบล ' . $tambon . ' อำเภอ ' . $amphur . ' จังหวัด ' . $province;
+        }else{
+            $childmonkadderss = '';
+        }
+
+        if($model->childmonkT1Address != null){
+            $childmonk_t1_province_id = $model->childmonkT1Address->province_id;
+            $childmonk_t1_amphur_id = $model->childmonkT1Address->amphur_id;
+            $childmonk_t1_tambol_id = $model->childmonkT1Address->tambol_id;
+
+            $province_ii = \app\models\Province::find()->where('PROVINCE_ID = ' . $childmonk_t1_province_id)->one()->PROVINCE_NAME;
+            $amphur_ii = \app\models\Amphur::find()->where('AMPHUR_ID = ' . $childmonk_t1_amphur_id)->one()->AMPHUR_NAME;
+            $tambon_ii = \app\models\District::find()->where('DISTRICT_ID = ' . $childmonk_t1_tambol_id)->one()->DISTRICT_NAME;
+            $province_ii = str_replace(' ', '', $province_ii);
+            $amphur_ii = str_replace(' ', '', $amphur_ii);
+            $tambon_ii = str_replace(' ', '', $tambon_ii);
+            $childmonk_t1_address =  ' ตำบล ' . $tambon_ii . ' อำเภอ ' . $amphur_ii . ' จังหวัด ' . $province_ii;
+        }else{
+            $childmonk_t1_address = '';
+        }
 
         $childmonk_t1_name = $model->childmonk_t1_name;
         $childmonk_t1_temple = $model->childmonk_t1_temple;
-        $childmonk_t1_province_id = $model->childmonkT1Address->province_id;
-        $childmonk_t1_amphur_id = $model->childmonkT1Address->amphur_id;
-        $childmonk_t1_tambol_id = $model->childmonkT1Address->tambol_id;
 
-
-        $province_ii = \app\models\Province::find()->where('PROVINCE_ID = ' . $childmonk_t1_province_id)->one()->PROVINCE_NAME;
-        $amphur_ii = \app\models\Amphur::find()->where('AMPHUR_ID = ' . $childmonk_t1_amphur_id)->one()->AMPHUR_NAME;
-        $tambon_ii = \app\models\District::find()->where('DISTRICT_ID = ' . $childmonk_t1_tambol_id)->one()->DISTRICT_NAME;
-        $province_ii = str_replace(' ', '', $province_ii);
-        $amphur_ii = str_replace(' ', '', $amphur_ii);
-        $tambon_ii = str_replace(' ', '', $tambon_ii);
-        $childmonk_t1_address =  ' ตำบล ' . $tambon_ii . ' อำเภอ ' . $amphur_ii . ' จังหวัด ' . $province_ii;
 
         $childmonk_t2_age = $model->monk_age;
         $childmonk_t2_date = $model->monk_date;

@@ -5,7 +5,7 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
-    'name' => 'MonkApp',
+    'name' => 'ทะเบียนประวัติคณะสงฆ์',
     'homeUrl' => ['site/home'],
     'basePath' => dirname(__DIR__),
     'timeZone' => 'Asia/Bangkok',

@@ -45,7 +45,7 @@ class MovetempleTransController extends Controller
         $id = Yii::$app->user->identity->id;
         $key = PersonMaster::find()->where('user_id = ' . $id)->one();
         if ($key != null) {
-            $dataProvider->query->where('idperson = ' . $key->idperson);
+            $dataProvider->query->where('idperson = '.$key->idperson);
         } else {
             Yii::$app->getSession()->setFlash('move_temple_fail', [
                 'type' => Growl::TYPE_DANGER,

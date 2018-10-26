@@ -25,109 +25,123 @@ use karatae99\datepicker\DatePicker;
         </div><!-- /.box-header -->
         <div class="box-body">
 
-            <div class="col-md-4">
-                <?= $form->field($model, 'idperson')->textInput(['maxlength' => true, 'readonly' => true]) ?>
-            </div>
-            <div class="">
-                <?php //$form->field($model, 'childmonkage')->textInput() ?>
-            </div>
-            <div class="col-md-4">
-                <?= $form->field($model, 'childmonkdate')->widget(
-                    DatePicker::className(), [
-                    'language' => 'th', // Thai B.E.
-                    'clientOptions' => [
-                        'autoclose' => true,
-                        'format' => 'yyyy-mm-dd'
-                    ]
-                ]); ?>
-            </div>
-            <div class="col-md-4">
-                <?= $form->field($model, 'childmonk_temple')->textInput(['maxlength' => true]) ?>
-            </div>
+            <div class='box box-solid box-default'>
+                <div class='box-header with-border'>
+                    <h3 class='box-title'>บรรพชา</h3>
+                    <div class='box-tools pull-right'>
+                        <button class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-plus'></i></button>
+                    </div>
+                </div>
+                <div class='box-body'>
+                    <div class="col-md-4">
+                        <?= $form->field($model, 'idperson')->textInput(['maxlength' => true, 'readonly' => true]) ?>
+                    </div>
+                    <div class="">
+                        <?php //$form->field($model, 'childmonkage')->textInput() ?>
+                    </div>
+                    <div class="col-md-4">
+                        <?= $form->field($model, 'childmonkdate')->widget(
+                            DatePicker::className(), [
+                            'language' => 'th', // Thai B.E.
+                            'clientOptions' => [
+                                'autoclose' => true,
+                                'format' => 'yyyy-mm-dd'
+                            ]
+                        ]); ?>
+                    </div>
+                    <div class="col-md-4">
+                        <?= $form->field($model, 'childmonk_temple')->textInput(['maxlength' => true]) ?>
+                    </div>
 
-            <div class="clearfix"></div>
-            <!--            <div class="col-md-4">-->
-            <!--                --><?php ////$form->field($model, 'childmonk_address')->textInput() ?>
-            <!--            </div>-->
+                    <div class="clearfix"></div>
+                    <!--            <div class="col-md-4">-->
+                    <!--                --><?php ////$form->field($model, 'childmonk_address')->textInput() ?>
+                    <!--            </div>-->
 
-            <div class="col-md-4">
-                <?= $form->field($model, 'province')->dropdownList(
-                    ArrayHelper::map(Province::find()->all(),
-                        'PROVINCE_ID',
-                        'PROVINCE_NAME'),
-                    [
-                        'id' => 'ddl-province',
-                        'prompt' => 'เลือกจังหวัด'
-                    ]); ?>
-            </div>
-            <div class="col-md-4">
-                <?= $form->field($model, 'amphur')->widget(DepDrop::classname(), [
-                    'options' => ['id' => 'ddl-amphur'],
-                    'data' => $child_amphur,
-                    'pluginOptions' => [
-                        'depends' => ['ddl-province'],
-                        'placeholder' => 'เลือกอำเภอ...',
-                        'url' => Url::to(['/person-master/getamphur'])
-                    ]
-                ]); ?>
-            </div>
-            <div class="col-md-4">
-                <?= $form->field($model, 'tambol')->widget(DepDrop::classname(), [
-                    'data' => $child_district,
-                    'pluginOptions' => [
-                        'depends' => ['ddl-province', 'ddl-amphur'],
-                        'placeholder' => 'เลือกตำบล...',
-                        'url' => Url::to(['/person-master/getdistrict'])
-                    ]
-                ]); ?>
-            </div>
+                    <div class="col-md-4">
+                        <?= $form->field($model, 'province')->dropdownList(
+                            ArrayHelper::map(Province::find()
+                                ->orderBy('PROVINCE_NAME')
+                                ->all(),
+                                'PROVINCE_ID',
+                                'PROVINCE_NAME'),
+                            [
+                                'id' => 'ddl-province',
+                                'prompt' => 'เลือกจังหวัด'
+                            ]); ?>
+                    </div>
+                    <div class="col-md-4">
+                        <?= $form->field($model, 'amphur')->widget(DepDrop::classname(), [
+                            'options' => ['id' => 'ddl-amphur'],
+                            'data' => $child_amphur,
+                            'pluginOptions' => [
+                                'depends' => ['ddl-province'],
+                                'placeholder' => 'เลือกอำเภอ...',
+                                'url' => Url::to(['/person-master/getamphur'])
+                            ]
+                        ]); ?>
+                    </div>
+                    <div class="col-md-4">
+                        <?= $form->field($model, 'tambol')->widget(DepDrop::classname(), [
+                            'data' => $child_district,
+                            'pluginOptions' => [
+                                'depends' => ['ddl-province', 'ddl-amphur'],
+                                'placeholder' => 'เลือกตำบล...',
+                                'url' => Url::to(['/person-master/getdistrict'])
+                            ]
+                        ]); ?>
+                    </div>
 
-            <div class="clearfix"></div>
+                    <div class="clearfix"></div>
 
-            <div class="col-md-4">
-                <?= $form->field($model, 'childmonk_t1_name')->textInput(['maxlength' => true]) ?>
-            </div>
+                    <div class="col-md-4">
+                        <?php $form->field($model, 'childmonk_t1_name')->textInput(['maxlength' => true]) ?>
+                    </div>
 
-            <div class="col-md-4">
-                <?= $form->field($model, 'childmonk_t1_temple')->textInput(['maxlength' => true]) ?>
-            </div>
+                    <div class="col-md-4">
+                        <?php $form->field($model, 'childmonk_t1_temple')->textInput(['maxlength' => true]) ?>
+                    </div>
 
-            <div class="col-md-4">
-                <?php $form->field($model, 'childmonk_t1_address')->textInput() ?>
-            </div>
+                    <div class="col-md-4">
+                        <?php $form->field($model, 'childmonk_t1_address')->textInput() ?>
+                    </div>
 
-            <div class="col-md-4">
-                <?= $form->field($model, 'province_ii')->dropdownList(
-                    ArrayHelper::map(Province::find()->all(),
-                        'PROVINCE_ID',
-                        'PROVINCE_NAME'),
-                    [
-                        'id' => 'ddl-province-ii',
-                        'prompt' => 'เลือกจังหวัด'
-                    ]); ?>
-            </div>
+                    <div class="col-md-4">
+                        <?php $form->field($model, 'province_ii')->dropdownList(
+                            ArrayHelper::map(Province::find()
+                                ->orderBy('PROVINCE_NAME')
+                                ->all(),
+                                'PROVINCE_ID',
+                                'PROVINCE_NAME'),
+                            [
+                                'id' => 'ddl-province-ii',
+                                'prompt' => 'เลือกจังหวัด'
+                            ]); ?>
+                    </div>
 
-            <div class="col-md-4">
-                <?= $form->field($model, 'amphur_ii')->widget(DepDrop::classname(), [
-                    'options' => ['id' => 'ddl-amphur-ii'],
-                    'data' => $child_t1_amphur,
-                    'pluginOptions' => [
-                        'depends' => ['ddl-province-ii'],
-                        'placeholder' => 'เลือกอำเภอ...',
-                        'url' => Url::to(['/person-master/getamphur'])
-                    ]
-                ]); ?>
-            </div>
+                    <div class="col-md-4">
+                        <?php $form->field($model, 'amphur_ii')->widget(DepDrop::classname(), [
+                            'options' => ['id' => 'ddl-amphur-ii'],
+                            'data' => $child_t1_amphur,
+                            'pluginOptions' => [
+                                'depends' => ['ddl-province-ii'],
+                                'placeholder' => 'เลือกอำเภอ...',
+                                'url' => Url::to(['/person-master/getamphur'])
+                            ]
+                        ]); ?>
+                    </div>
 
-            <div class="col-md-4">
-                <?= $form->field($model, 'tambol_ii')->widget(DepDrop::classname(), [
-                    'data' => $child_t1_district,
-                    'pluginOptions' => [
-                        'depends' => ['ddl-province-ii', 'ddl-amphur-ii'],
-                        'placeholder' => 'เลือกตำบล...',
-                        'url' => Url::to(['/person-master/getdistrict'])
-                    ]
-                ]); ?>
+                    <div class="col-md-4">
+                        <?php $form->field($model, 'tambol_ii')->widget(DepDrop::classname(), [
+                            'data' => $child_t1_district,
+                            'pluginOptions' => [
+                                'depends' => ['ddl-province-ii', 'ddl-amphur-ii'],
+                                'placeholder' => 'เลือกตำบล...',
+                                'url' => Url::to(['/person-master/getdistrict'])
+                            ]
+                        ]); ?>
+                    </div>
+                </div>
             </div>
 
             <div class="clearfix"></div>
@@ -158,7 +172,9 @@ use karatae99\datepicker\DatePicker;
 
                     <div class="col-md-4">
                         <?= $form->field($model, 'province_iii')->dropdownList(
-                            ArrayHelper::map(Province::find()->all(),
+                            ArrayHelper::map(Province::find()
+                                ->orderBy('PROVINCE_NAME')
+                                ->all(),
                                 'PROVINCE_ID',
                                 'PROVINCE_NAME'),
                             [
@@ -214,7 +230,9 @@ use karatae99\datepicker\DatePicker;
 
                     <div class="col-md-4">
                         <?= $form->field($model, 'province_iv')->dropdownList(
-                            ArrayHelper::map(Province::find()->all(),
+                            ArrayHelper::map(Province::find()
+                                ->orderBy('PROVINCE_NAME')
+                                ->all(),
                                 'PROVINCE_ID',
                                 'PROVINCE_NAME'),
                             [
@@ -268,7 +286,9 @@ use karatae99\datepicker\DatePicker;
 
                     <div class="col-md-4">
                         <?= $form->field($model, 'province_v')->dropdownList(
-                            ArrayHelper::map(Province::find()->all(),
+                            ArrayHelper::map(Province::find()
+                                ->orderBy('PROVINCE_NAME')
+                                ->all(),
                                 'PROVINCE_ID',
                                 'PROVINCE_NAME'),
                             [
@@ -322,7 +342,9 @@ use karatae99\datepicker\DatePicker;
 
                     <div class="col-md-4">
                         <?= $form->field($model, 'province_vi')->dropdownList(
-                            ArrayHelper::map(Province::find()->all(),
+                            ArrayHelper::map(Province::find()
+                                ->orderBy('PROVINCE_NAME')
+                                ->all(),
                                 'PROVINCE_ID',
                                 'PROVINCE_NAME'),
                             [
@@ -377,7 +399,9 @@ use karatae99\datepicker\DatePicker;
 
                     <div class="col-md-4">
                         <?= $form->field($model, 'province_vii')->dropdownList(
-                            ArrayHelper::map(Province::find()->all(),
+                            ArrayHelper::map(Province::find()
+                                ->orderBy('PROVINCE_NAME')
+                                ->all(),
                                 'PROVINCE_ID',
                                 'PROVINCE_NAME'),
                             [

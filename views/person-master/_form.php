@@ -9,6 +9,7 @@ use kartik\widgets\FileInput;
 use yii\helpers\ArrayHelper;
 use app\models\Province;
 use kartik\color\ColorInput;
+use app\models\PersonMaster;
 
 $imgpath = Html::img(Yii::getAlias('@web').'/uploads/avatars/'.$model->person_pic,['class'=>'img-responsive']);
 
@@ -17,8 +18,10 @@ $imgpath = Html::img(Yii::getAlias('@web').'/uploads/avatars/'.$model->person_pi
 <div class="person-master-form">
 
     <?php $form = ActiveForm::begin([
-        'options' => ['enctype' => 'multipart/form-data']]); // important
-    ?>
+        'id' => 'contact-form',
+        'enableAjaxValidation' => true,
+        'options' => ['enctype' => 'multipart/form-data']
+    ]); ?>
 
         <div class="box box-default">
             <div class="box-header with-border">
@@ -28,43 +31,37 @@ $imgpath = Html::img(Yii::getAlias('@web').'/uploads/avatars/'.$model->person_pi
                 </div><!-- /.box-tools -->
             </div><!-- /.box-header -->
             <div class="box-body">
-                <?php if($model->isNewRecord){?>
+
                 <div class="col-md-12">
                     <?= $form->field($model, 'person_pic')->widget(FileInput::classname(), [
                         'options' => ['accept' => 'image/*', 'multiple' => false],
                         'pluginOptions' => [
                             'previewFileType' => 'image',
-                            'allowedFileExtensions' => ['jpg', 'jpeg', 'png'],
                             'showPreview' => true,
                             'showCaption' => true,
-                            'showRemove' => true,
+                            'showRemove' => false,
                             'showUpload' => false,
-                            'initialPreview' => [
-                                $model->person_pic ? $imgpath : null, // checks the models to display the preview
-                            ],
+                            'initialPreview'=>$model->initialPreview($model->person_pic),
                             'overwriteInitial' => false,
-                        ]
+                        ],
                     ]);
                     ?>
                 </div>
-                <?php } ?>
 
-                <div class="col-md-6">
-                    <?php if($model->isNewRecord) {
-                        echo $form->field($model, 'idperson')->textInput(['maxlength' => true]);
-                    }else{
-                        echo $form->field($model, 'idperson')->textInput(['maxlength' => true, 'readonly' => true]);
-                    }
-                    ?>
+                <div class="col-md-4">
+                    <?= $form->field($model, 'idperson')->textInput(['maxlength' => true]); ?>
                 </div>
-                <div class="col-md-6">
-                    <?php if($model->isNewRecord) {
-                        echo $form->field($model, 'person_book_no')->textInput(['maxlength' => true]);
-                    }else{
-                        echo $form->field($model, 'person_book_no')->textInput(['maxlength' => true, 'readonly' => true]);
-                    }
-                    ?>
+                <div class="col-md-4">
+                    <?= $form->field($model, 'person_book_no')->textInput(['maxlength' => true]); ?>
                 </div>
+                <div class="col-md-4">
+                    <?= $form->field($model, 'prefix')->dropDownList([
+                        PersonMaster::PREFIX_SAMNER => $model->getPrefix(PersonMaster::PREFIX_SAMNER),
+                        PersonMaster::PREFIX_PHRA => $model->getPrefix(PersonMaster::PREFIX_PHRA),
+                    ],['prompt' => 'กรุณาเลือกคำนำหน้า']) ?>
+                </div>
+
+                <div class="clearfix"></div>
 
                 <div class="col-md-4">
                     <?= $form->field($model, 'firstname')->textInput(['maxlength' => true]) ?>
@@ -75,6 +72,8 @@ $imgpath = Html::img(Yii::getAlias('@web').'/uploads/avatars/'.$model->person_pi
                 <div class="col-md-4">
                     <?= $form->field($model, 'aliasname')->textInput(['maxlength' => true]) ?>
                 </div>
+
+                <div class="clearfix"></div>
 
                 <div class="col-md-4">
                     <?= $form->field($model, 'birthdate')->widget(
@@ -90,8 +89,8 @@ $imgpath = Html::img(Yii::getAlias('@web').'/uploads/avatars/'.$model->person_pi
                 <div class="col-md-4">
                     <?= $form->field($model, 'staytemp')->textInput() ?>
                 </div>
-                <div class="col-md-4">
-                    <?= $form->field($model, 'level')->textInput(['maxlength' => true]) ?>
+                <div class="col-md-12">
+                    <?= $form->field($model, 'level')->textarea(['rows' => '3']) ?>
                 </div>
 
                 <div class="clearfix"></div>
@@ -108,7 +107,10 @@ $imgpath = Html::img(Yii::getAlias('@web').'/uploads/avatars/'.$model->person_pi
 
                 <div class="col-md-4">
                     <?= $form->field($model, 'province')->dropdownList(
-                        ArrayHelper::map(Province::find()->all(),
+                        ArrayHelper::map(Province::find()
+                            //->asArray()
+                            ->orderBy('PROVINCE_NAME')
+                            ->all(),
                             'PROVINCE_ID',
                             'PROVINCE_NAME'),
                         [

@@ -29,7 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($model, 'password')->passwordInput() ?>
 
             <?= $form->field($model, 'status')->dropDownList([
-                User::STATUS_WAITING => $model->getStatus(User::STATUS_WAITING),
                 User::STATUS_ACTIVE => $model->getStatus(User::STATUS_ACTIVE),
                 User::STATUS_DELETED => $model->getStatus(User::STATUS_DELETED),
             ],['prompt' => 'กรุณาเลือกสถานะ']) ?>

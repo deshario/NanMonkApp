@@ -27,6 +27,8 @@ foreach ($dataProvider->models as $model) {
         $person_book_no = $model->person_book_no;
         $person_pic = $model->person_pic;
         $imgpath = Yii::getAlias('@web') . '/uploads/avatars/' . $model->person_pic;
+
+        $prefix = $model->getPrefix($model->prefix);
         $firstname = $model->firstname;
         $lastname = $model->surname;
         $aliasname = $model->aliasname;
@@ -117,7 +119,7 @@ foreach ($dataProvider->models as $model) {
                                 <div class='col-md-4'>
                                      <div class='form-group'>
                                         <label>ชื่อปัจจุบัน</label>
-                                        <input type='text' class='form-control' value='ส.ณ $firstname' readonly>
+                                        <input type='text' class='form-control' value='$prefix $firstname' readonly>
                                     </div>  
                                 </div> 
                                 
