@@ -232,7 +232,7 @@ class MonkhoodMasterController extends Controller
         }
 
         if($model->monkT1Address != null){ //พระอุปัชฌาย์
-            $model->province_iv = $model->childmonkT1Address->province_id;
+            $model->province_iv = $model->monkT1Address->province_id;
             $monk_t2_amphur = ArrayHelper::map($master->getAmphur($model->monkT1Address->province_id), 'id', 'name');
             $monk_t2_district = ArrayHelper::map($master->getDistrict($model->monkT1Address->amphur_id), 'id', 'name');
         }else{
