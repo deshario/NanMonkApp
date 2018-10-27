@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2018 at 09:44 PM
+-- Generation Time: Oct 27, 2018 at 12:16 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -255,7 +255,180 @@ INSERT INTO `address` (`address_id`, `tambol_id`, `amphur_id`, `province_id`, `z
 (212, 5697, 633, 43, NULL),
 (213, 2309, 250, 20, NULL),
 (214, 5675, 633, 43, NULL),
-(215, 2092, 250, 20, NULL);
+(215, 2092, 250, 20, NULL),
+(216, 1624, 199, 16, NULL),
+(217, 1624, 199, 16, NULL),
+(218, 1669, 204, 17, NULL),
+(219, 1663, 203, 17, NULL),
+(220, 1645, 201, 16, NULL),
+(221, 375, 68, 4, NULL),
+(222, 5500, 612, 40, NULL),
+(223, 3650, 407, 28, NULL),
+(224, 4232, 473, 31, NULL),
+(225, 1288, 162, 13, NULL),
+(226, 3686, 409, 28, NULL),
+(227, 1288, 162, 13, NULL),
+(228, 3686, 409, 28, NULL),
+(229, 1288, 162, 13, NULL),
+(230, 3686, 409, 28, NULL),
+(231, 1288, 162, 13, NULL),
+(232, 3686, 409, 28, NULL),
+(233, 1288, 162, 13, NULL),
+(234, 3686, 409, 28, NULL),
+(235, 1597, 196, 16, NULL),
+(236, 1666, 203, 17, NULL),
+(237, 1597, 196, 16, NULL),
+(238, 1666, 203, 17, NULL),
+(239, 1620, 199, 16, NULL),
+(240, 1667, 203, 17, NULL),
+(241, 1624, 199, 16, NULL),
+(242, 1652, 202, 17, NULL),
+(243, 1747, 211, 18, NULL),
+(244, 1754, 213, 18, NULL),
+(245, 2509, 286, 21, NULL),
+(246, 8844, 994, 76, NULL),
+(247, 1500, 186, 15, NULL),
+(248, 1754, 213, 18, NULL),
+(249, 1675, 204, 17, NULL),
+(250, 1639, 200, 16, NULL),
+(251, 1995, 231, 19, NULL),
+(252, 1995, 231, 19, NULL),
+(253, 1492, 184, 15, NULL),
+(254, 1615, 198, 16, NULL),
+(255, 1613, 198, 16, NULL),
+(256, 1659, 202, 17, NULL),
+(257, 1675, 204, 17, NULL),
+(258, 1750, 212, 18, NULL),
+(259, 1614, 198, 16, NULL),
+(260, 1666, 203, 17, NULL),
+(261, 1662, 202, 17, NULL),
+(262, 1649, 202, 17, NULL),
+(263, 1197, 151, 12, NULL),
+(264, 1649, 202, 17, NULL),
+(265, 1187, 151, 12, NULL),
+(266, 1649, 202, 17, NULL),
+(267, 1187, 151, 12, NULL),
+(268, 1649, 202, 17, NULL),
+(269, 1187, 151, 12, NULL),
+(270, 1649, 202, 17, NULL),
+(271, 1675, 204, 17, NULL),
+(272, 1753, 213, 18, NULL),
+(273, 1669, 202, 17, NULL),
+(274, 1753, 206, 18, NULL),
+(275, 1649, 202, 17, NULL),
+(276, 1690, 206, 18, NULL),
+(277, 1649, 202, 17, NULL),
+(278, 1690, 206, 18, NULL),
+(279, 1649, 202, 17, NULL),
+(280, 1690, 206, 18, NULL),
+(281, 1649, 202, 17, NULL),
+(282, 1690, 206, 18, NULL),
+(283, 1649, 202, 17, NULL),
+(284, 1690, 206, 18, NULL),
+(285, 1649, 202, 17, NULL),
+(286, 1690, 206, 18, NULL),
+(287, 1649, 202, 17, NULL),
+(288, 1690, 206, 18, NULL),
+(289, 1649, 202, 17, NULL),
+(290, 1690, 206, 18, NULL),
+(291, 1649, 202, 17, NULL),
+(292, 1690, 206, 18, NULL),
+(293, 1649, 202, 17, NULL),
+(294, 1690, 206, 18, NULL),
+(295, 1649, 202, 17, NULL),
+(296, 1690, 206, 18, NULL),
+(297, 1649, 202, 17, NULL),
+(298, 1690, 206, 18, NULL),
+(299, 1649, 202, 17, NULL),
+(300, 1690, 206, 18, NULL),
+(301, 1649, 202, 17, NULL),
+(302, 1690, 206, 18, NULL),
+(303, 1649, 202, 17, NULL),
+(304, 1690, 206, 18, NULL),
+(305, 1649, 202, 17, NULL),
+(306, 1690, 206, 18, NULL),
+(307, 1649, 202, 17, NULL),
+(308, 1690, 206, 18, NULL),
+(309, 1649, 202, 17, NULL),
+(310, 1690, 206, 18, NULL),
+(311, 1649, 202, 17, NULL),
+(312, 1690, 206, 18, NULL),
+(313, 1649, 202, 17, NULL),
+(314, 1690, 206, 18, NULL),
+(315, 1649, 202, 17, NULL),
+(316, 1690, 206, 18, NULL),
+(317, 1649, 202, 17, NULL),
+(318, 1690, 206, 18, NULL),
+(319, 1649, 202, 17, NULL),
+(320, 1690, 206, 18, NULL),
+(321, 1649, 202, 17, NULL),
+(322, 1690, 206, 18, NULL),
+(323, 1649, 202, 17, NULL),
+(324, 1690, 206, 18, NULL),
+(325, 1649, 202, 17, NULL),
+(326, 1690, 206, 18, NULL),
+(327, 1649, 202, 17, NULL),
+(328, 1690, 206, 18, NULL),
+(329, 1649, 202, 17, NULL),
+(330, 1690, 206, 18, NULL),
+(331, 1649, 202, 17, NULL),
+(332, 1690, 206, 18, NULL),
+(333, 1676, 204, 17, NULL),
+(334, 1623, 199, 16, NULL),
+(335, 1669, 202, 17, NULL),
+(336, 1618, 189, 16, NULL),
+(337, 1649, 202, 17, NULL),
+(338, 1511, 189, 16, NULL),
+(339, 1649, 202, 17, NULL),
+(340, 1511, 189, 16, NULL),
+(341, 1649, 202, 17, NULL),
+(342, 1511, 189, 16, NULL),
+(343, 1649, 202, 17, NULL),
+(344, 1511, 189, 16, NULL),
+(345, 1649, 202, 17, NULL),
+(346, 1511, 189, 16, NULL),
+(347, 1649, 202, 17, NULL),
+(348, 1511, 189, 16, NULL),
+(349, 1649, 202, 17, NULL),
+(350, 1511, 189, 16, NULL),
+(351, 1649, 202, 17, NULL),
+(352, 1511, 189, 16, NULL),
+(353, 1649, 202, 17, NULL),
+(354, 1511, 189, 16, NULL),
+(355, 1649, 202, 17, NULL),
+(356, 1511, 189, 16, NULL),
+(357, 1649, 202, 17, NULL),
+(358, 1511, 189, 16, NULL),
+(359, 1649, 202, 17, NULL),
+(360, 1511, 189, 16, NULL),
+(361, 1649, 202, 17, NULL),
+(362, 1511, 189, 16, NULL),
+(363, 1649, 202, 17, NULL),
+(364, 1511, 189, 16, NULL),
+(365, 1649, 202, 17, NULL),
+(366, 1511, 189, 16, NULL),
+(367, 7872, 874, 65, NULL),
+(368, 7872, 872, 65, NULL),
+(369, 7858, 872, 65, NULL),
+(370, 7858, 872, 65, NULL),
+(371, 322, 60, 3, NULL),
+(372, 322, 60, 3, NULL),
+(373, 322, 60, 3, NULL),
+(374, 322, 60, 3, NULL),
+(375, 1559, 192, 16, NULL),
+(376, 1447, 180, 15, NULL),
+(377, 320, 59, 3, NULL),
+(378, 4946, 549, 36, NULL),
+(379, 312, 59, 3, NULL),
+(380, 4944, 551, 36, NULL),
+(381, 4955, 550, 36, NULL),
+(382, 1656, 204, 17, NULL),
+(383, 1521, 201, 16, NULL),
+(384, 1203, 158, 12, NULL),
+(385, 1656, 204, 17, NULL),
+(386, 1259, 158, 12, NULL),
+(387, 1673, 204, 17, NULL),
+(388, 5691, 633, 43, NULL);
 
 -- --------------------------------------------------------
 
@@ -10304,7 +10477,8 @@ CREATE TABLE `education_trans` (
 INSERT INTO `education_trans` (`idedu`, `idperson`, `education_level`, `place`, `major`, `year`, `abbrev`, `transcriptname`, `attachfile`, `address`) VALUES
 (1, '43534', 2, 'rmul', 'asd', '2018', '', '', '', 10),
 (2, '123456', 3, 'dsadsa', 'asd', '2561', 'asd', 'asd', '', 126),
-(4, '123456', 3, 'dsa', 'dasd', '2568', 'eew', '', 'cdcc54c2e337e2ad05b8f3d9f48b8f40.png', 146);
+(4, '123456', 3, 'dsa', 'dasd', '2568', 'eew', '', 'cdcc54c2e337e2ad05b8f3d9f48b8f40.png', 146),
+(5, '123', 3, 'Odio ut aut aut dolores dolor sit', 'Aut omnis elit eius earum quo laborum dolore', '2009', 'Itaque dolorem ipsum', 'Mia Whitney', '67d59130a8eab5a5c3bb5632d21016a8.png', 370);
 
 -- --------------------------------------------------------
 
@@ -10325,7 +10499,7 @@ CREATE TABLE `hobbie_trans` (
 
 INSERT INTO `hobbie_trans` (`id`, `idperson`, `idhobby`, `others`) VALUES
 (1, '43534', 9, 'MS EXCEL'),
-(2, '435h34u', 9, 'MS EXCEL'),
+(2, 'qqqqqq', 9, 'MS EXCEL'),
 (3, '123456', 9, 'eeee');
 
 -- --------------------------------------------------------
@@ -10388,6 +10562,7 @@ CREATE TABLE `monk_master` (
 --
 
 INSERT INTO `monk_master` (`monkhood_id`, `idperson`, `childmonkage`, `childmonkdate`, `childmonk_temple`, `childmonk_address`, `childmonk_t1_name`, `childmonk_t1_temple`, `childmonk_t1_address`, `monk_age`, `monk_date`, `monk_time`, `monk_temple`, `monk_address`, `monk_t1_name`, `monk_t1_temple`, `monk_t1_address`, `monk_t2_name`, `monk_t2_temple`, `monk_t2_address`, `monk_t3_name`, `monk_t3_temple`, `monk_t3_address`, `staytemple`, `staymonkname`, `staymonk_address`) VALUES
+(6, '123', 10, '2551-03-14', 'วัดพระธาตุแช่แห้ง', 379, NULL, NULL, NULL, 0, '2561-10-19', NULL, 'วัดพระธาตุแช่แห้ง', 380, '', '', NULL, '', '', NULL, 'Piper Rice', 'Sit iure amet omnis ut distinctio Rem sunt et animi', 381, '', '', NULL),
 (5, '123456', 10, '2551-02-16', 'วัดพระธาตุแช่แห้ง', 214, 'aj note', 'วัดพระธาตุแช่แห้ง', 215, 4, '2557-07-18', NULL, 'วัดพระธาตุแช่แห้ง', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL);
 
 -- --------------------------------------------------------
@@ -10414,7 +10589,11 @@ INSERT INTO `movetemple_trans` (`idmove`, `idperson`, `fromdate`, `fromtemple`, 
 (4, '123456', '2561-10-20', 'chaehaeng', 'เบื่อ', 157),
 (5, '123456', '2561-10-26', 'naiwiang', 'เบื่อ11', 122),
 (6, '123456', '2552-11-18', 'chaehaeng', 'เบื่อ11', 123),
-(7, '123456', '2561-10-12', 'chaehaeng', 'borec', 83);
+(7, '123456', '2561-10-12', 'chaehaeng', 'borec', 83),
+(8, 'qqqqqq', '2561-10-06', 'uu', 'uu', 218),
+(9, '123', '2561-10-04', 'naiwiang', 'เบื่อ11', 375),
+(10, '123', '2561-10-11', 'naiwiang', 'asd', 376),
+(11, '07244694', '2554-07-07', 'naiwiang', 'เบื่อ11', 388);
 
 -- --------------------------------------------------------
 
@@ -10451,12 +10630,13 @@ CREATE TABLE `person_master` (
   `user_id` int(11) NOT NULL,
   `person_book_no` varchar(5) DEFAULT NULL COMMENT 'หมายเลขหนังสือสุทธิ',
   `person_pic` varchar(255) DEFAULT NULL COMMENT 'รูปภาพ',
+  `prefix` int(11) DEFAULT NULL COMMENT 'คำนำหน้า',
   `firstname` varchar(60) DEFAULT NULL COMMENT 'ชื่อ',
   `surname` varchar(60) DEFAULT NULL COMMENT 'นามสกุล',
   `aliasname` varchar(45) DEFAULT NULL COMMENT 'ฉายา',
   `birthdate` date DEFAULT NULL COMMENT 'วันเดือนปีเกิด',
   `staytemp` int(11) DEFAULT NULL COMMENT 'จำนวนพรรษา',
-  `level` varchar(45) DEFAULT NULL COMMENT 'วิทยฐานะ',
+  `level` text COMMENT 'วิทยฐานะ',
   `temple` varchar(80) DEFAULT NULL COMMENT 'วัด',
   `homeno` varchar(60) DEFAULT NULL COMMENT 'บ้านเลขที่, หมู่ที่, หมู่บ้าน',
   `address` int(11) DEFAULT NULL COMMENT 'ที่อยู่',
@@ -10476,11 +10656,8 @@ CREATE TABLE `person_master` (
 -- Dumping data for table `person_master`
 --
 
-INSERT INTO `person_master` (`idperson`, `user_id`, `person_book_no`, `person_pic`, `firstname`, `surname`, `aliasname`, `birthdate`, `staytemp`, `level`, `temple`, `homeno`, `address`, `section`, `idnationality`, `occupation`, `quality`, `color`, `special`, `father`, `mother`, `family_homeno`, `family_address`) VALUES
-('123456', 2, '12399', '2573_1540126080_21101948.png', 'sadsadsa', 'dsadas1', '123', '2540-07-31', 2, 'sdfsd', 'sdf', 'sdf', 75, 'sdf', 5, 'sdf', 'sdf', 'สีเหลือง', 'sdf', 'sdf', 'sdf', '89/2', 119),
-('43534', 3, '345', '8651_1540130045_21102054.jpg', '34', '345', '345', '2018-10-23', 53, '534', '345', '345', 3, '345', 3, 'utyu', 'ty', '#00ff00', 'tyu', 'tyu', 'tyu', 'tyu', 4),
-('112233', 3, '21321', '529_1540130772_21102106.png', '12312', 'sad', 'asd', '2018-10-16', 1, 'asd', 'sda', 'asd', 3, 'dasd', 6, 'asd', 'asd', '#93c47d', 'asd', 'asd', 'asd', 'asd', 5),
-('333', 3, '555', '7107_1540130872_21102107.png', 'พะำะพ', 'asdsad', 'asd', '2018-10-26', 1, 'dfg', 'fsd', 'sdf', 6, 'sdf', 2, 'sdf', 'sdf', '#93c47d', 'sdf', 'sdf', 'sdf', 'sdfs', 7);
+INSERT INTO `person_master` (`idperson`, `user_id`, `person_book_no`, `person_pic`, `prefix`, `firstname`, `surname`, `aliasname`, `birthdate`, `staytemp`, `level`, `temple`, `homeno`, `address`, `section`, `idnationality`, `occupation`, `quality`, `color`, `special`, `father`, `mother`, `family_homeno`, `family_address`) VALUES
+('07244694', 22, '12345', '07244694.png', 1, 'เอกชัย', 'วงค์วาน', '123', '2538-08-17', 2, 'd5sa46', 'asd', 'asd', 386, 'asdasd', 5, 'awd', 'awd', 'awd', 'awd', 'awd', 'awd', 'awd', 387);
 
 -- --------------------------------------------------------
 
@@ -10837,7 +11014,8 @@ CREATE TABLE `staytemple_trans` (
 --
 
 INSERT INTO `staytemple_trans` (`idstay`, `idperson`, `indate`, `outdate`, `staytemple`, `staytemple_address`) VALUES
-(5, '123456', '2561-10-26', '2561-10-25', '546', 144);
+(5, '123456', '2561-10-26', '2561-10-25', '546', 144),
+(7, '07244694', '2561-10-17', NULL, 'chaehaeng', 242);
 
 -- --------------------------------------------------------
 
@@ -10895,7 +11073,7 @@ CREATE TABLE `training_trans` (
 INSERT INTO `training_trans` (`id`, `idperson`, `training_id`, `trainingdate`, `trainingby`, `others`, `attachfile`) VALUES
 (1, '43534', 7, '2018-10-24', 'พระ สมพงษ์', '', ''),
 (3, 'yui34', 7, '2018-10-24', 'พระ สมพงษ์', '', ''),
-(4, '123456', 4, '2561-10-19', 'eeee', '', '');
+(4, '123456', 4, '2561-10-19', 'eeee', '', 'b20287910406d7613a9d599693a736cf.jpg');
 
 -- --------------------------------------------------------
 
@@ -10922,9 +11100,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `roles`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'TPPFgbPLpkegrGPWcXd9fEEpiX-vyAfk', '$2y$13$/rPcpCkuQN3ifyx0ZFI37OsYHPa/.zI5KFJD4163GPBuG9ysPToVK', NULL, 'admin@gmail.com', 10, 20, 1539700094, 1539700094),
-(2, 'demo', 'fcEr2pyG1iBPap2zpF9GRYfg-BIhq5eC', '$2y$13$Rv5EeKzOnWQBH2MhD1ggheILrWLqER0UyqEbDqKtXsRbm91qAtF7q', NULL, 'demo@gmail.com', 10, 10, 1540126007, 1540126007),
-(16, 'BXHKM9OB', 'PLxVGJEa2Cv5QdQ6ds5vfHj5PHNNCsVO', '$2y$13$pp7gw8YP6EzluTsAXeo2/OJ81KUh7xQQBrg1Yyc.zOIZhZf0Kz/dK', NULL, 'bxhkm9ob@virtual.com', 0, 20, 1540234698, 1540234698),
-(17, 'UK036TAP', 'aFZUJmI2kYRLYTkGqZgi64t2RqvAVcme', '$2y$13$6/zs6SlBzwqPm5NBEQ9eN.AIS9WX1nxgYlMun3X/wGlXjmd9UVzpm', NULL, 'uk036tap@virtual.com', 10, 10, 1540287645, 1540287645);
+(22, 'user1', 'QTYgA8W-4NKomp3YlTjSftbpEudij2Z_', '$2y$13$Ae5o0eysAbupJjnwGpFnL.rFzF6XCo/qIZ6A/qgucHbEV17TkwPYC', NULL, '5hguxmgv@virtual.com', 10, 10, 1540566904, 1540566904),
+(23, 'user2', 'rsRmAKFPTHz82p6pORaPx9wq6crIF0Dm', '$2y$13$g2PeB17kXQRyF6mX5DmRcuZbdFIPxQNRj5pMQy3dQI7X.DCUoi5G.', NULL, '73aty00h@virtual.com', 10, 10, 1540566920, 1540566920);
 
 -- --------------------------------------------------------
 
@@ -18505,6 +18682,8 @@ ALTER TABLE `nationality`
 --
 ALTER TABLE `person_master`
   ADD PRIMARY KEY (`idperson`),
+  ADD UNIQUE KEY `idperson_UNIQUE` (`idperson`),
+  ADD UNIQUE KEY `person_book_no_UNIQUE` (`person_book_no`),
   ADD KEY `fk_person_master_address1_idx` (`address`),
   ADD KEY `fk_person_master_address2_idx` (`family_address`),
   ADD KEY `fk_person_master_nationality1_idx` (`idnationality`),
@@ -18605,7 +18784,7 @@ ALTER TABLE `zipcode`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=216;
+  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=389;
 
 --
 -- AUTO_INCREMENT for table `amphur`
@@ -18641,7 +18820,7 @@ ALTER TABLE `education_temp_trans`
 -- AUTO_INCREMENT for table `education_trans`
 --
 ALTER TABLE `education_trans`
-  MODIFY `idedu` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับการศึกษาทางโลก', AUTO_INCREMENT=5;
+  MODIFY `idedu` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับการศึกษาทางโลก', AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `hobbie_trans`
@@ -18659,13 +18838,13 @@ ALTER TABLE `hobby`
 -- AUTO_INCREMENT for table `monk_master`
 --
 ALTER TABLE `monk_master`
-  MODIFY `monkhood_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `monkhood_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `movetemple_trans`
 --
 ALTER TABLE `movetemple_trans`
-  MODIFY `idmove` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับการย้ายวัด', AUTO_INCREMENT=8;
+  MODIFY `idmove` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับการย้ายวัด', AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `nationality`
@@ -18719,7 +18898,7 @@ ALTER TABLE `specialwork_trans`
 -- AUTO_INCREMENT for table `staytemple_trans`
 --
 ALTER TABLE `staytemple_trans`
-  MODIFY `idstay` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับการย้ายวัด', AUTO_INCREMENT=7;
+  MODIFY `idstay` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ลำดับการย้ายวัด', AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `training`
@@ -18737,7 +18916,7 @@ ALTER TABLE `training_trans`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `zipcode`

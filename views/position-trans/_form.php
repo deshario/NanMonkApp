@@ -8,6 +8,7 @@ use yii\helpers\ArrayHelper;
 use app\models\Province;
 use kartik\widgets\FileInput;
 use karatae99\datepicker\DatePicker;
+use karatae99\datepicker\DateRangePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\PositionTrans */
